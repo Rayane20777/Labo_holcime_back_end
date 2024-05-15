@@ -14,6 +14,7 @@ class AnalyseChimique extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
 
+    protected $table = 'analyse_chimiques';
     protected $fillable = [
         'addition',
         '2-32µm ',

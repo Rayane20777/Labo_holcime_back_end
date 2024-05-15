@@ -14,6 +14,9 @@ class Proportions extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
 
+    protected $table = 'proportions';
+
+
     protected $fillable = [
         'KK_G',
         'CAL_G',

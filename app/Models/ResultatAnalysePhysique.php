@@ -14,6 +14,9 @@ class ResultatAnalysePhysique extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
 
+    protected $table = 'resultat_analyse_physiques';
+
+
     protected $fillable = [
         '1j',
         '2j',

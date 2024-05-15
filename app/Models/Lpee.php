@@ -13,4 +13,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Lpee extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
+
+    protected $table = 'lpee';
+
+
 }

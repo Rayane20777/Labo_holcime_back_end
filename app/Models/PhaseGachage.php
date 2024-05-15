@@ -14,6 +14,9 @@ class PhaseGachage extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
 
+    protected $table = 'phase_gachages';
+
+
     protected $fillable = [
         'temperature',
         'temperature_salle',

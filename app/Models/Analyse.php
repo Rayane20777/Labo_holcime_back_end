@@ -13,6 +13,8 @@ class Analyse extends Model
 {
     use HasFactory,SoftDeletes;
 
+
+    protected $table = 'analyses';
     protected $fillable = [
         'date_prelevement',
         'date_gachage'
