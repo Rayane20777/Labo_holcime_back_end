@@ -23,12 +23,12 @@ class Matiere extends Model
     ];
 
 
-    public function destination() :BelongsTo {
-        return $this->belongsTo(Destination::class);
+    public function destination() :HasMany {
+        return $this->hasMany(Destination::class);
     }
 
-    public function point_echantillonage() :BelongsTo {
-        return $this->belongsTo(PointEchantillonage::class);
+    public function point_echantillonage() :HasMany {
+        return $this->hasMany(PointEchantillonage::class);
     }
 
     public function analyse() : HasMany {

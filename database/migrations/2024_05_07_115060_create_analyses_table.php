@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('analyses', function (Blueprint $table) {
             $table->id();
-            $table->date('date_prelevement')->nullable();
+            $table->date('date_prelevement');
             $table->date('date_gachage')->nullable();
             $table->foreignId('matiere_id')->constrained('matieres')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');

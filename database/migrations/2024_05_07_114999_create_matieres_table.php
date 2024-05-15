@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('matieres', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->foreignId('destination_id')->constrained('destinations')->onDelete('cascade');
-            $table->foreignId('point_echantillonage_id')->constrained('point_echantiollnages')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
