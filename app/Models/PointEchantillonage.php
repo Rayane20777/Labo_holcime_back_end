@@ -22,7 +22,7 @@ class PointEchantillonage extends Model
     ];
 
 
-    public function matiere() :HasMany {
-        return $this->hasMany(Matiere::class);
+    public function matiere() :BelongsTo {
+        return $this->belongsTo(Matiere::class);
     }
 }
