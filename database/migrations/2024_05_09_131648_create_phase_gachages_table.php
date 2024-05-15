@@ -20,6 +20,7 @@ return new class extends Migration
             $table->time('temps_gachage')->nullable();
             $table->time('temps_casse')->nullable();
             $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

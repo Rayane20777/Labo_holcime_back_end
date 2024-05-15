@@ -18,7 +18,12 @@ return new class extends Migration
             $table->float('7j')->nullable();
             $table->float('28j')->nullable();
             $table->float('90j')->nullable();
+            $table->float('w1')->nullable();
+            $table->float('w2')->nullable();
+            $table->float('w3')->nullable();
+            $table->float('w4')->nullable();
             $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Traits\OneToOneTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PointEchantillonage extends Model
+class Destination extends Model
 {
-    use HasFactory,OneToOneTrait,SoftDeletes;
+    use HasFactory,SoftDeletes;
 
     protected $fillable = [
         'nom'

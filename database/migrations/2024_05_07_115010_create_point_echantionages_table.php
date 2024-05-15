@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('point_echantillonages', function (Blueprint $table) {
+        Schema::create('point_echantiollnages', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('point_echantillonages');
+        Schema::dropIfExists('point_echantiollnages');
     }
 };

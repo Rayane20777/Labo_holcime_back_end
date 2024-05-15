@@ -10,16 +10,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Traits\OneToOneTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PointEchantillonage extends Model
+class Proportions extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
 
     protected $fillable = [
-        'nom'
+        'KK_G',
+        'CAL_G',
+        'CV_G',
+        'LAIT_G',
+        'GYPSE',
+        'KK_NG',
+        'CAL_NG',
+        'CV_NG',
+        'LAIT_NG',
+        '∑_Gypse ',
+        'analyse_id '
     ];
-
-
-    public function matiere() :HasMany {
-        return $this->hasMany(Matiere::class);
-    }
 }
