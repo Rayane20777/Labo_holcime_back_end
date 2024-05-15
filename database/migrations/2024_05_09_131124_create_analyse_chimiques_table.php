@@ -35,6 +35,7 @@ return new class extends Migration
             $table->float('S2-')->nullable();
             $table->float('CaOl')->nullable();
             $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

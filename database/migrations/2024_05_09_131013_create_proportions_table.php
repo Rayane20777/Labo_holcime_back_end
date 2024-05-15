@@ -13,17 +13,18 @@ return new class extends Migration
     {
         Schema::create('proportions', function (Blueprint $table) {
             $table->id();
-            $table->float('kk_g')->nullable();
-            $table->float('cal_g')->nullable();
-            $table->float('cv_g')->nullable();
-            $table->float('lait_g')->nullable();
-            $table->float('gypse')->nullable();
-            $table->float('kk_ng')->nullable();
-            $table->float('cal_ng')->nullable();
-            $table->float('cv_ng')->nullable();
-            $table->float('lait_ng')->nullable();
-            $table->float('∑_gypse')->nullable();
+            $table->float('KK_G')->nullable();
+            $table->float('CAL_G')->nullable();
+            $table->float('CV_G')->nullable();
+            $table->float('LAIT_G')->nullable();
+            $table->float('GYPSE')->nullable();
+            $table->float('KK_NG')->nullable();
+            $table->float('CAL_NG')->nullable();
+            $table->float('CV_NG')->nullable();
+            $table->float('LAIT_NG')->nullable();
+            $table->float('∑_Gypse')->nullable();
             $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

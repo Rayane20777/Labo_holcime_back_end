@@ -10,16 +10,33 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Traits\OneToOneTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PointEchantillonage extends Model
+class AnalyseChimique extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
 
     protected $fillable = [
-        'nom'
+        'addition',
+        '2-32µm ',
+        '>45µm ',
+        '>80µm ',
+        'SSB',
+        'insoluble',
+        'SiO2',
+        'Al2O3',
+        'Fe2O3',
+        'CaO',
+        'MgO',
+        'SO3',
+        'K2O',
+        'Na2O',
+        'P2O5',
+        'CO2',
+        'PF',
+        'Cl',
+        'H41',
+        'S2-',
+        'CaOl',
+        'analyse_id'
     ];
 
-
-    public function matiere() :HasMany {
-        return $this->hasMany(Matiere::class);
-    }
 }

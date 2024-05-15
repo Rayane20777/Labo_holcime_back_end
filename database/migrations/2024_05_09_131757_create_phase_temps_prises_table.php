@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('phase_temps_prises', function (Blueprint $table) {
             $table->id();
             $table->float('mass_volumique')->nullable();
-            $table->integer('déput_de_prisep')->nullable();
+            $table->integer('debut_de_prise')->nullable();
             $table->integer('fin_de_prise')->nullable();
             $table->float('expention')->nullable();
             $table->float('eau_gach')->nullable();
             $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
