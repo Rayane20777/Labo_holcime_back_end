@@ -14,6 +14,9 @@ class PhaseTempsPrise extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
 
+    protected $table = 'phase_temps_prises';
+
+
     protected $fillable = [
         'mass_volumique',
         'debut_de_prise',

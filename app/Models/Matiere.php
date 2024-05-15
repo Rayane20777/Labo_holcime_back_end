@@ -13,6 +13,9 @@ class Matiere extends Model
 {
     use HasFactory,SoftDeletes;
 
+    protected $table = 'matieres';
+
+
     protected $fillable = [
         'nom',
         'destination_id',

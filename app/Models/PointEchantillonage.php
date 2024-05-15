@@ -14,6 +14,9 @@ class PointEchantillonage extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
 
+    protected $table = 'point_echantillonages';
+
+
     protected $fillable = [
         'nom'
     ];

@@ -13,6 +13,9 @@ class Destination extends Model
 {
     use HasFactory,SoftDeletes;
 
+    protected $table = 'desrtinations';
+
+
     protected $fillable = [
         'nom'
     ];
