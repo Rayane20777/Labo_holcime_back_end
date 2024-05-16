@@ -37,7 +37,6 @@ class AuthController extends Controller
     public function login(LoginRequest $request): JsonResponse
     {
         $credentials = UserDTO::fromLogin($request->all());
-        dd($credentials);
 
         try {
             $data = $this->service->login($credentials);
