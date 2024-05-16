@@ -27,23 +27,12 @@ class UserService implements UserServiceInterface
         return array_merge(compact("user"), compact('authorization'));
     }
 
-    public function login($data)
-    {
-        $data = $this->getData($data);
-        $data = array_filter($data, fn($data) => in_array($data, ['email', 'password']), ARRAY_FILTER_USE_KEY);
-        $token = auth()->attempt($data);
-        $user = auth()->user();
-        dd($token);
-        $authorization = $this->createToken($token);
-
-        return $this->compactData($user, $authorization);
-    }
-
+    
     public function logout()
     {
         auth()->logout();
     }
-
+    
     public function getData(UserDTO $data)
     {
         return get_object_vars($data);
@@ -53,7 +42,7 @@ class UserService implements UserServiceInterface
     {
         return array_merge(compact("user"), compact('authorization'));
     }
-
+    
     public function createToken(string $token)
     {
         return [
@@ -62,4 +51,16 @@ class UserService implements UserServiceInterface
           'expires_in' => auth()->factory()->getTTL() * 60 * 24 * 7,
         ];
     }
+    
+    public function login($data)
+    {
+    $data = $this->getData($data);
+    $data = array_filter($data, fn($data) => in_array($data, ['email', 'password']), ARRAY_FILTER_USE_KEY);
+    $token = auth()->attempt($data);
+    $user = auth()->user();
+    $authorization = $this->createToken($token);
+    dd($authorization);
+
+    return $this->compactData($user, $authorization);
 }
+}       
