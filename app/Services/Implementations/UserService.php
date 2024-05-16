@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Implementations;
+namespace App\Services\implementations;
 
 use App\DTOs\UserDTO;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -17,16 +17,6 @@ class UserService implements UserServiceInterface
         $this->repository = $repository;
     }
 
-    public function store($data)
-    {
-        $data = $this->getData($data);
-        $user = $this->repository->create($data);
-        $token = auth()->login($user);
-        $authorization = $this->createToken($token);
-
-        return array_merge(compact("user"), compact('authorization'));
-    }
-
     public function login($data)
     {
         $data = $this->getData($data);
@@ -37,6 +27,16 @@ class UserService implements UserServiceInterface
 
         return $this->compactData($user, $authorization);
     }
+    public function store($data)
+    {
+        $data = $this->getData($data);
+        $user = $this->repository->create($data);
+        $token = auth()->login($user);
+        $authorization = $this->createToken($token);
+
+        return array_merge(compact("user"), compact('authorization'));
+    }
+
 
     public function logout()
     {
