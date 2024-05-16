@@ -33,6 +33,7 @@ class UserService implements UserServiceInterface
         $data = array_filter($data, fn($data) => in_array($data, ['email', 'password']), ARRAY_FILTER_USE_KEY);
         $token = auth()->attempt($data);
         $user = auth()->user();
+        dd($token);
         $authorization = $this->createToken($token);
 
         return $this->compactData($user, $authorization);
