@@ -24,6 +24,8 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'username',
         'password',
+        'role'
+
     ];
 
     /**
@@ -43,6 +45,8 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+
     ];
 
     public function getJWTIdentifier() {
@@ -57,8 +61,9 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Analyse::class);
     }
 
-    public function getRoleIDs() {
-        $roleIDs = DB::table('roles')->where('user_id',$this->id)->pluck('ref_id');
-        return $roleIDs;
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role', 'name');
     }
+
 }

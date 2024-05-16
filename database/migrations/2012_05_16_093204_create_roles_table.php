@@ -6,21 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
     /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->id();
-            $table->string('privilege');
-            $table->integer('ref_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+            $table->string('name')->primary();
             $table->timestamps();
         });
     }
-    
 
     /**
      * Reverse the migrations.
