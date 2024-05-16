@@ -21,7 +21,7 @@ class UserService implements UserServiceInterface
     {
         $data = $this->getData($data);
         $user = $this->repository->create($data);
-        $token = auth()->log($user);
+        $token = auth()->login($user);
         $authorization = $this->createToken($token);
 
         return array_merge(compact("user"), compact('authorization'));
