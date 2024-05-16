@@ -6,26 +6,24 @@ class UserDTO
 {
 
     public function __construct(
-        public readonly string $email,
+        public readonly string $username,
         public readonly string  $password,
         public readonly string  $role = 'user',
-        public readonly string  $name = ''
     ){}
 
     public static function fromRegister (array $data)
     {
 
         return new self(
-            email: $data['email'],
+            username: $data['username'],
             password: $data['password'],
-            name: $data['name'],
         );
     }
 
     public static function fromLogin (array $data)
     {
         return new self(
-            email: $data['email'],
+            username: $data['username'],
             password: $data['password']
         );
     }
