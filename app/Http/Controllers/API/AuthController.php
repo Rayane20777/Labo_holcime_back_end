@@ -1,90 +1,62 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Models\Role;
-use App\Models\User;
+use App\DTOs\UserDTO;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Services\Interfaces\UserServiceInterface;
+use App\Traits\ResponseTrait;
+use Exception;
+use Illuminate\Http\JsonResponse;
+
 class AuthController extends Controller
 {
-    
-        /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    use ResponseTrait;
+
+    private UserServiceInterface $service;
+    public function __construct(UserServiceInterface $service)
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        $this->service = $service;
     }
 
-
-/**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function login()
+    public function register(RegisterRequest $request): JsonResponse
     {
-        $credentials = request(['username', 'password']);
+//        $credentials = new UserDTO(...$request->all());
+        $credentials = UserDTO::fromRegister($request->all());
 
-        if (!auth()->attempt($credentials)) {
-            return response()->json(['errors' => 'Invalid username and Password'], 401);
+        try {
+            $data = $this->service->store($credentials);
+        } catch (Exception $e){
+            return $this->responseError($e->getMessage());
         }
 
-        $token = auth('api')->claims(['roles' => auth('api')->user()->getRoleIDs()])->attempt($credentials);
-
-        return $this->respondWithToken($token);
+        return $this->responseSuccess($data, "User created successfully", 201);
     }
 
-
-    public function register(Request $request)
+    public function login(LoginRequest $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'username' => 'required',
-            'password' => 'required|string|min:4',
-        ]);
+        $credentials = UserDTO::fromLogin($request->all());
 
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(),400);
+        try {
+            $data = $this->service->login($credentials);
+        } catch (Exception $e){
+            return $this->responseError($e->getMessage());
         }
 
-        $user = User::create(array_merge(
-            $validator->validate(),
-            ['password' => bcrypt($request->password),]
-        ));
+        if($data['user']) {
 
-        $role = Role::create([
-            'privilege' => 'user',
-            'ref_id' => 2001,
-            'user_id' => $user->id,
-        ]);
+            return $this->responseSuccess($data, "User logged in successfully", 201);
+        } else {
 
-        return response()->json([
-            'message' => '¡Successfully registered user!',
-            'user' => $user,
-            'privilege' => $role->privilege,
-        ], 201);
+            return $this->responseError("Login failed");
+
+        }
     }
 
-
-/**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function respondWithToken($token)
+    public function logout()
     {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
-        ]);
+        $this->service->logout();
+        return $this->responseSuccess(null, "Successfully logged out");
     }
-
 }
