@@ -37,6 +37,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request): JsonResponse
     {
         $credentials = UserDTO::fromLogin($request->all());
+        dd($credentials);
 
         try {
             $data = $this->service->login($credentials);
@@ -48,7 +49,6 @@ class AuthController extends Controller
 
             return $this->responseSuccess($data, "User logged in successfully", 201);
         } else {
-
             return $this->responseError("Login failed");
 
         }
