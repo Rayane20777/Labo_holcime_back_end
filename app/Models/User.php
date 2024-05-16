@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use DB;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
@@ -46,5 +46,10 @@ class User extends Authenticatable
 
     public function analyse() : HasMany {
         return $this->hasMany(Analyse::class);
+    }
+
+    public function getRoleIDs() {
+        $roleIDs = DB::table('roles')->where('user_id',$this->id)->pluck('ref_id');
+        return $roleIDs;
     }
 }
