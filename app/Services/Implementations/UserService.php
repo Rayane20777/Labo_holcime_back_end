@@ -30,8 +30,12 @@ class UserService implements UserServiceInterface
     {
         $data = $this->getData($data);
         dd($data);
-        $data = array_filter($data, fn($data) => in_array($data, ['email', 'password']), ARRAY_FILTER_USE_KEY);
+        $data = array_filter($data, fn($key) => in_array($key, ['email', 'password']), ARRAY_FILTER_USE_KEY);
         $token = auth()->attempt($data);
+
+    if (!$token) {
+        return $this->failureResponse('Invalid credentials', 401);
+    }
         $user = auth()->user();
         $authorization = $this->createToken($token);
 
