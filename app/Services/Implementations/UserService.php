@@ -55,6 +55,7 @@ class UserService implements UserServiceInterface
     
     public function createToken(string $token)
     {
+
         return [
           'token' => $token,
           'type' => 'bearer',
