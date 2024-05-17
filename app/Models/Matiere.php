@@ -16,8 +16,7 @@ class Matiere extends Model
 
     protected $fillable = [
         'nom',
-        'destination_id',
-        'point_echantillonage_id'
+    
     ];
 
 

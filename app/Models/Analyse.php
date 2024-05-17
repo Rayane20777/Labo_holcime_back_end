@@ -16,7 +16,9 @@ class Analyse extends Model
     protected $table = 'analyses';
     protected $fillable = [
         'date_prelevement',
-        'date_gachage'
+        'date_gachage',
+        'destination_id',
+        'point_echantillonage_id'
     ];
 
     public function matiere() : BelongsTo {
@@ -26,6 +28,14 @@ class Analyse extends Model
     public function user() : BelongsTo {
         return $this->belongsTo(User::class);
     }
+
+    public function point_echantillonage() : BelongsTo {
+        return $this->belongsTo(PointEchantillonage::class);
+    }
+
+    public function destination() : BelongsTo {
+        return $this->belongsTo(Destination::class);
+    } 
 
     public function analyse_chimique() : HasOne {
         return $this->hasOne(AnalyseChimique::class);
