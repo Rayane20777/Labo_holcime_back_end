@@ -23,9 +23,19 @@ class UserService implements UserServiceInterface
         $user = $this->repository->create($data);
         $token = auth()->login($user);
         $authorization = $this->createToken($token);
-
+        
         return array_merge(compact("user"), compact('authorization'));
     }
+    public function login($data)
+    {
+    $data = $this->getData($data);
+    $data = array_filter($data, fn($data) => in_array($data, ['email', 'password']), ARRAY_FILTER_USE_KEY);
+    $token = auth()->attempt($data);
+    $user = auth()->user();
+    $authorization = $this->createToken($token);
+
+    return $this->compactData($user, $authorization);
+}
 
     
     public function logout()
@@ -52,15 +62,4 @@ class UserService implements UserServiceInterface
         ];
     }
     
-    public function login($data)
-    {
-    $data = $this->getData($data);
-    $data = array_filter($data, fn($data) => in_array($data, ['email', 'password']), ARRAY_FILTER_USE_KEY);
-    $token = auth()->attempt($data);
-    $user = auth()->user();
-    $authorization = $this->createToken($token);
-    dd($authorization);
-
-    return $this->compactData($user, $authorization);
-}
 }       
