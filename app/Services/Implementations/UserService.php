@@ -28,9 +28,9 @@ class UserService implements UserServiceInterface
     }
     public function login($data)
     {
+
         $data = $this->getData($data);
-        dd($data);
-        $data = array_filter($data, fn($key) => in_array($key, ['email', 'password']), ARRAY_FILTER_USE_KEY);
+        $data = array_filter($data, fn($key) => in_array($key, ['username', 'password']), ARRAY_FILTER_USE_KEY);
         $token = auth()->attempt($data);
 
     if (!$token) {
