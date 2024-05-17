@@ -9,7 +9,7 @@ use App\Traits\ResponseTrait;
 
 class UserService implements UserServiceInterface
 {
-    use ResponseTrait;k
+    use ResponseTrait;
     private UserRepositoryInterface $repository;
 
     public function __construct(UserRepositoryInterface $repository)
