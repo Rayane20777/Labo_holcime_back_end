@@ -42,6 +42,7 @@ class ProportionService implements ProportionServiceInterface
         }
         
         $pourcentage = $this->calculateNutrientPercentages($data);
+        dd($pourcentage);
         $gypse_sum = $this->calculateGypseSum($data);
         return $this->repository->edit($data, $gypse_sum, $pourcentage);
     }
