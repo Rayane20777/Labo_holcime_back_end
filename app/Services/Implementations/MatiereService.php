@@ -5,7 +5,7 @@ namespace App\Services\Implementations;
 use App\DTOs\MatiereDTO;
 use App\Repositories\Interfaces\MatiereRepositoryInterface;
 use App\Services\Interfaces\MatiereServiceInterface;
-
+use App\Models\Matiere;
 class MatiereService implements MatiereServiceInterface
 {
     private MatiereRepositoryInterface $repository;
@@ -28,5 +28,11 @@ class MatiereService implements MatiereServiceInterface
     public function destroy(int $id)
     {
         return $this->repository->destroy($id);
+    }
+
+    public function restore(int $id)
+    {
+        $matiere = Matiere::withTrashed()->findOrFail($id);
+        return $matiere->restore();
     }
 }

@@ -29,4 +29,10 @@ class MatiereRepository implements MatiereRepositoryInterface
         $matiere = Matiere::findOrFail($id);
         return $matiere->delete();
     }
+
+    public function restore(int $id)
+    {
+        $matiere = Matiere::withTrashed()->findOrFail($id);
+        return $matiere->restore();
+    }
 }

@@ -44,4 +44,26 @@ class MatiereController extends Controller
         }
         return $this->responseSuccess($data,"Matiere updated successfully");
     }
+
+    public function destroy(int $id): JsonResponse
+    {
+        try {
+            $this->service->destroy($id);
+        } catch (Exception $e) {
+            return $this->responseError($e->getMessage());
+        }
+
+        return $this->responseSuccess(null, "Matiere deleted successfully");
+    }
+
+    public function restore(int $id): JsonResponse
+    {
+        try {
+            $this->service->restore($id);
+        } catch (Exception $e) {
+            return $this->responseError($e->getMessage());
+        }
+
+        return $this->responseSuccess(null, "Matiere restored successfully");
+    }
 }
