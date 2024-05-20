@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MatiereController;
+use App\Http\Controllers\DestinationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,16 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::get('/matiere', [MatiereController::class, 'index']);
-Route::post('/matiere/store', [MatiereController::class, 'store']);
+Route::post('/matiere', [MatiereController::class, 'store']);
 Route::post('/matiere/{id}', [MatiereController::class, 'edit']);
 Route::delete('/matiere/{id}', [MatiereController::class, 'destroy']);
 Route::patch('/matiere/{id}', [MatiereController::class, 'restore']);
+
+
+
+
+Route::get('/destination', [DestinationController::class, 'index']);
+Route::post('/destination', [DestinationController::class, 'store']);
+Route::post('/destination/{id}', [DestinationController::class, 'update']);
+Route::delete('/destination/{id}', [DestinationController::class, 'destroy']);
+Route::patch('/destination/{id}', [DestinationController::class, 'restore']);

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Interfaces;
+namespace App\Repositories\Interfaces;
 
 use App\DTOs\DestinationDTO;
 
-interface DestinationServiceInterface
+interface DestinationRepositoryInterface
 {
     public function store(DestinationDTO $data);
     public function edit(DestinationDTO $data);

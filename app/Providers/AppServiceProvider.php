@@ -11,6 +11,10 @@ use App\Repositories\Implementations\MatiereRepository;
 use App\Repositories\Interfaces\MatiereRepositoryInterface;
 use App\Services\Implementations\MatiereService;
 use App\Services\Interfaces\MatiereServiceInterface;
+use App\Repositories\Implementations\DestinationRepository;
+use App\Repositories\Interfaces\DestinationRepositoryInterface;
+use App\Services\Implementations\DestinationService;
+use App\Services\Interfaces\DestinationServiceInterface;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -24,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(MatiereServiceInterface::class, MatiereService::class);
         $this->app->bind(MatiereRepositoryInterface::class, MatiereRepository::class);
-
+        $this->app->bind(DestinationServiceInterface::class, DestinationService::class);$this->app->bind(DestinationRepositoryInterface::class, DestinationRepository::class);
     }
 
     /**
