@@ -32,4 +32,19 @@ class Matiere extends Model
         return $this->hasMany(Analyse::class);
     }
 
+    protected static function booted()
+    {
+        static::deleting(function ($matiere) {
+            if ($matiere->isForceDeleting()) {
+                $matiere->destination()->withTrashed()->forceDelete();
+            } else {
+                $matiere->destination()->delete();
+            }
+        });
+
+        static::restoring(function ($matiere) {
+            $matiere->destination()->withTrashed()->restore();
+        });
+    }
+
 }
