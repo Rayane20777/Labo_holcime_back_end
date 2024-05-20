@@ -26,11 +26,12 @@ class ProportionRequest extends FormRequest
             'CAL_G' => 'nullable|numeric',
             'CV_G' => 'nullable|numeric',
             'LAIT_G' => 'nullable|numeric',
+            'GYPSE' => 'required|numeric',
             'KK_NG' => 'nullable|numeric',
             'CAL_NG' => 'nullable|numeric',
             'CV_NG' => 'nullable|numeric',
             'LAIT_NG' => 'nullable|numeric',
-            'analyse_id' => 'required|exists:analyses,id',
+            'analyse_id' => 'required|exists:analyses,id|unique:proportions,analyse_id',
         ];
     }
 }
