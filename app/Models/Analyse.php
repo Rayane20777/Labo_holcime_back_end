@@ -63,5 +63,34 @@ class Analyse extends Model
         return $this->hasOne(Lpee::class);
     }
 
+    protected static function booted()
+    {
+        static::deleting(function ($analyse) {
+            if ($analyse->isForceDeleting()) {
+                $analyse->analyse_chimique()->withTrashed()->forceDelete();
+                $analyse->proportion()->withTrashed()->forceDelete();
+                $analyse->phase_gachage()->withTrashed()->forceDelete();
+                $analyse->phase_temps_prise()->withTrashed()->forceDelete();
+                $analyse->resultat_analyse_physique()->withTrashed()->forceDelete();
+                $analyse->lpee()->withTrashed()->forceDelete();
+            } else {
+                $analyse->analyse_chimique()->delete();
+                $analyse->proportion()->delete();
+                $analyse->phase_gachage()->delete();
+                $analyse->phase_temps_prise()->delete();
+                $analyse->resultat_analyse_physique()->delete();
+                $analyse->lpee()->delete();
+            }
+        });
 
+        static::restoring(function ($analyse) {
+            $analyse->analyse_chimique()->withTrashed()->restore();
+            $analyse->proportion()->withTrashed()->restore();
+            $analyse->phase_gachage()->withTrashed()->restore();
+            $analyse->phase_temps_prise()->withTrashed()->restore();
+            $analyse->resultat_analyse_physique()->withTrashed()->restore();
+            $analyse->lpee()->withTrashed()->restore();
+        });
+
+}
 }

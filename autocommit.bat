@@ -2,5 +2,5 @@ cd ..
 cd ..
 cd Users\musta\OneDrive\Desktop\Labo_Lafarge_back_end
 git add .                             
-git commit -m "analyse crud terminer"     
+git commit -m "on soft delete applied to all models "     
 git push origin main                    
