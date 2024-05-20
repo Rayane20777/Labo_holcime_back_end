@@ -2,12 +2,11 @@
 
 namespace App\DTOs;
 
-class DestinationDTO {
+class PointEchantillonageDTO {
     public function __construct(
         public readonly string $nom,
         public readonly ?int $matiere_id = null,
-        public readonly ?int $id = null 
-    ) {}
+        public readonly ?int $id = null     ) {}
 
     public static function fromAdd(array $data): self
     {

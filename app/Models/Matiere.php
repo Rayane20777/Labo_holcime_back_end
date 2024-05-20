@@ -37,13 +37,16 @@ class Matiere extends Model
         static::deleting(function ($matiere) {
             if ($matiere->isForceDeleting()) {
                 $matiere->destination()->withTrashed()->forceDelete();
+                $matiere->point_echantillonage()->withTrashed()->forceDelete();
             } else {
                 $matiere->destination()->delete();
+                $matiere->point_echantillonage()->delete();
             }
         });
 
         static::restoring(function ($matiere) {
             $matiere->destination()->withTrashed()->restore();
+            $matiere->point_echantillonage()->withTrashed()->restore();
         });
     }
 
