@@ -28,3 +28,5 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::post('/matiere/store', [MatiereController::class, 'store']);
 Route::post('/matiere/{id}', [MatiereController::class, 'edit']);
+Route::delete('/matiere/{id}', [MatiereController::class, 'destroy']);
+Route::patch('/matiere/{id}', [MatiereController::class, 'restore']);
