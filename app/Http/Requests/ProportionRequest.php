@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PointEchantillonageRequest extends FormRequest
+class ProportionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,15 @@ class PointEchantillonageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nom' => 'required|min:2|max:255',
-            'matiere_id' => 'required|exists:matieres,id'
-
+            'KK_G' => 'nullable|numeric',
+            'CAL_G' => 'nullable|numeric',
+            'CV_G' => 'nullable|numeric',
+            'LAIT_G' => 'nullable|numeric',
+            'KK_NG' => 'nullable|numeric',
+            'CAL_NG' => 'nullable|numeric',
+            'CV_NG' => 'nullable|numeric',
+            'LAIT_NG' => 'nullable|numeric',
+            'analyse_id' => 'required|exists:analyses,id',
         ];
     }
 }

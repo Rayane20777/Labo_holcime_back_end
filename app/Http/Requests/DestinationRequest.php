@@ -23,7 +23,7 @@ class DestinationRequest extends FormRequest
     {
         return [
             'nom' => 'required|min:2|max:255',
-            'matiere_id' => 'required'
+            'matiere_id' => 'required|exists:matieres,id'
         ];
     }
 }

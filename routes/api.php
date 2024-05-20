@@ -7,6 +7,7 @@ use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\PointEchantillonageController;
 use App\Http\Controllers\AnalyseController;
+use App\Http\Controllers\ProportionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,3 +65,12 @@ Route::post('/analyses', [AnalyseController::class, 'store']);
 Route::post('/analyses/{id}', [AnalyseController::class, 'edit']);
 Route::delete('/analyses/{id}', [AnalyseController::class, 'destroy']);
 Route::patch('/analyses/{id}', [AnalyseController::class, 'restore']);
+
+
+
+
+Route::get('/proportions', [ProportionController::class, 'index']);
+Route::post('/proportions', [ProportionController::class, 'store']);
+Route::post('/proportions/{id}', [ProportionController::class, 'edit']);
+Route::delete('/proportions/{id}', [ProportionController::class, 'destroy']);
+Route::patch('/proportions/{id}', [ProportionController::class, 'restore']);
