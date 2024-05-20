@@ -30,4 +30,19 @@ class PointEchantillonage extends Model
     public function analyse() : HasMany {
         return $this->hasMany(Analyse::class);
     }
+
+    protected static function booted()
+    {
+        static::deleting(function ($point_echantillonage) {
+            if ($point_echantillonage->isForceDeleting()) {
+                $point_echantillonage->analyse()->withTrashed()->forceDelete();
+            } else {
+                $point_echantillonage->analyse()->delete();
+            }
+        });
+
+        static::restoring(function ($point_echantillonage) {
+            $point_echantillonage->analyse()->withTrashed()->restore();
+        });
+    }
 }

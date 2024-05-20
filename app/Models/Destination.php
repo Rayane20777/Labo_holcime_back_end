@@ -28,4 +28,20 @@ class Destination extends Model
     public function analyse() : HasMany {
         return $this->hasMany(Analyse::class);
     }
+
+    protected static function booted()
+    {
+        static::deleting(function ($destination) {
+            if ($destination->isForceDeleting()) {
+                $destination->analyse()->withTrashed()->forceDelete();
+            } else {
+                $destination->analyse()->delete();
+            }
+        });
+
+        static::restoring(function ($destination) {
+            $destination->analyse()->withTrashed()->restore();
+        });
+    }
+
 }
