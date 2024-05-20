@@ -13,7 +13,7 @@ class ProportionRepository implements ProportionRepositoryInterface
         return Proportion::all();
     }
 
-    public function store(ProportionDTO $data, float $gypse_sum)
+    public function store(ProportionDTO $data, float $gypse_sum, array $pourcentage)
     {
         return Proportion::create([
             'KK_G' => $data->KK_G,
@@ -21,16 +21,16 @@ class ProportionRepository implements ProportionRepositoryInterface
             'CV_G' => $data->CV_G,
             'LAIT_G' => $data->LAIT_G,
             'GYPSE' => $data->GYPSE,
-            'KK_NG' => $data->KK_NG,
-            'CAL_NG' => $data->CAL_NG,
-            'CV_NG' => $data->CV_NG,
-            'LAIT_NG' => $data->LAIT_NG,
+            'KK_NG' => $pourcentage['KK_NG'],
+            'CAL_NG' => $pourcentage['CAL_NG'],
+            'CV_NG' => $pourcentage['CV_NG'],
+            'LAIT_NG' => $pourcentage['LAIT_NG'],
             '∑_Gypse' => $gypse_sum,
             'analyse_id' => $data->analyse_id,
         ]);
     }
 
-    public function edit(ProportionDTO $data, float $gypse_sum)
+    public function edit(ProportionDTO $data, float $gypse_sum, array $pourcentage)
     {
         $proportion = Proportion::findOrFail($data->id);
         $proportion->update([
