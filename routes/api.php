@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\PointEchantillonageController;
+use App\Http\Controllers\AnalyseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login');
     Route::post('/logout', 'logout');
 });
+
+
+
 
 Route::get('/matiere', [MatiereController::class, 'index']);
 Route::post('/matiere', [MatiereController::class, 'store']);
@@ -51,3 +55,12 @@ Route::post('/point_echantillonage', [PointEchantillonageController::class, 'sto
 Route::post('/point_echantillonage/{id}', [PointEchantillonageController::class, 'update']);
 Route::delete('/point_echantillonage/{id}', [PointEchantillonageController::class, 'destroy']);
 Route::patch('/point_echantillonage/{id}', [PointEchantillonageController::class, 'restore']);
+
+
+
+
+Route::get('/analyses', [AnalyseController::class, 'index']);
+Route::post('/analyses', [AnalyseController::class, 'store']);
+Route::post('/analyses/{id}', [AnalyseController::class, 'edit']);
+Route::delete('/analyses/{id}', [AnalyseController::class, 'destroy']);
+Route::patch('/analyses/{id}', [AnalyseController::class, 'restore']);
