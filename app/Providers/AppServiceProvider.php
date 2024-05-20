@@ -23,6 +23,10 @@ use App\Repositories\Implementations\AnalyseRepository;
 use App\Repositories\Interfaces\AnalyseRepositoryInterface;
 use App\Services\Implementations\AnalyseService;
 use App\Services\Interfaces\AnalyseServiceInterface;
+use App\Repositories\Implementations\ProportionRepository;
+use App\Repositories\Interfaces\ProportionRepositoryInterface;
+use App\Services\Implementations\ProportionService;
+use App\Services\Interfaces\ProportionServiceInterface;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -42,7 +46,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PointEchantillonageRepositoryInterface::class, PointEchantillonageRepository::class);
         $this->app->bind(AnalyseServiceInterface::class, AnalyseService::class);
         $this->app->bind(AnalyseRepositoryInterface::class, AnalyseRepository::class);
-    }
+        $this->app->bind(ProportionServiceInterface::class, ProportionService::class);
+        $this->app->bind(ProportionRepositoryInterface::class, ProportionRepository::class);
+     }
 
     /**
      * Bootstrap any application services.

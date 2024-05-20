@@ -44,7 +44,7 @@ class Analyse extends Model
     }
 
     public function proportion() : HasOne {
-        return $this->hasOne(Proportions::class);
+        return $this->hasOne(Proportion::class);
     }
 
     public function phase_gachage() : HasOne {

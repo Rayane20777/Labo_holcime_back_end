@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\OneToOneTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Proportions extends Model
+class Proportion extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
 
@@ -27,4 +27,7 @@ class Proportions extends Model
         '∑_Gypse ',
         'analyse_id '
     ];
+
+    
+    
 }
