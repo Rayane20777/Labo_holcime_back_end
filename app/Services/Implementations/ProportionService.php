@@ -30,7 +30,8 @@ class ProportionService implements ProportionServiceInterface
     public function store(ProportionDTO $data)
     {
         $gypse_sum = $this->calculateGypseSum($data);
-        return $this->repository->store($data, $gypse_sum);
+        $pourcentage = $this->calculateNutrientPercentages($data);
+        return $this->repository->store($data, $gypse_sum, $pourcentage);
     }
 
     public function edit(ProportionDTO $data)
@@ -39,9 +40,10 @@ class ProportionService implements ProportionServiceInterface
         if (!$proportion) {
             throw new ProportionNotFoundException();
         }
-
+        
+        $pourcentage = $this->calculateNutrientPercentages($data);
         $gypse_sum = $this->calculateGypseSum($data);
-        return $this->repository->edit($data, $gypse_sum);
+        return $this->repository->edit($data, $gypse_sum, $pourcentage);
     }
 
     public function destroy(int $id)
@@ -62,5 +64,43 @@ class ProportionService implements ProportionServiceInterface
         }
 
         return $this->repository->restore($id);
+    }
+
+    
+    private function calculateMaterial_KK_NG(float $KK_G, float $GYPSE): float
+    {
+        return $KK_G / (100 - $GYPSE) * 100;
+    }
+
+    private function calculateMaterial_CAL_NG(float $CAL_G, float $GYPSE): float
+    {
+        return $CAL_G / (100 - $GYPSE) * 100;
+    }
+
+    private function calculateMaterial_CV_NG(float $CV_G, float $GYPSE): float
+    {
+        return $CV_G / (100 - $GYPSE) * 100;
+    }
+
+    private function calculateMaterial_LAIT_NG(float $LAIT_G, float $GYPSE): float
+    {
+        return $LAIT_G / (100 - $GYPSE) *100;
+    }
+
+    public function calculateNutrientPercentages(ProportionDTO $data): array
+    {
+        $GYPSE = $data->GYPSE ?? 0;
+
+        $KK_NG = $this->calculateMaterial_KK_NG($data->KK_G ?? 0, $GYPSE);
+        $CAL_NG = $this->calculateMaterial_CAL_NG($data->CAL_G ?? 0, $GYPSE);
+        $CV_NG = $this->calculateMaterial_CV_NG($data->CV_G ?? 0, $GYPSE);
+        $LAIT_NG = $this->calculateMaterial_LAIT_NG($data->LAIT_G ?? 0, $GYPSE);
+
+        return [
+            'KK_NG' => $KK_NG,
+            'CAL_NG' => $CAL_NG,
+            'CV_NG' => $CV_NG,
+            'LAIT_NG' => $LAIT_NG,
+        ];
     }
 }
