@@ -27,3 +27,4 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::post('/matiere/store', [MatiereController::class, 'store']);
+Route::post('/matiere/{id}', [MatiereController::class, 'edit']);
