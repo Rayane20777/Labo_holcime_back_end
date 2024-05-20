@@ -8,6 +8,11 @@ use App\Repositories\Interfaces\DestinationRepositoryInterface;
 
 class DestinationRepository implements DestinationRepositoryInterface
 {
+    public function all()
+    {
+        return Destination::all();
+    }
+    
     public function store(DestinationDTO $data)
     {
         return Destination::create([
@@ -38,8 +43,4 @@ class DestinationRepository implements DestinationRepositoryInterface
         return $destination->restore();
     }
 
-    public function all()
-    {
-        return Destination::all();
-    }
 }
