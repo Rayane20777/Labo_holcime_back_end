@@ -24,8 +24,8 @@ class Proportion extends Model
         'CAL_NG',
         'CV_NG',
         'LAIT_NG',
-        '∑_Gypse ',
-        'analyse_id '
+        '∑_Gypse',
+        'analyse_id'
     ];
 
     
