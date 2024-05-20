@@ -26,6 +26,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/logout', 'logout');
 });
 
+Route::get('/matiere', [MatiereController::class, 'index']);
 Route::post('/matiere/store', [MatiereController::class, 'store']);
 Route::post('/matiere/{id}', [MatiereController::class, 'edit']);
 Route::delete('/matiere/{id}', [MatiereController::class, 'destroy']);
