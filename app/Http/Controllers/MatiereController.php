@@ -20,6 +20,17 @@ class MatiereController extends Controller
         $this->service = $service;
     }
 
+    public function index(): JsonResponse
+    {
+        try {
+            $data = $this->service->all();
+        } catch (Exception $e) {
+            return $this->responseError($e->getMessage());
+        }
+
+        return $this->responseSuccess($data, "Matieres retrieved successfully");
+    }
+
     public function store(MatiereRequest $request): JsonResponse
     {
         $payload = MatiereDTO::fromAdd($request->all());

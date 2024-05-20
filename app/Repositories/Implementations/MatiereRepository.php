@@ -8,6 +8,12 @@ use App\Models\Matiere;
 
 class MatiereRepository implements MatiereRepositoryInterface
 {
+
+    
+    public function all(){
+        return Matiere::all();
+    }
+
     public function store(MatiereDTO $data)
     {
         return Matiere::create([

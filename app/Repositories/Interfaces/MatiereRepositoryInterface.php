@@ -6,6 +6,7 @@ use App\DTOs\MatiereDTO;
 
 interface MatiereRepositoryInterface
 {
+    public function all();
     public function store(MatiereDTO $data);
     public function edit(MatiereDTO $data);
     public function destroy(int $id);
