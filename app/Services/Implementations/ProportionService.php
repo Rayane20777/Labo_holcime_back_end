@@ -17,9 +17,9 @@ class ProportionService implements ProportionServiceInterface
         $this->repository = $repository;
     }
 
-    private function calculateGypse(ProportionDTO $data): float
+    private function calculateGypseSum(ProportionDTO $data): float
     {
-        return ($data->KK_G ?? 0) + ($data->CAL_G ?? 0) + ($data->CV_G ?? 0) + ($data->LAIT_G ?? 0);
+        return ($data->KK_G ?? 0) + ($data->CAL_G ?? 0) + ($data->CV_G ?? 0) + ($data->LAIT_G ?? 0) + ($data->GYPSE ?? 0);
     }
 
     public function all()
@@ -29,8 +29,8 @@ class ProportionService implements ProportionServiceInterface
 
     public function store(ProportionDTO $data)
     {
-        $gypse = $this->calculateGypse($data);
-        return $this->repository->store($data, $gypse);
+        $gypse_sum = $this->calculateGypseSum($data);
+        return $this->repository->store($data, $gypse_sum);
     }
 
     public function edit(ProportionDTO $data)
@@ -40,8 +40,8 @@ class ProportionService implements ProportionServiceInterface
             throw new ProportionNotFoundException();
         }
 
-        $gypse = $this->calculateGypse($data);
-        return $this->repository->edit($data, $gypse);
+        $gypse_sum = $this->calculateGypseSum($data);
+        return $this->repository->edit($data, $gypse_sum);
     }
 
     public function destroy(int $id)
