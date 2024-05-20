@@ -15,7 +15,10 @@ use App\Repositories\Implementations\DestinationRepository;
 use App\Repositories\Interfaces\DestinationRepositoryInterface;
 use App\Services\Implementations\DestinationService;
 use App\Services\Interfaces\DestinationServiceInterface;
-
+use App\Repositories\Implementations\PointEchantillonageRepository;
+use App\Repositories\Interfaces\PointEchantillonageRepositoryInterface;
+use App\Services\Implementations\PointEchantillonageService;
+use App\Services\Interfaces\PointEchantillonageServiceInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,7 +31,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(MatiereServiceInterface::class, MatiereService::class);
         $this->app->bind(MatiereRepositoryInterface::class, MatiereRepository::class);
-        $this->app->bind(DestinationServiceInterface::class, DestinationService::class);$this->app->bind(DestinationRepositoryInterface::class, DestinationRepository::class);
+        $this->app->bind(DestinationServiceInterface::class, DestinationService::class);
+        $this->app->bind(DestinationRepositoryInterface::class, DestinationRepository::class);
+        $this->app->bind(PointEchantillonageServiceInterface::class, PointEchantillonageService::class);
+        $this->app->bind(PointEchantillonageRepositoryInterface::class, PointEchantillonageRepository::class);
     }
 
     /**
