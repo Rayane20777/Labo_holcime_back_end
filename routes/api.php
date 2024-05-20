@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\PointEchantillonageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,12 @@ Route::post('/destination', [DestinationController::class, 'store']);
 Route::post('/destination/{id}', [DestinationController::class, 'update']);
 Route::delete('/destination/{id}', [DestinationController::class, 'destroy']);
 Route::patch('/destination/{id}', [DestinationController::class, 'restore']);
+
+
+
+
+Route::get('/point_echantillonage', [PointEchantillonageController::class, 'index']);
+Route::post('/point_echantillonage', [PointEchantillonageController::class, 'store']);
+Route::post('/point_echantillonage/{id}', [PointEchantillonageController::class, 'update']);
+Route::delete('/point_echantillonage/{id}', [PointEchantillonageController::class, 'destroy']);
+Route::patch('/point_echantillonage/{id}', [PointEchantillonageController::class, 'restore']);
