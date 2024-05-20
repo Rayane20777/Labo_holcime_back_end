@@ -19,6 +19,11 @@ use App\Repositories\Implementations\PointEchantillonageRepository;
 use App\Repositories\Interfaces\PointEchantillonageRepositoryInterface;
 use App\Services\Implementations\PointEchantillonageService;
 use App\Services\Interfaces\PointEchantillonageServiceInterface;
+use App\Repositories\Implementations\AnalyseRepository;
+use App\Repositories\Interfaces\AnalyseRepositoryInterface;
+use App\Services\Implementations\AnalyseService;
+use App\Services\Interfaces\AnalyseServiceInterface;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,6 +40,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(DestinationRepositoryInterface::class, DestinationRepository::class);
         $this->app->bind(PointEchantillonageServiceInterface::class, PointEchantillonageService::class);
         $this->app->bind(PointEchantillonageRepositoryInterface::class, PointEchantillonageRepository::class);
+        $this->app->bind(AnalyseServiceInterface::class, AnalyseService::class);
+        $this->app->bind(AnalyseRepositoryInterface::class, AnalyseRepository::class);
     }
 
     /**

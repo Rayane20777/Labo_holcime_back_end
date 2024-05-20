@@ -17,8 +17,10 @@ class Analyse extends Model
     protected $fillable = [
         'date_prelevement',
         'date_gachage',
+        'matiere_id',
         'destination_id',
-        'point_echantillonage_id'
+        'point_echantillonage_id',
+        'user_id'
     ];
 
     public function matiere() : BelongsTo {
