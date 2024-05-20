@@ -9,7 +9,7 @@ use App\Services\Interfaces\ProportionServiceInterface;
 use App\DTOs\ProportionDTO;
 use Exception;
 use App\Exceptions\ProportionNotFoundException;
-
+use App\Http\Requests\ProportionRequest;
 class ProportionController extends Controller
 {
     use ResponseTrait;
@@ -32,7 +32,7 @@ class ProportionController extends Controller
         return $this->responseSuccess($data, "Proportions retrieved successfully");
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(ProportionRequest $request): JsonResponse
     {
         $payload = ProportionDTO::fromAdd($request->all());
 
@@ -45,7 +45,7 @@ class ProportionController extends Controller
         return $this->responseSuccess($data, "Proportion created successfully");
     }
 
-    public function edita (Request $request, int $id): JsonResponse
+    public function edit (ProportionRequest $request, int $id): JsonResponse
     {
         $payload = ProportionDTO::fromEdit(array_merge($request->all(), ['id' => $id]));
 

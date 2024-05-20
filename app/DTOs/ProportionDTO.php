@@ -26,7 +26,7 @@ class ProportionDTO
             CAL_G: $data['CAL_G'] ?? null,
             CV_G: $data['CV_G'] ?? null,
             LAIT_G: $data['LAIT_G'] ?? null,
-            GYPSE: $data['GYPSE'] ?? null,
+            GYPSE: $data['GYPSE'] ,
             KK_NG: $data['KK_NG'] ?? null,
             CAL_NG: $data['CAL_NG'] ?? null,
             CV_NG: $data['CV_NG'] ?? null,
