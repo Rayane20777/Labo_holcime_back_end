@@ -19,6 +19,16 @@ class DestinationController extends Controller
     {
         $this->service = $service;
     }
+    public function index(): JsonResponse
+    {
+        try {
+            $data = $this->service->all();
+        } catch (Exception $e) {
+            return $this->responseError($e->getMessage());
+        }
+
+        return $this->responseSuccess($data, "Destinations retrieved successfully");
+    }
 
     public function store(Request $request): JsonResponse
     {
@@ -68,14 +78,4 @@ class DestinationController extends Controller
         return $this->responseSuccess(null, "Destination restored successfully");
     }
 
-    public function index(): JsonResponse
-    {
-        try {
-            $data = $this->service->all();
-        } catch (Exception $e) {
-            return $this->responseError($e->getMessage());
-        }
-
-        return $this->responseSuccess($data, "Destinations retrieved successfully");
-    }
 }
