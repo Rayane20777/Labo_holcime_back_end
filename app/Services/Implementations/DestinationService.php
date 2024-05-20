@@ -14,6 +14,10 @@ class DestinationService implements DestinationServiceInterface
     {
         $this->repository = $repository;
     }
+    public function all()
+    {
+        return $this->repository->all();
+    }
 
     public function store(DestinationDTO $data)
     {
@@ -35,8 +39,4 @@ class DestinationService implements DestinationServiceInterface
         return $this->repository->restore($id);
     }
 
-    public function all()
-    {
-        return $this->repository->all();
-    }
 }
