@@ -29,8 +29,6 @@ class AnalyseController extends Controller
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
-        return $this->responseSuccess($data, "Destination deleted successfully");
-
     }
 
     public function store(AnalyseRequest $request): JsonResponse
@@ -52,7 +50,7 @@ class AnalyseController extends Controller
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
-
+        
     }
 
     public function destroy(int $id): JsonResponse
