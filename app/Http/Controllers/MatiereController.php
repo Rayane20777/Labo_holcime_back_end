@@ -51,7 +51,7 @@ class MatiereController extends Controller
         }catch(Exception $e){
             return $this->responseError($e->getMessage());
         }
-        return $this->responseSuccess($data, "Matiere deleted successfully");
+        return $this->responseSuccess($data, "Matiere updated successfully");
 
     }
 

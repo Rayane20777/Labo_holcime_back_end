@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\Interfaces\DestinationServiceInterface;
 use App\DTOs\DestinationDTO;
 use Exception;
+use App\Http\Requests\DestinationRequest;
 
 class DestinationController extends Controller
 {
@@ -30,7 +31,7 @@ class DestinationController extends Controller
         return $this->responseSuccess($data, "Destinations retrieved successfully");
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(DestinationRequest $request): JsonResponse
     {
         $payload = DestinationDTO::fromAdd($request->all());
 
@@ -43,7 +44,7 @@ class DestinationController extends Controller
         return $this->responseSuccess($data, "Destination created successfully");
     }
 
-    public function edit(Request $request, int $id)
+    public function edit(DestinationRequest $request, int $id): JsonResponse
     {
 
         try {
@@ -51,7 +52,7 @@ class DestinationController extends Controller
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
-        return $this->responseSuccess($data, "Destination deleted successfully");
+        return $this->responseSuccess($data, "Destination updated successfully");
         
     }
 
