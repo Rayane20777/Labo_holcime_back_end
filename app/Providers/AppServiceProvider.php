@@ -30,11 +30,15 @@ use App\Services\Interfaces\ProportionServiceInterface;
 use App\Repositories\Implementations\PhaseGachageRepository;
 use App\Repositories\Interfaces\PhaseGachageRepositoryInterface;
 use App\Services\Implementations\PhaseGachageService;
+use App\Services\Interfaces\PhaseGachageServiceInterface;
 use App\Services\Interfaces\PhaseTempsPriseServiceInterface;
 use App\Repositories\Implementations\PhaseTempsPriseRepository;
 use App\Repositories\Interfaces\PhaseTempsPriseRepositoryInterface;
 use App\Services\Implementations\PhaseTempsPriseService;
-use App\Services\Interfaces\PhaseGachageServiceInterface;
+use App\Services\Interfaces\ResultatAnalysePhysiqueServiceInterface;
+use App\Repositories\Implementations\ResultatAnalysePhysiqueRepository;
+use App\Repositories\Interfaces\ResultatAnalysePhysiqueRepositoryInterface;
+use App\Services\Implementations\ResultatAnalysePhysiqueService;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -60,7 +64,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PhaseGachageRepositoryInterface::class, PhaseGachageRepository::class);
         $this->app->bind(PhaseTempsPriseServiceInterface::class, PhaseTempsPriseService::class);
         $this->app->bind(PhaseTempsPriseRepositoryInterface::class, PhaseTempsPriseRepository::class);
-     }
+        $this->app->bind(ResultatAnalysePhysiqueServiceInterface::class, ResultatAnalysePhysiqueService::class);
+        $this->app->bind(ResultatAnalysePhysiqueRepositoryInterface::class, ResultatAnalysePhysiqueRepository::class);
+   }
 
     /**
      * Bootstrap any application services.

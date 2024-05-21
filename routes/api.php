@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\PhaseGachage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -11,6 +10,7 @@ use App\Http\Controllers\AnalyseController;
 use App\Http\Controllers\ProportionController;
 use App\Http\Controllers\PhaseGachageController;
 use App\Http\Controllers\PhaseTempsPriseController;
+use App\Http\Controllers\ResultatAnalysePhysiqueController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,3 +95,12 @@ Route::post('/phase_temps_prise', [PhaseTempsPriseController::class, 'store']);
 Route::post('/phase_temps_prise/{id}', [PhaseTempsPriseController::class, 'edit']);
 Route::delete('/phase_temps_prise/{id}', [PhaseTempsPriseController::class, 'destroy']);
 Route::patch('/phase_temps_prise/{id}', [PhaseTempsPriseController::class, 'restore']);
+
+
+
+
+Route::get('/resultat_analyse_physique', [ResultatAnalysePhysiqueController::class, 'index']);
+Route::post('/resultat_analyse_physique', [ResultatAnalysePhysiqueController::class, 'store']);
+Route::post('/resultat_analyse_physique/{id}', [ResultatAnalysePhysiqueController::class, 'edit']);
+Route::delete('/resultat_analyse_physique/{id}', [ResultatAnalysePhysiqueController::class, 'destroy']);
+Route::patch('/resultat_analyse_physique/{id}', [ResultatAnalysePhysiqueController::class, 'restore']);
