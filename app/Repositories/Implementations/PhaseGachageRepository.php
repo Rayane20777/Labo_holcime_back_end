@@ -30,7 +30,13 @@ class PhaseGachageRepository implements PhaseGachageRepositoryInterface
     public function edit($data, $id)
     {
         $phase_gachage = PhaseGachage::where('id',$id)->first();
-        $phase_gachage->nom = $data['nom'];
+        $phase_gachage->temperature = $data['temperature'];
+        $phase_gachage->temperature_salle = $data['temperature_salle'];
+        $phase_gachage->humidite = $data['humidite'];
+        $phase_gachage->p_prisme = $data['p_prisme'];
+        $phase_gachage->temps_gachage = $data['temps_gachage'];
+        $phase_gachage->temps_casse = $data['temps_casse'];
+        $phase_gachage->analyse_id = $data['analyse_id'];
         $phase_gachage->update();
 
         return $phase_gachage;

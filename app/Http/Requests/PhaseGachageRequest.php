@@ -11,7 +11,7 @@ class PhaseGachageRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class PhaseGachageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'temperature' => 'nullable|numeric',
+            'temperature_salle' => 'nullable|numeric',
+            'humidite' => 'nullable|numeric',
+            'p_prisme' => 'nullable|numeric',
+            'temps_gachage' => 'nullable|string',
+            'temps_casse' => 'nullable|string',
         ];
     }
 }

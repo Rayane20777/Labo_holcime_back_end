@@ -27,6 +27,10 @@ use App\Repositories\Implementations\ProportionRepository;
 use App\Repositories\Interfaces\ProportionRepositoryInterface;
 use App\Services\Implementations\ProportionService;
 use App\Services\Interfaces\ProportionServiceInterface;
+use App\Repositories\Implementations\PhaseGachageRepository;
+use App\Repositories\Interfaces\PhaseGachageRepositoryInterface;
+use App\Services\Implementations\PhaseGachageService;
+use App\Services\Interfaces\PhaseGachageServiceInterface;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -48,6 +52,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AnalyseRepositoryInterface::class, AnalyseRepository::class);
         $this->app->bind(ProportionServiceInterface::class, ProportionService::class);
         $this->app->bind(ProportionRepositoryInterface::class, ProportionRepository::class);
+        $this->app->bind(PhaseGachageServiceInterface::class, PhaseGachageService::class);
+        $this->app->bind(PhaseGachageRepositoryInterface::class, PhaseGachageRepository::class);
      }
 
     /**

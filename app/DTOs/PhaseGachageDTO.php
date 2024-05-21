@@ -7,7 +7,7 @@ class PhaseGachageDTO {
         public readonly float $temperature,
         public readonly float $temperature_salle,
         public readonly float $humidite,
-        public readonly float $p_prisme,
+        public readonly string $p_prisme,
         public readonly string $temps_gachage,
         public readonly string $temps_casse,
         public readonly string $analyse_id,
