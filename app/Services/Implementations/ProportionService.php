@@ -39,7 +39,7 @@ class ProportionService implements ProportionServiceInterface
 
         
         $pourcentage = $this->calculatePercentagesEdit($data);
-        $gypse_sum = $this->calculateGypseSum($data);
+        $gypse_sum = $this->calculateGypseSumEdit($data);
         return $this->repository->edit($data, $id, $gypse_sum, $pourcentage);
     }
 
@@ -109,9 +109,8 @@ class ProportionService implements ProportionServiceInterface
         
         $KK_NG = $this->calculateMaterial_KK_NG($data['KK_G'] ?? 0, $GYPSE);
         $CAL_NG = $this->calculateMaterial_CAL_NG($data['CAL_G'] ?? 0, $GYPSE);
-        dd($CAL_NG);
-        $CV_NG = $this->calculateMaterial_CV_NG($data->CV_G ?? 0, $GYPSE);
-        $LAIT_NG = $this->calculateMaterial_LAIT_NG($data->LAIT_G ?? 0, $GYPSE);
+        $CV_NG = $this->calculateMaterial_CV_NG($data['CV_G'] ?? 0, $GYPSE);
+        $LAIT_NG = $this->calculateMaterial_LAIT_NG($data['LAIT_G'] ?? 0, $GYPSE);
 
         return [
             'KK_NG' => $KK_NG,
@@ -119,5 +118,10 @@ class ProportionService implements ProportionServiceInterface
             'CV_NG' => $CV_NG,
             'LAIT_NG' => $LAIT_NG,
         ];
+    }
+
+    private function calculateGypseSumEdit($data): float
+    {
+        return ($data['KK_G'] ?? 0) + ($data['CAL_G'] ?? 0) + ($data['CV_G'] ?? 0) + ($data['LAIT_G'] ?? 0) + ($data['GYPSE'] ?? 0);
     }
 }
