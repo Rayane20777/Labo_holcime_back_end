@@ -24,15 +24,15 @@ class AnalyseRepository implements AnalyseRepositoryInterface
         ]);
     }
 
-    public function edit(AnalyseDTO $data)
+    public function edit($data, int $id)
     {
-        $analyse = Analyse::findOrFail($data->id);
-        $analyse->date_prelevement = $data->date_prelevement;
-        $analyse->date_gachage = $data->date_gachage;
-        $analyse->matiere_id = $data->matiere_id;
-        $analyse->destination_id = $data->destination_id;
-        $analyse->point_echantillonage_id = $data->point_echantillonage_id;
-        $analyse->save();
+        $analyse = Analyse::where('id', $id)->first();
+        $analyse->date_prelevement = $data['date_prelevement'];
+        $analyse->date_gachage = $data['date_gachage'];
+        $analyse->matiere_id = $data['matiere_id'];
+        $analyse->destination_id = $data['destination_id'];
+        $analyse->point_echantillonage_id = $data['point_echantillonage_id'];
+        $analyse->update();
 
         return $analyse;
     }
