@@ -36,10 +36,9 @@ class ProportionService implements ProportionServiceInterface
 
     public function edit($data, int $id)
     {
-       
+
         
-        $pourcentage = $this->calculateNutrientPercentages($data);
-        dd($pourcentage);
+        $pourcentage = $this->calculatePercentagesEdit($data);
         $gypse_sum = $this->calculateGypseSum($data);
         return $this->repository->edit($data, $id, $gypse_sum, $pourcentage);
     }
@@ -87,6 +86,26 @@ class ProportionService implements ProportionServiceInterface
 
     public function calculateNutrientPercentages(ProportionDTO $data): array
     {
+
+        $GYPSE = $data->GYPSE ?? 0;
+
+        $KK_NG = $this->calculateMaterial_KK_NG($data->KK_G ?? 0, $GYPSE);
+        $CAL_NG = $this->calculateMaterial_CAL_NG($data->CAL_G ?? 0, $GYPSE);
+        $CV_NG = $this->calculateMaterial_CV_NG($data->CV_G ?? 0, $GYPSE);
+        $LAIT_NG = $this->calculateMaterial_LAIT_NG($data->LAIT_G ?? 0, $GYPSE);
+
+        return [
+            'KK_NG' => $KK_NG,
+            'CAL_NG' => $CAL_NG,
+            'CV_NG' => $CV_NG,
+            'LAIT_NG' => $LAIT_NG,
+        ];
+    }
+
+    public function calculatePercentagesEdit($data): array
+    {
+        dd($data);
+
         $GYPSE = $data->GYPSE ?? 0;
 
         $KK_NG = $this->calculateMaterial_KK_NG($data->KK_G ?? 0, $GYPSE);
