@@ -50,7 +50,7 @@ class ProportionController extends Controller
     {
 
         try {
-            $this->service->edit($request->all(),$id);
+            $data = $this->service->edit($request->all(),$id);
         } catch (ProportionNotFoundException $e) {
             return $this->responseError($e->getMessage(), 404);
         } catch (Exception $e) {
