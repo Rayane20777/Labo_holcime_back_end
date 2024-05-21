@@ -23,15 +23,15 @@ class ResultatAnalysePhysiqueDTO {
     {
         return new self(
             id: null,
-            j1: $data['j1'],
-            j2: $data['j2'],
-            j7: $data['j7'],
-            j28: $data['j28'],
-            j90: $data['j90'],
-            w1: $data['w1'],
-            w2: $data['w2'],
-            w3: $data['w3'],
-            w4: $data['w4'],
+            j1: $data['j1'] ?? null,
+            j2: $data['j2']?? null,
+            j7: $data['j7']?? null,
+            j28: $data['j28']?? null,
+            j90: $data['j90']?? null,
+            w1: $data['w1']?? null,
+            w2: $data['w2']?? null,
+            w3: $data['w3']?? null,
+            w4: $data['w4']?? null,
             analyse_id: $data['analyse_id'],
         );
     }

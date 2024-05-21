@@ -34,16 +34,16 @@ class ResultatAnalysePhysiqueRepository implements ResultatAnalysePhysiqueReposi
     {
         $resultat_analyse_physique = ResultatAnalysePhysique::where('id',$id)->first();
          $resultat_analyse_physique->update([
-            '1j' => $data->j1,
-            '2j' => $data->j2,
-            '7j' => $data->j7,
-            '28j' => $data->j28,
-            '90j' => $data->j90,
-            'w1' => $data->w1,
-            'w2' => $data->w2,
-            'w3' => $data->w3,
-            'w4' => $data->w4,
-            'analyse_id' => $data->analyse_id,
+            '1j' => $data['j1'],
+            '2j' => $data['j2'],
+            '7j' => $data['j7'],
+            '28j' => $data['j28'],
+            '90j' => $data['j90'],
+            'w1' => $data['w1'],
+            'w2' => $data['w2'],
+            'w3' => $data['w3'],
+            'w4' => $data['w4'],
+            'analyse_id' => $data['analyse_id'],
         ]);
         return $resultat_analyse_physique;
 
