@@ -13,18 +13,17 @@ class AnalyseChimique extends Model
 
     protected $table = 'analyse_chimiques';
     protected $fillable = [
-        'addition',
-        '2-32µm ',
-        '>45µm ',
-        '>80µm ',
+        '2-32µm',
+        '>45µm',
+        '>80µm',
         'SSB',
         'insoluble',
         'SiO2',
         'Al2O3',
         'Fe2O3',
         'CaO',
-        'MgO',
         'SO3',
+        'MgO',
         'K2O',
         'Na2O',
         'P2O5',

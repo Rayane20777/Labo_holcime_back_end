@@ -1,7 +1,6 @@
 <?php
 
 namespace App\DTOs;
-use App\Models\Analyse;
 class AnalyseDTO {
     public function __construct(
         public ?int $id,

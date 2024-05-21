@@ -1,11 +1,10 @@
 <?php
 
 namespace App\DTOs;
-use App\Models\Analyse;
 class AnalyseChimiqueDTO {
     public function __construct(
         public ?int $id,
-        public float $finesse_2_32,
+        public float $finesse_2_32, 
         public float $finesse_45,
         public float $finesse_80,
         public float $SSB,
@@ -32,26 +31,26 @@ class AnalyseChimiqueDTO {
     {
         return new self(
             id: null,
-            finesse_2_32: $data['finesse_2_32'],
-            finesse_45: $data['finesse_45'],
-            finesse_80: $data['finesse_80'],
-            SSB: $data['SSB'],
-            insoluble: $data['insoluble'],
-            SiO2: $data['SiO2'],
-            Al2O3: $data['Al2O3'],
-            Fe2O3: $data['Fe2O3'],
-            CaO: $data['CaO'],
-            MgO: $data['MgO'],
-            SO3: $data['SO3'],
-            K2O: $data['K2O'],
-            Na2O: $data['Na2O'],
-            P2O5: $data['P2O5'],
-            CO2: $data['CO2'],
-            PF: $data['PF'],
-            Cl: $data['Cl'],
-            H41: $data['H41'],
-            S2: $data['S2'],
-            CaOl: $data['CaOl'],
+            finesse_2_32: $data['finesse_2_32'] ?? 0,
+            finesse_45: $data['finesse_45'] ?? 0,
+            finesse_80: $data['finesse_80'] ?? 0,
+            SSB: $data['SSB'] ?? 0,
+            insoluble: $data['insoluble'] ?? 0,
+            SiO2: $data['SiO2'] ?? 0,
+            Al2O3: $data['Al2O3'] ?? 0,
+            Fe2O3: $data['Fe2O3'] ?? 0,
+            CaO: $data['CaO'] ?? 0,
+            MgO: $data['MgO'] ?? 0,
+            SO3: $data['SO3'] ?? 0,
+            K2O: $data['K2O'] ?? 0,
+            Na2O: $data['Na2O'] ?? 0,
+            P2O5: $data['P2O5'] ?? 0,
+            CO2: $data['CO2'] ?? 0,
+            PF: $data['PF'] ?? 0,
+            Cl: $data['Cl'] ?? 0,
+            H41: $data['H41'] ?? 0,
+            S2: $data['S2'] ?? 0,
+            CaOl: $data['CaOl'] ?? 0,
             analyse_id: $data['analyse_id'],
         );
     }

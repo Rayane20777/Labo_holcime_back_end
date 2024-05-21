@@ -11,6 +11,7 @@ use App\Http\Controllers\ProportionController;
 use App\Http\Controllers\PhaseGachageController;
 use App\Http\Controllers\PhaseTempsPriseController;
 use App\Http\Controllers\ResultatAnalysePhysiqueController;
+use App\Http\Controllers\AnalyseChimiqueController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,3 +105,12 @@ Route::post('/resultat_analyse_physique', [ResultatAnalysePhysiqueController::cl
 Route::post('/resultat_analyse_physique/{id}', [ResultatAnalysePhysiqueController::class, 'edit']);
 Route::delete('/resultat_analyse_physique/{id}', [ResultatAnalysePhysiqueController::class, 'destroy']);
 Route::patch('/resultat_analyse_physique/{id}', [ResultatAnalysePhysiqueController::class, 'restore']);
+
+
+
+
+Route::get('/analyse_chmique', [AnalyseChimiqueController::class, 'index']);
+Route::post('/analyse_chmique', [AnalyseChimiqueController::class, 'store']);
+Route::post('/analyse_chmique/{id}', [AnalyseChimiqueController::class, 'edit']);
+Route::delete('/analyse_chmique/{id}', [AnalyseChimiqueController::class, 'destroy']);
+Route::patch('/analyse_chmique/{id}', [AnalyseChimiqueController::class, 'restore']);

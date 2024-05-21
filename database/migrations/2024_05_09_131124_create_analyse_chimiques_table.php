@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('analyse_chimiques', function (Blueprint $table) {
             $table->id();
-            $table->float('addition')->nullable();
             $table->float('2-32µm')->nullable();
             $table->float('>45µm')->nullable();
             $table->float('>80µm')->nullable();

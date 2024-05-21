@@ -39,7 +39,10 @@ use App\Services\Interfaces\ResultatAnalysePhysiqueServiceInterface;
 use App\Repositories\Implementations\ResultatAnalysePhysiqueRepository;
 use App\Repositories\Interfaces\ResultatAnalysePhysiqueRepositoryInterface;
 use App\Services\Implementations\ResultatAnalysePhysiqueService;
-
+use App\Services\Interfaces\AnalyseChimiqueServiceInterface;
+use App\Repositories\Implementations\AnalyseChimiqueRepository;
+use App\Repositories\Interfaces\AnalyseChimiqueRepositoryInterface;
+use App\Services\Implementations\AnalyseChimiqueService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -66,6 +69,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PhaseTempsPriseRepositoryInterface::class, PhaseTempsPriseRepository::class);
         $this->app->bind(ResultatAnalysePhysiqueServiceInterface::class, ResultatAnalysePhysiqueService::class);
         $this->app->bind(ResultatAnalysePhysiqueRepositoryInterface::class, ResultatAnalysePhysiqueRepository::class);
+        $this->app->bind(AnalyseChimiqueServiceInterface::class, AnalyseChimiqueService::class);
+        $this->app->bind(AnalyseChimiqueRepositoryInterface::class, AnalyseChimiqueRepository::class);
    }
 
     /**
