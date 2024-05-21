@@ -20,7 +20,7 @@ class AnalyseRepository implements AnalyseRepositoryInterface
             'matiere_id' => $data->matiere_id,
             'destination_id' => $data->destination_id,
             'point_echantillonage_id' => $data->point_echantillonage_id,
-            'user_id' => Auth::id(), 
+            'user_id' => $data->user_id, 
         ]);
     }
 
