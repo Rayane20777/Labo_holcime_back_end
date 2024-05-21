@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\Interfaces\AnalyseServiceInterface;
 use App\DTOs\AnalyseDTO;
 use Exception;
+use App\Http\Requests\AnalyseRequest;
 
 class AnalyseController extends Controller
 {
@@ -30,7 +31,7 @@ class AnalyseController extends Controller
         }
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(AnalyseRequest $request): JsonResponse
     {
         try {
             $payload = AnalyseDTO::fromAdd($request->all());
@@ -41,14 +42,14 @@ class AnalyseController extends Controller
         }
     }
 
-    public function edit(Request $request, int $id)
+    public function edit(AnalyseRequest $request, int $id)
     {
         try {
-            $data = $request->all();
-            $payload = AnalyseDTO::fromEdit($data);
-            $payload->id = $id; 
+            // $data = $request->all();
+            // $payload = AnalyseDTO::fromEdit($data);
+            // $payload->id = $id; 
     
-            $analyse = $this->service->edit($payload);
+            $analyse = $this->service->edit($request->all(),$id);
             
             return response()->json($analyse);
         } catch (Exception $e) {
