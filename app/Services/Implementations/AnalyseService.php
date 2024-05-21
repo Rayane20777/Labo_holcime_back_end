@@ -41,4 +41,11 @@ class AnalyseService implements AnalyseServiceInterface
     {
         return $this->repository->restore($id);
     }
+
+    public function filter(array $filters)
+    {
+        return $this->repository->filter($filters);
+    }
+
+
 }

@@ -5,6 +5,9 @@ use App\DTOs\AnalyseDTO;
 use App\Repositories\Interfaces\AnalyseRepositoryInterface;
 use App\Models\Analyse;
 use Illuminate\Support\Facades\Auth;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
+use Illuminate\Database\Eloquent\Builder;
 
 class AnalyseRepository implements AnalyseRepositoryInterface
 {
@@ -48,4 +51,40 @@ class AnalyseRepository implements AnalyseRepositoryInterface
         $analyse = Analyse::withTrashed()->findOrFail($id);
         return $analyse->restore();
     }
+
+    public function filter(array $filters)
+{
+    $query = Analyse::query();
+
+    // Apply filters for select inputs
+    if (isset($filters['destination_id'])) {
+        $query->where('destination_id', $filters['destination_id']);
+    }
+    
+    if (isset($filters['point_echantillonage_id'])) {
+        $query->where('point_echantillonage_id', $filters['point_echantillonage_id']);
+    }
+
+    // Apply search filters for date_prelevement and date_gachage
+    if (isset($filters['date_prelevement'])) {
+        $query->where('date_prelevement', 'like', "%{$filters['date_prelevement']}%");
+    }
+
+    if (isset($filters['date_gachage'])) {
+        $query->where('date_gachage', 'like', "%{$filters['date_gachage']}%");
+    }
+
+    // Get the filtered analyses
+    $analyses = $query->get();
+
+    // If no analyses are found, return an empty collection
+    if ($analyses->isEmpty()) {
+        return collect();
+    }
+
+    // Return the filtered analyses
+    return $analyses;
+}
+
+    
 }
