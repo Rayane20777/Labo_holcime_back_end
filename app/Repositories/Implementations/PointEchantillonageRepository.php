@@ -21,12 +21,12 @@ class PointEchantillonageRepository implements PointEchantillonageRepositoryInte
         ]);
     }
 
-    public function edit(PointEchantillonageDTO $data)
+    public function edit($data, int $id)
     {
-        $destination = PointEchantillonage::findOrFail($data->id);
-        $destination->nom = $data->nom;
-        $destination->matiere_id = $data->matiere_id;
-        $destination->save();
+        $destination = PointEchantillonage::where('id',$id)->first();
+        $destination->nom = $data['id'];
+        $destination->matiere_id = $data['matiere_id'];
+        $destination->update();
 
         return $destination;
     }

@@ -24,9 +24,9 @@ class PointEchantillonageService implements PointEchantillonageServiceInterface
         return $this->repository->store($data);
     }
 
-    public function edit(PointEchantillonageDTO $data)
+    public function edit($data, int $id)
     {
-        return $this->repository->edit($data);
+        return $this->repository->edit($data, $id);
     }
 
     public function destroy(int $id)
