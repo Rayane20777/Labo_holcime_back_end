@@ -104,12 +104,12 @@ class ProportionService implements ProportionServiceInterface
 
     public function calculatePercentagesEdit($data): array
     {
-        dd($data);
-
-        $GYPSE = $data->GYPSE ?? 0;
-
-        $KK_NG = $this->calculateMaterial_KK_NG($data->KK_G ?? 0, $GYPSE);
-        $CAL_NG = $this->calculateMaterial_CAL_NG($data->CAL_G ?? 0, $GYPSE);
+        
+        $GYPSE = $data['GYPSE'] ?? 0;
+        
+        $KK_NG = $this->calculateMaterial_KK_NG($data['KK_G'] ?? 0, $GYPSE);
+        $CAL_NG = $this->calculateMaterial_CAL_NG($data['CAL_G'] ?? 0, $GYPSE);
+        dd($CAL_NG);
         $CV_NG = $this->calculateMaterial_CV_NG($data->CV_G ?? 0, $GYPSE);
         $LAIT_NG = $this->calculateMaterial_LAIT_NG($data->LAIT_G ?? 0, $GYPSE);
 
