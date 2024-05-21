@@ -43,7 +43,7 @@ class PointEchantillonageController extends Controller
         return $this->responseSuccess($data, "Point Echantillonage created successfully");
     }
 
-    public function edit(PointEchantillonageRequest $request, $id)
+    public function edit(PointEchantillonageRequest $request, int $id): JsonResponse
     {
         try {
             $data = $this->service->edit($request->all(),$id);
