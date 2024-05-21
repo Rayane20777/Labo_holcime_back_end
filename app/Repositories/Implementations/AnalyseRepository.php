@@ -53,38 +53,40 @@ class AnalyseRepository implements AnalyseRepositoryInterface
     }
 
     public function filter(array $filters)
-{
-    $query = Analyse::query();
+    {
+        $query = QueryBuilder::for(Analyse::class)
+            ->allowedFilters([
+                AllowedFilter::exact('destination_id'),
+                AllowedFilter::exact('point_echantillonage_id'),
+                'date_prelevement',
+                'date_gachage',
+                
+            ])->with(['destination', 'point_echantillonage']);
 
-    // Apply filters for select inputs
-    if (isset($filters['destination_id'])) {
-        $query->where('destination_id', $filters['destination_id']);
-    }
+
+
+            if (isset($filters['destination_id'])) {
+                $query->where('destination_id', $filters['destination_id']);
+            }
     
-    if (isset($filters['point_echantillonage_id'])) {
-        $query->where('point_echantillonage_id', $filters['point_echantillonage_id']);
+            if (isset($filters['point_echantillonage_id'])) {
+                $query->where('point_echantillonage_id', $filters['point_echantillonage_id']);
+            }
+
+
+            if (isset($filters['date_prelevement'])) {
+                $query->where('date_prelevement', $filters['date_prelevement']);
+            }
+    
+            if (isset($filters['date_gachage'])) {
+                $query->where('date_gachage', $filters['date_gachage']);
+            }
+    
+            if (empty($filters)) {
+                return collect();
+            }
+
+        return $query->get();
     }
-
-    // Apply search filters for date_prelevement and date_gachage
-    if (isset($filters['date_prelevement'])) {
-        $query->where('date_prelevement', 'like', "%{$filters['date_prelevement']}%");
-    }
-
-    if (isset($filters['date_gachage'])) {
-        $query->where('date_gachage', 'like', "%{$filters['date_gachage']}%");
-    }
-
-    // Get the filtered analyses
-    $analyses = $query->get();
-
-    // If no analyses are found, return an empty collection
-    if ($analyses->isEmpty()) {
-        return collect();
-    }
-
-    // Return the filtered analyses
-    return $analyses;
-}
-
     
 }
