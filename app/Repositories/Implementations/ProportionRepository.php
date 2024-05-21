@@ -30,9 +30,19 @@ class ProportionRepository implements ProportionRepositoryInterface
         ]);
     }
 
-    public function edit(ProportionDTO $data, float $gypse_sum, array $pourcentage)
+    public function edit($data,int $id, float $gypse_sum, array $pourcentage)
     {
-        $proportion = Proportion::findOrFail($data->id);
+        $proportion = Proportion::where('id',$id)->first();
+
+        $proportion->KK_G = $data['KK_G'];
+        $proportion->KK_G = $data['KK_G'];
+        $proportion->KK_G = $data['KK_G'];
+        $proportion->KK_G = $data['KK_G'];
+        $proportion->KK_G = $data['KK_G'];
+        $proportion->KK_G = $data['KK_G'];
+        $proportion->KK_G = $data['KK_G'];
+        $proportion->KK_G = $data['KK_G'];
+        $proportion->KK_G = $data['KK_G'];
         $proportion->update([
             'KK_G' => $data->KK_G,
             'CAL_G' => $data->CAL_G,

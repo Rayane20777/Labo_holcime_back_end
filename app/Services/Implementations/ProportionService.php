@@ -34,17 +34,14 @@ class ProportionService implements ProportionServiceInterface
         return $this->repository->store($data, $gypse_sum, $pourcentage);
     }
 
-    public function edit(ProportionDTO $data)
+    public function edit($data, int $id)
     {
-        $proportion = Proportion::find($data->id);
-        if (!$proportion) {
-            throw new ProportionNotFoundException();
-        }
+       
         
         $pourcentage = $this->calculateNutrientPercentages($data);
         dd($pourcentage);
         $gypse_sum = $this->calculateGypseSum($data);
-        return $this->repository->edit($data, $gypse_sum, $pourcentage);
+        return $this->repository->edit($data, $id, $gypse_sum, $pourcentage);
     }
 
     public function destroy(int $id)
