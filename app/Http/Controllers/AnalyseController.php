@@ -29,6 +29,8 @@ class AnalyseController extends Controller
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
+        return $this->responseSuccess($data, "Destination deleted successfully");
+
     }
 
     public function store(AnalyseRequest $request): JsonResponse
@@ -45,16 +47,12 @@ class AnalyseController extends Controller
     public function edit(AnalyseRequest $request, int $id)
     {
         try {
-            // $data = $request->all();
-            // $payload = AnalyseDTO::fromEdit($data);
-            // $payload->id = $id; 
-    
             $analyse = $this->service->edit($request->all(),$id);
-            
             return response()->json($analyse);
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
+
     }
 
     public function destroy(int $id): JsonResponse

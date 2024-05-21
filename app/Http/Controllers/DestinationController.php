@@ -47,11 +47,12 @@ class DestinationController extends Controller
     {
 
         try {
-           $this->service->edit($request->all(),$id);
+          $data = $this->service->edit($request->all(),$id);
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
-
+        return $this->responseSuccess($data, "Destination deleted successfully");
+        
     }
 
     public function destroy(int $id): JsonResponse

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\Interfaces\PointEchantillonageServiceInterface;
 use App\DTOs\PointEchantillonageDTO;
 use Exception;
-
+use App\Http\Requests\PointEchantillonageRequest;
 class PointEchantillonageController extends Controller
 {
     use ResponseTrait;
@@ -30,7 +30,7 @@ class PointEchantillonageController extends Controller
         return $this->responseSuccess($data, "Point Echantillonages retrieved successfully");
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(PointEchantillonageRequest $request): JsonResponse
     {
         $payload = PointEchantillonageDTO::fromAdd($request->all());
 
@@ -43,14 +43,15 @@ class PointEchantillonageController extends Controller
         return $this->responseSuccess($data, "Point Echantillonage created successfully");
     }
 
-    public function update(Request $request, int $id)
+    public function update(PointEchantillonageRequest $request, int $id)
     {
 
         try {
-            $this->service->edit($request->all(),$id);
+            $data = $this->service->edit($request->all(),$id);
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
+        return $this->responseSuccess($data, "Point Echantillonage updated successfully");
 
     }
 
