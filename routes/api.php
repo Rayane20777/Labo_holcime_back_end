@@ -62,7 +62,7 @@ Route::patch('/point_echantillonage/{id}', [PointEchantillonageController::class
 
 Route::get('/analyses', [AnalyseController::class, 'index']);
 Route::post('/analyses', [AnalyseController::class, 'store']);
-Route::put('/analyse/{id}', [AnalyseController::class, 'edit']);
+Route::post('/analyse/{id}', [AnalyseController::class, 'edit']);
 Route::delete('/analyses/{id}', [AnalyseController::class, 'destroy']);
 Route::patch('/analyses/{id}', [AnalyseController::class, 'restore']);
 
