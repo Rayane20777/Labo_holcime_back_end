@@ -8,6 +8,7 @@ interface DestinationServiceInterface
 {
     public function all();
     public function store(DestinationDTO $data);
-    public function edit($data, int );
+    public function edit($data, int $id);
     public function destroy(int $id);
-    public function restore(int $id);
+    public function restore(int $id);
+}

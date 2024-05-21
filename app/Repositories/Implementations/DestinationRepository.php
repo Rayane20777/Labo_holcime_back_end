@@ -21,11 +21,11 @@ class DestinationRepository implements DestinationRepositoryInterface
         ]);
     }
 
-    public function edit(DestinationDTO $data)
+    public function edit($data,int $id)
     {
-        $destination = Destination::findOrFail($data->id);
-        $destination->nom = $data->nom;
-        $destination->matiere_id = $data->matiere_id;
+        $destination = Destination::where('id',$id)->first();
+        $destination->nom = $data['nom'];
+        $destination->nom = $data['matiere_id'];
         $destination->save();
 
         return $destination;
