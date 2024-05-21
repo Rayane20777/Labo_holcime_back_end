@@ -24,9 +24,9 @@ class DestinationService implements DestinationServiceInterface
         return $this->repository->store($data);
     }
 
-    public function edit(DestinationDTO $data)
+    public function edit($data, int $id)
     {
-        return $this->repository->edit($data);
+        return $this->repository->edit($data, $id);
     }
 
     public function destroy(int $id)
