@@ -33,8 +33,8 @@ class ProportionRepository implements ProportionRepositoryInterface
     public function edit($data,int $id, float $gypse_sum, array $pourcentage)
     {
         $proportion = Proportion::where('id',$id)->first();
-        
-        $proportion->KK_G = $data['KK_G'];
+         
+         $proportion->KK_G = $data['KK_G'];
         $proportion->CAL_G = $data['CAL_G'];
         $proportion->CV_G = $data['CV_G'];
         $proportion->LAIT_G = $data['LAIT_G'];
