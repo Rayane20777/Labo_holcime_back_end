@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\PhaseGachage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\PointEchantillonageController;
 use App\Http\Controllers\AnalyseController;
 use App\Http\Controllers\ProportionController;
+use App\Http\Controllers\PhaseGachageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +76,12 @@ Route::post('/proportions', [ProportionController::class, 'store']);
 Route::post('/proportions/{id}', [ProportionController::class, 'edit']);
 Route::delete('/proportions/{id}', [ProportionController::class, 'destroy']);
 Route::patch('/proportions/{id}', [ProportionController::class, 'restore']);
+
+
+
+
+Route::get('/phase_gachages', [PhaseGachageController::class, 'index']);
+Route::post('/phase_gachages', [PhaseGachageController::class, 'store']);
+Route::post('/phase_gachage/{id}', [PhaseGachageController::class, 'edit']);
+Route::delete('/phase_gachage/{id}', [PhaseGachageController::class, 'destroy']);
+Route::patch('/phase_gachage/{id}', [PhaseGachageController::class, 'restore']);
