@@ -9,7 +9,8 @@ class AnalyseDTO {
         public ?string $date_gachage,
         public string $matiere_id,
         public int $destination_id,
-        public int $point_echantillonage_id
+        public int $point_echantillonage_id,
+        public int $user_id
     ) {}
 
     public static function fromAdd(array $data): self
@@ -20,7 +21,8 @@ class AnalyseDTO {
             date_gachage: $data['date_gachage'],
             matiere_id: $data['matiere_id'],
             destination_id: $data['destination_id'],
-            point_echantillonage_id: $data['point_echantillonage_id']
+            point_echantillonage_id: $data['point_echantillonage_id'],
+            user_id: $data['user_id']
         );
     }
     // public static function fromEdit(array $data): self
