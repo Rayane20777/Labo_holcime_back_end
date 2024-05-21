@@ -44,16 +44,13 @@ class MatiereController extends Controller
         return $this->responseSuccess($data, "Matiere created successfully");
     }
 
-    public function edit(MatiereRequest $request, int $id):JsonResponse
+    public function edit(MatiereRequest $request, int $id)
     {
-        $payload = MatiereDTO::fromEdit(array_merge($request->all(),['id' => $id]));
-
         try{
-            $data = $this->service->edit($payload);
+           $this->service->edit($request->all(),$id);
         }catch(Exception $e){
             return $this->responseError($e->getMessage());
         }
-        return $this->responseSuccess($data,"Matiere updated successfully");
     }
 
     public function destroy(int $id): JsonResponse

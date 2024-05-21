@@ -25,9 +25,9 @@ class MatiereService implements MatiereServiceInterface
         return $this->repository->store($data);
     }
 
-    public function edit(MatiereDTO $data)
+    public function edit($data, int $id)
     {
-        return $this->repository->edit($data);
+        return $this->repository->edit($data, $id);
     }
 
     public function destroy(int $id)

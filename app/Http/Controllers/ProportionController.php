@@ -46,7 +46,7 @@ class ProportionController extends Controller
         return $this->responseSuccess($data, "Proportion created successfully");
     }
 
-    public function edit (ProportionEditRequest $request, int $id): JsonResponse
+    public function edit(ProportionEditRequest $request, int $id): JsonResponse
     {
         $payload = ProportionDTO::fromEdit(array_merge($request->all(), ['id' => $id]));
 
