@@ -10,6 +10,7 @@ use App\Http\Controllers\PointEchantillonageController;
 use App\Http\Controllers\AnalyseController;
 use App\Http\Controllers\ProportionController;
 use App\Http\Controllers\PhaseGachageController;
+use App\Http\Controllers\PhaseTempsPriseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,26 +63,35 @@ Route::patch('/point_echantillonage/{id}', [PointEchantillonageController::class
 
 
 
-Route::get('/analyses', [AnalyseController::class, 'index']);
-Route::post('/analyses', [AnalyseController::class, 'store']);
+Route::get('/analyse', [AnalyseController::class, 'index']);
+Route::post('/analyse', [AnalyseController::class, 'store']);
 Route::post('/analyse/{id}', [AnalyseController::class, 'edit']);
-Route::delete('/analyses/{id}', [AnalyseController::class, 'destroy']);
-Route::patch('/analyses/{id}', [AnalyseController::class, 'restore']);
+Route::delete('/analyse/{id}', [AnalyseController::class, 'destroy']);
+Route::patch('/analyse/{id}', [AnalyseController::class, 'restore']);
 
 
 
 
-Route::get('/proportions', [ProportionController::class, 'index']);
-Route::post('/proportions', [ProportionController::class, 'store']);
-Route::post('/proportions/{id}', [ProportionController::class, 'edit']);
-Route::delete('/proportions/{id}', [ProportionController::class, 'destroy']);
-Route::patch('/proportions/{id}', [ProportionController::class, 'restore']);
+Route::get('/proportion', [ProportionController::class, 'index']);
+Route::post('/proportion', [ProportionController::class, 'store']);
+Route::post('/proportion/{id}', [ProportionController::class, 'edit']);
+Route::delete('/proportion/{id}', [ProportionController::class, 'destroy']);
+Route::patch('/proportion/{id}', [ProportionController::class, 'restore']);
 
 
 
 
-Route::get('/phase_gachages', [PhaseGachageController::class, 'index']);
-Route::post('/phase_gachages', [PhaseGachageController::class, 'store']);
+Route::get('/phase_gachage', [PhaseGachageController::class, 'index']);
+Route::post('/phase_gachage', [PhaseGachageController::class, 'store']);
 Route::post('/phase_gachage/{id}', [PhaseGachageController::class, 'edit']);
 Route::delete('/phase_gachage/{id}', [PhaseGachageController::class, 'destroy']);
 Route::patch('/phase_gachage/{id}', [PhaseGachageController::class, 'restore']);
+
+
+
+
+Route::get('/phase_temps_prise', [PhaseTempsPriseController::class, 'index']);
+Route::post('/phase_temps_prise', [PhaseTempsPriseController::class, 'store']);
+Route::post('/phase_temps_prise/{id}', [PhaseTempsPriseController::class, 'edit']);
+Route::delete('/phase_temps_prise/{id}', [PhaseTempsPriseController::class, 'destroy']);
+Route::patch('/phase_temps_prise/{id}', [PhaseTempsPriseController::class, 'restore']);
