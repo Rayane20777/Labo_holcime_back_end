@@ -44,8 +44,12 @@ class AnalyseController extends Controller
     public function edit(Request $request, int $id): JsonResponse
     {
         try {
-            $payload = AnalyseDTO::fromEdit(array_merge($request->all(), ['id' => $id]));
+            $data = $request->all();
+            $payload = AnalyseDTO::fromEdit($data);
+            $payload->id = $id; 
+    
             $analyse = $this->service->edit($payload);
+            
             return response()->json($analyse);
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());

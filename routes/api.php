@@ -44,7 +44,7 @@ Route::patch('/matiere/{id}', [MatiereController::class, 'restore']);
 
 Route::get('/destination', [DestinationController::class, 'index']);
 Route::post('/destination', [DestinationController::class, 'store']);
-Route::post('/destination/{id}', [DestinationController::class, 'update']);
+Route::post('/destination/{id}', [DestinationController::class, 'edit']);
 Route::delete('/destination/{id}', [DestinationController::class, 'destroy']);
 Route::patch('/destination/{id}', [DestinationController::class, 'restore']);
 
@@ -53,7 +53,7 @@ Route::patch('/destination/{id}', [DestinationController::class, 'restore']);
 
 Route::get('/point_echantillonage', [PointEchantillonageController::class, 'index']);
 Route::post('/point_echantillonage', [PointEchantillonageController::class, 'store']);
-Route::post('/point_echantillonage/{id}', [PointEchantillonageController::class, 'update']);
+Route::post('/point_echantillonage/{id}', [PointEchantillonageController::class, 'edit']);
 Route::delete('/point_echantillonage/{id}', [PointEchantillonageController::class, 'destroy']);
 Route::patch('/point_echantillonage/{id}', [PointEchantillonageController::class, 'restore']);
 
@@ -62,7 +62,7 @@ Route::patch('/point_echantillonage/{id}', [PointEchantillonageController::class
 
 Route::get('/analyses', [AnalyseController::class, 'index']);
 Route::post('/analyses', [AnalyseController::class, 'store']);
-Route::post('/analyses/{id}', [AnalyseController::class, 'edit']);
+Route::put('/analyse/{id}', [AnalyseController::class, 'edit']);
 Route::delete('/analyses/{id}', [AnalyseController::class, 'destroy']);
 Route::patch('/analyses/{id}', [AnalyseController::class, 'restore']);
 

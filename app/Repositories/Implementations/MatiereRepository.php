@@ -21,11 +21,11 @@ class MatiereRepository implements MatiereRepositoryInterface
         ]);
     }
 
-    public function edit(MatiereDTO $data)
+    public function edit($data, $id)
     {
-        $matiere = Matiere::findOrFail($data->id);
-        $matiere->nom = $data->nom;
-        $matiere->save();
+        $matiere = Matiere::where('id',$id)->first();
+        $matiere->nom = $data['nom'];
+        $matiere->update();
 
         return $matiere;
     }

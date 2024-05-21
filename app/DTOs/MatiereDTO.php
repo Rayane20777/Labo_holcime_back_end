@@ -16,11 +16,11 @@ class MatiereDTO {
         );
     }
 
-    public static function fromEdit(array $data): self
-    {
-        return new self(
-            id: $data['id'],
-            nom: $data['nom'],
-        );
-    }
+    // public static function fromEdit(array $data): self
+    // {
+    //     return new self(
+    //         id: $data['id'],
+    //         nom: $data['nom'],
+    //     );
+    // }
 }

@@ -43,17 +43,15 @@ class DestinationController extends Controller
         return $this->responseSuccess($data, "Destination created successfully");
     }
 
-    public function update(Request $request, int $id): JsonResponse
+    public function edit(Request $request, int $id)
     {
-        $payload = DestinationDTO::fromEdit(array_merge($request->all(), ['id' => $id]));
 
         try {
-            $data = $this->service->edit($payload);
+           $this->service->edit($request->all(),$id);
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Destination updated successfully");
     }
 
     public function destroy(int $id): JsonResponse
