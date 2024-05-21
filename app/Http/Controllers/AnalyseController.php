@@ -41,7 +41,7 @@ class AnalyseController extends Controller
         }
     }
 
-    public function edit(Request $request, int $id): JsonResponse
+    public function edit(Request $request, int $id)
     {
         try {
             $data = $request->all();
