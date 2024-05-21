@@ -48,10 +48,9 @@ class ProportionController extends Controller
 
     public function edit(ProportionEditRequest $request, int $id): JsonResponse
     {
-        $payload = ProportionDTO::fromEdit(array_merge($request->all(), ['id' => $id]));
 
         try {
-            $data = $this->service->edit($payload);
+            $this->service->edit($request->all(),$id);
         } catch (ProportionNotFoundException $e) {
             return $this->responseError($e->getMessage(), 404);
         } catch (Exception $e) {
