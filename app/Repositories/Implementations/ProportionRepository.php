@@ -35,27 +35,17 @@ class ProportionRepository implements ProportionRepositoryInterface
         $proportion = Proportion::where('id',$id)->first();
 
         $proportion->KK_G = $data['KK_G'];
-        $proportion->KK_G = $data['KK_G'];
-        $proportion->KK_G = $data['KK_G'];
-        $proportion->KK_G = $data['KK_G'];
-        $proportion->KK_G = $data['KK_G'];
-        $proportion->KK_G = $data['KK_G'];
-        $proportion->KK_G = $data['KK_G'];
-        $proportion->KK_G = $data['KK_G'];
-        $proportion->KK_G = $data['KK_G'];
-        $proportion->update([
-            'KK_G' => $data->KK_G,
-            'CAL_G' => $data->CAL_G,
-            'CV_G' => $data->CV_G,
-            'LAIT_G' => $data->LAIT_G,
-            'GYPSE' => $data->GYPSE,
-            'KK_NG' => $pourcentage['KK_NG'],
-            'CAL_NG' => $pourcentage['CAL_NG'],
-            'CV_NG' => $pourcentage['CV_NG'],
-            'LAIT_NG' => $pourcentage['LAIT_NG'],
-            'sum_gypse' => $gypse_sum,
-            'analyse_id' => $data->analyse_id,
-        ]);
+        $proportion->CAL_G = $data['CAL_G'];
+        $proportion->CV_G = $data['CV_G'];
+        $proportion->LAIT_G = $data['LAIT_G'];
+        $proportion->GYPSE = $data['GYPSE'];
+        $proportion->KK_NG = $pourcentage['KK_NG'];
+        $proportion->CAL_NG = $pourcentage['CAL_NG'];
+        $proportion->CV_NG = $pourcentage['CV_NG'];
+        $proportion->LAIT_NG = $pourcentage['LAIT_NG'];
+        $proportion->∑_Gypse = $gypse_sum;
+        $proportion->analyse_id = $data['analyse_id'];
+        $proportion->update();
 
         return $proportion;
     }
