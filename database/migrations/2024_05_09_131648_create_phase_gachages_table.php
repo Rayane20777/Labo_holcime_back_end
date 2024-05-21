@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('phase_gachages', function (Blueprint $table) {
             $table->id();
-            $table->integer('temperature')->nullable();
+            $table->float('temperature')->nullable();
             $table->float('temperature_salle')->nullable();
             $table->float('humidite')->nullable();
             $table->float('p_prisme')->nullable();
