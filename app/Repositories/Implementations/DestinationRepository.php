@@ -26,7 +26,7 @@ class DestinationRepository implements DestinationRepositoryInterface
         $destination = Destination::where('id',$id)->first();
         $destination->nom = $data['nom'];
         $destination->nom = $data['matiere_id'];
-        $destination->save();
+        $destination->update();
 
         return $destination;
     }

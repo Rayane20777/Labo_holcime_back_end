@@ -43,17 +43,15 @@ class PointEchantillonageController extends Controller
         return $this->responseSuccess($data, "Point Echantillonage created successfully");
     }
 
-    public function edit(Request $request, int $id): JsonResponse
+    public function edit(Request $request, int $id)
     {
-        $payload = PointEchantillonageDTO::fromEdit(array_merge($request->all(), ['id' => $id]));
 
         try {
-            $data = $this->service->edit($payload);
+            $this->service->edit($request->all(),$id);
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Point Echantillonage updated successfully");
     }
 
     public function destroy(int $id): JsonResponse
