@@ -23,25 +23,25 @@ class AnalyseDTO {
             point_echantillonage_id: $data['point_echantillonage_id']
         );
     }
-    public static function fromEdit(array $data): self
-    {
-        $id = $data['id'] ?? null;
-        $existingDateGachage = null;
+    // public static function fromEdit(array $data): self
+    // {
+    //     $id = $data['id'] ?? null;
+    //     $existingDateGachage = null;
     
-        if ($id !== null) {
-            $existingAnalyse = Analyse::findOrFail($id);
-            $existingDateGachage = $existingAnalyse->date_gachage;
-        }
+    //     if ($id !== null) {
+    //         $existingAnalyse = Analyse::findOrFail($id);
+    //         $existingDateGachage = $existingAnalyse->date_gachage;
+    //     }
     
-        return new self(
-            id: $id,
-            date_prelevement: $data['date_prelevement'] ?? '',
-            date_gachage: $data['date_gachage'] ?? $existingDateGachage,
-            matiere_id: $data['matiere_id'] ?? '',
-            destination_id: $data['destination_id'] ?? 0,
-            point_echantillonage_id: $data['point_echantillonage_id'] ?? 0
-        );
-    }
+    //     return new self(
+    //         id: $id,
+    //         date_prelevement: $data['date_prelevement'] ?? '',
+    //         date_gachage: $data['date_gachage'] ?? $existingDateGachage,
+    //         matiere_id: $data['matiere_id'] ?? '',
+    //         destination_id: $data['destination_id'] ?? 0,
+    //         point_echantillonage_id: $data['point_echantillonage_id'] ?? 0
+    //     );
+    // }
     
     
     
