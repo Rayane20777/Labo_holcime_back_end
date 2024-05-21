@@ -21,10 +21,11 @@ class AnalyseController extends Controller
         $this->service = $service;
     }
 
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
         try {
-            $analyses = $this->service->all();
+            $filters = $request->all();
+            $analyses = $this->service->filter($filters);
             return response()->json($analyses);
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
