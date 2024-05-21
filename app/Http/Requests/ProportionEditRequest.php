@@ -27,10 +27,6 @@ class ProportionEditRequest extends FormRequest
             'CV_G' => 'nullable|numeric',
             'LAIT_G' => 'nullable|numeric',
             'GYPSE' => 'nullable|numeric',
-            'KK_NG' => 'nullable|numeric',
-            'CAL_NG' => 'nullable|numeric',
-            'CV_NG' => 'nullable|numeric',
-            'LAIT_NG' => 'nullable|numeric',
             'analyse_id' => 'required|exists:analyses,id',
         ];
     }
