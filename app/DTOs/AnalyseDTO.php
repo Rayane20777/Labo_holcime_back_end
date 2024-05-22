@@ -6,7 +6,7 @@ class AnalyseDTO {
         public ?int $id,
         public string $date_prelevement,
         public ?string $date_gachage,
-        public string $status = 'locked',
+        public string $status = 'pending',
         public string $matiere_id,
         public int $destination_id,
         public int $point_echantillonage_id,
