@@ -31,6 +31,8 @@ class MatiereController extends Controller
         return $this->responseSuccess($data, "Matieres retrieved successfully");
     }
 
+    public
+
     public function store(MatiereRequest $request): JsonResponse
     {
         $payload = MatiereDTO::fromAdd($request->all());
