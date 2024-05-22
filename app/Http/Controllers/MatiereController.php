@@ -31,10 +31,10 @@ class MatiereController extends Controller
         return response()->json($data);
     }
 
-    public function matiereFilter(int $matiereId)
+    public function matiereFilter(int $id, Request $request)
     {
         try {
-            $data = $this->service->matiereFilter($matiereId);
+            $data = $this->service->matiereFilter($id);
             
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
