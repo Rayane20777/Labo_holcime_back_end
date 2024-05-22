@@ -77,9 +77,10 @@ class AnalyseController extends Controller
     public function lockAnalyse(int $id): JsonResponse
     {
         try{
-            $this->service->lockAnalyse($id);
-        }catch(Exe){
-
+            $analyse = $this->service->lockAnalyse($id);
+            return response()->json($analyse, 'locked succesfully');
+        }catch(Exception $e){
+            return $this->responseError($e->getMessage());
         }
     }
 }
