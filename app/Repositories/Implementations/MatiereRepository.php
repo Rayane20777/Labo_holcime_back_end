@@ -31,6 +31,18 @@ class MatiereRepository implements MatiereRepositoryInterface
         return $matiere;
     }
 
+    public function userMatiereFilter(int $id,$user)
+    {
+        $matiere = Matiere::where('id',$id)->with(['analyse'=> function($query) use ($user)
+        {
+            return $query->where()
+        }]
+            
+        )->get();
+    
+        return $matiere;
+    }
+
     public function store(MatiereDTO $data)
     {
         return Matiere::create([
