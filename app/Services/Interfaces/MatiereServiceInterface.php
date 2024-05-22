@@ -8,6 +8,7 @@ interface MatiereServiceInterface
 {
     public function all();
     public function matiereFilter(int $id);
+    public function userMatiereFilter(int $id);
     public function store(MatiereDTO $data);
     public function edit($data, int $id);
     public function destroy(int $id);
