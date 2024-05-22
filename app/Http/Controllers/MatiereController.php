@@ -31,16 +31,16 @@ class MatiereController extends Controller
         return response()->json($data);
     }
 
-    public function matiereFilter(int $id, Request $request)
+    public function matiereFilter(int $id):JsonResponse 
     {
         try {
-            $data = $this->service->matiereFilter($id);
+            $matiere = $this->service->matiereFilter($id);
             
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
 
-        return response()->json($data);
+        return response()->json($matiere);
     }
 
     public function store(MatiereRequest $request): JsonResponse

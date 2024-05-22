@@ -38,7 +38,7 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::get('/matiere', [MatiereController::class, 'index']);
-Route::get('/matiere/{$id}', [MatiereController::class, 'matiereFilter']);
+Route::get('/matiere/{id}', [MatiereController::class, 'matiereFilter']);
 Route::post('/matiere', [MatiereController::class, 'store']);
 Route::post('/matiere/{id}', [MatiereController::class, 'edit']);
 Route::delete('/matiere/{id}', [MatiereController::class, 'destroy']);
