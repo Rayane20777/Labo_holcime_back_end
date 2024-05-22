@@ -42,6 +42,15 @@ class AnalyseRepository implements AnalyseRepositoryInterface
         return $analyse;
     }
 
+    public function lockAnalyse(int $id)
+    {
+        $analyse = Analyse::where('id',$id)->first();
+        $analyse->status = 'locked';
+        $analyse->update();
+
+        return $analyse;
+    }
+
     public function destroy(int $id)
     {
         $analyse = Analyse::findOrFail($id);
