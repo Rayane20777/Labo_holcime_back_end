@@ -17,15 +17,15 @@ class MatiereRepository implements MatiereRepositoryInterface
     public function matiereFilter(int $id)
     {
         $matiere = Matiere::where('id',$id)->with(
-            'analyses',
-            'analyses.destination',
-            'analyses.point_echantillonage',
-            'analyses.analyse_chimique',
-            'analyses.proportion',
-            'analyses.phase_gachage',
-            'analyses.phase_temps_prise',
-            'analyses.resultat_analyse_physique',
-            'analyses.lpee'
+            'analyse',
+            'analyse.destination',
+            'analyse.point_echantillonage',
+            'analyse.analyse_chimique',
+            'analyse.proportion',
+            'analyse.phase_gachage',
+            'analyse.phase_temps_prise',
+            'analyse.resultat_analyse_physique',
+            'analyse.lpee'
         )->get();
     
         return $matiere;
