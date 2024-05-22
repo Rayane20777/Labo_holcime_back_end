@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('date_prelevement');
             $table->date('date_gachage')->nullable();
+            $table->enum('status',['pending','confirme']);
             $table->foreignId('matiere_id')->constrained('matieres')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('point_echantillonage_id')->constrained('point_echantillonages')->onDelete('cascade');
