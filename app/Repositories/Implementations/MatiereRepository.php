@@ -35,7 +35,16 @@ class MatiereRepository implements MatiereRepositoryInterface
     {
         $matiere = Matiere::where('id',$id)->with(['analyse'=> function($query) use ($user)
         {
-            return $query->where()
+            return $query->where('user_id',$user)->with([
+            'destination',
+            'point_echantillonage',
+            'analyse_chimique',
+            'proportion',
+            'phase_gachage',
+            'phase_temps_prise',
+            'resultat_analyse_physique',
+            'lpee'
+            ]);
         }]
             
         )->get();
