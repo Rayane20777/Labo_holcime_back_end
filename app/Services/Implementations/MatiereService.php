@@ -6,6 +6,8 @@ use App\DTOs\MatiereDTO;
 use App\Repositories\Interfaces\MatiereRepositoryInterface;
 use App\Services\Interfaces\MatiereServiceInterface;
 use App\Models\Matiere;
+use Illuminate\Support\Facades\Auth;
+
 class MatiereService implements MatiereServiceInterface
 {
     private MatiereRepositoryInterface $repository;
@@ -27,7 +29,9 @@ class MatiereService implements MatiereServiceInterface
     
     public function userMatiereFilter(int $id)
     {
-        return $this->repository->userMatiereFilter($id);
+        $user = Auth::id();
+
+        return $this->repository->userMatiereFilter($id,$user);
     }
 
     public function store(MatiereDTO $data)
