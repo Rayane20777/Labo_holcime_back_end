@@ -14,6 +14,23 @@ class MatiereRepository implements MatiereRepositoryInterface
         return Matiere::all();
     }
 
+    public function matiereFilter(int $matiereId)
+    {
+        $matiere = Matiere::with([
+            'analyses',
+            'analyses.destination',
+            'analyses.point_echantillonage',
+            'analyses.analyse_chimique',
+            'analyses.proportion',
+            'analyses.phase_gachage',
+            'analyses.phase_temps_prise',
+            'analyses.resultat_analyse_physique',
+            'analyses.lpee'
+        ])->findOrFail($matiereId);
+    
+        return $matiere;
+    }
+
     public function store(MatiereDTO $data)
     {
         return Matiere::create([
