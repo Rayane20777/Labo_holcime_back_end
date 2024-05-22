@@ -33,9 +33,7 @@ class UserService implements UserServiceInterface
         $data = array_filter($data, fn($key) => in_array($key, ['username', 'password']), ARRAY_FILTER_USE_KEY);
         $token = auth()->attempt($data);
 
-    if (!$token) {
-        return $this->failureResponse('Invalid credentials', 401);
-    }
+    
         $user = auth()->user();
         $authorization = $this->createToken($token);
 
