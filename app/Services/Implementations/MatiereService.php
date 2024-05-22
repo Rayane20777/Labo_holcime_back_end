@@ -20,9 +20,9 @@ class MatiereService implements MatiereServiceInterface
         return $this->repository->all();
     }
 
-    public function matiereFilter(int $matiereId)
+    public function matiereFilter(int $id)
     {
-        return $this->repository->matiereFilter($matiereId);
+        return $this->repository->matiereFilter($id);
     }
 
 

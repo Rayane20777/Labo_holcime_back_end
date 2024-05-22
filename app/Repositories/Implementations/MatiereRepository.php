@@ -14,9 +14,9 @@ class MatiereRepository implements MatiereRepositoryInterface
         return Matiere::all();
     }
 
-    public function matiereFilter(int $matiereId)
+    public function matiereFilter(int $id)
     {
-        $matiere = Matiere::with([
+        $matiere = Matiere::where('id',$id)->with(
             'analyses',
             'analyses.destination',
             'analyses.point_echantillonage',
@@ -26,7 +26,7 @@ class MatiereRepository implements MatiereRepositoryInterface
             'analyses.phase_temps_prise',
             'analyses.resultat_analyse_physique',
             'analyses.lpee'
-        ])->findOrFail($matiereId);
+        )->get();
     
         return $matiere;
     }
