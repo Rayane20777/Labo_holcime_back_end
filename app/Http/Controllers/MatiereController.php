@@ -34,7 +34,7 @@ class MatiereController extends Controller
     public function matiereFilter(int $matiereId)
     {
         try {
-            $data = $this->service->all();
+            $data = $this->service->matiereFilter($matiereId);
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
