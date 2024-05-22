@@ -28,13 +28,14 @@ class MatiereController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Matieres retrieved successfully");
-    }
+        return response()->json($data);
+        }
 
     public function matiereFilter(int $matiereId)
     {
         try {
             $data = $this->service->matiereFilter($matiereId);
+            
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
