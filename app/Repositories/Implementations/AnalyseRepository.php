@@ -20,6 +20,7 @@ class AnalyseRepository implements AnalyseRepositoryInterface
         return Analyse::create([
             'date_prelevement' => $data->date_prelevement,
             'date_gachage' => $data->date_gachage,
+            'status' => $data->status,
             'matiere_id' => $data->matiere_id,
             'destination_id' => $data->destination_id,
             'point_echantillonage_id' => $data->point_echantillonage_id,
@@ -32,6 +33,7 @@ class AnalyseRepository implements AnalyseRepositoryInterface
         $analyse = Analyse::where('id', $id)->first();
         $analyse->date_prelevement = $data['date_prelevement'];
         $analyse->date_gachage = $data['date_gachage'];
+        $analyse->status = $data['status'];
         $analyse->matiere_id = $data['matiere_id'];
         $analyse->destination_id = $data['destination_id'];
         $analyse->point_echantillonage_id = $data['point_echantillonage_id'];
