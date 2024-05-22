@@ -14,18 +14,22 @@ class MatiereRepository implements MatiereRepositoryInterface
         return Matiere::all();
     }
 
-    public function matiereFilter(int $id)
+    public function matiereFilter($status,int $id)
     {
-        $matiere = Matiere::where('id',$id)->with(
-            'analyse',
-            'analyse.destination',
-            'analyse.point_echantillonage',
-            'analyse.analyse_chimique',
-            'analyse.proportion',
-            'analyse.phase_gachage',
-            'analyse.phase_temps_prise',
-            'analyse.resultat_analyse_physique',
-            'analyse.lpee'
+        $matiere = Matiere::where('id',$id)->with(['analyse'=> function($query) use ($status)
+        {
+            return $query->where('status',$status)->with([
+            'destination',
+            'point_echantillonage',
+            'analyse_chimique',
+            'proportion',
+            'phase_gachage',
+            'phase_temps_prise',
+            'resultat_analyse_physique',
+            'lpee'
+            ]);
+        }]
+            
         )->get();
     
         return $matiere;

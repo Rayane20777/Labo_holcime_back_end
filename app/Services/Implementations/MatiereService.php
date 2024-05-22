@@ -24,7 +24,8 @@ class MatiereService implements MatiereServiceInterface
 
     public function matiereFilter(int $id)
     {
-        return $this->repository->matiereFilter($id);
+        $status = 'locked';
+        return $this->repository->matiereFilter($id,$status);
     }
     
     public function userMatiereFilter(int $id)
