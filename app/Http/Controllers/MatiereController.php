@@ -29,7 +29,7 @@ class MatiereController extends Controller
         }
 
         return response()->json($data);
-        }
+    }
 
     public function matiereFilter(int $matiereId)
     {
@@ -40,7 +40,7 @@ class MatiereController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Matieres retrieved successfully");
+        return response()->json($data);
     }
 
     public function store(MatiereRequest $request): JsonResponse
