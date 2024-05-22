@@ -31,7 +31,16 @@ class MatiereController extends Controller
         return $this->responseSuccess($data, "Matieres retrieved successfully");
     }
 
-    public
+    public function matiereFilter(int $matiereId)
+    {
+        try {
+            $data = $this->service->all();
+        } catch (Exception $e) {
+            return $this->responseError($e->getMessage());
+        }
+
+        return $this->responseSuccess($data, "Matieres retrieved successfully");
+    }
 
     public function store(MatiereRequest $request): JsonResponse
     {
