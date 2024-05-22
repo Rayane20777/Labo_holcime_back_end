@@ -43,6 +43,18 @@ class MatiereController extends Controller
         return response()->json($matiere);
     }
 
+    public function userMatiereFilter(int $id):JsonResponse 
+    {
+        try {
+            $matiere = $this->service->userMatiereFilter($id);
+            
+        } catch (Exception $e) {
+            return $this->responseError($e->getMessage());
+        }
+
+        return response()->json($matiere);
+    }
+
     public function store(MatiereRequest $request): JsonResponse
     {
         $payload = MatiereDTO::fromAdd($request->all());

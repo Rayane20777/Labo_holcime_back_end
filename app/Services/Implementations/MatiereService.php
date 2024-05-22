@@ -24,7 +24,11 @@ class MatiereService implements MatiereServiceInterface
     {
         return $this->repository->matiereFilter($id);
     }
-
+    
+    public function userMatiereFilter(int $id)
+    {
+        return $this->repository->userMatiereFilter($id);
+    }
 
     public function store(MatiereDTO $data)
     {
