@@ -28,7 +28,7 @@ class AnalyseChimiqueController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Phase Gachage retrieved successfully");
+        return $this->responseSuccess($data, "Analyse chimique retrieved successfully");
     }
 
     public function store(AnalyseChimiqueRequest $request): JsonResponse
@@ -41,7 +41,7 @@ class AnalyseChimiqueController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Phase Gachage created successfully");
+        return $this->responseSuccess($data, "Analyse chimique created successfully");
     }
 
     public function edit(AnalyseChimiqueRequest $request, int $id)
@@ -51,7 +51,7 @@ class AnalyseChimiqueController extends Controller
         }catch(Exception $e){
             return $this->responseError($e->getMessage());
         }
-        return $this->responseSuccess($data, "Phase Gachage updated successfully");
+        return $this->responseSuccess($data, "Analyse chimique updated successfully");
 
     }
 
@@ -63,7 +63,7 @@ class AnalyseChimiqueController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess(null, "Phase Gachage deleted successfully");
+        return $this->responseSuccess(null, "Analyse chimique deleted successfully");
     }
 
     public function restore(int $id): JsonResponse
@@ -74,6 +74,6 @@ class AnalyseChimiqueController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess(null, "Phase Gachage restored successfully");
+        return $this->responseSuccess(null, "Analyse chimique restored successfully");
     } 
 }
