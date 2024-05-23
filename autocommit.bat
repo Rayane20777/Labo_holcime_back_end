@@ -2,5 +2,5 @@ cd ..
 cd ..
 cd Users\musta\OneDrive\Desktop\Labo_Lafarge_back_end
 git add .                             
-git commit -m "working on XRF Analayse "     
+git commit -m "modifiying the analyse chimique "     
 git push origin main                    
