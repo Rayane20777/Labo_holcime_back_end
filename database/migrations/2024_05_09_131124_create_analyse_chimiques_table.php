@@ -18,15 +18,6 @@ return new class extends Migration
             $table->float('>80µm')->nullable();
             $table->integer('SSB')->nullable();
             $table->float('insoluble')->nullable();
-            $table->float('SiO2')->nullable();
-            $table->float('Al2O3')->nullable();
-            $table->float('Fe2O3')->nullable();
-            $table->float('CaO')->nullable();
-            $table->float('MgO')->nullable();
-            $table->float('SO3')->nullable();
-            $table->float('K2O')->nullable();
-            $table->float('Na2O')->nullable();
-            $table->float('P2O5')->nullable();
             $table->float('CO2')->nullable();
             $table->float('PF')->nullable();
             $table->float('Cl')->nullable();
