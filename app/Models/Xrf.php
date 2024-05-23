@@ -11,7 +11,7 @@ class Xrf extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
 
-    protected $table = 'xrf';
+    protected $table = 'xrfs';
     protected $fillable = [
         'SiO2',
         'Al2O3',
