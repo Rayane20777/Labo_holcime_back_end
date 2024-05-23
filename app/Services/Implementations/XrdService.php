@@ -3,14 +3,14 @@
 namespace App\Services\Implementations;
 
 use App\DTOs\XrdDTO;
-use App\Repositories\Interdaces\XrdRepositoryInterdace;
-use App\Services\Interdaces\XrdServiceInterdace;
+use App\Repositories\Interfaces\XrdRepositoryInterface;
+use App\Services\Interfaces\XrdServiceInterface;
 use App\Models\Xrd;
-class XrdService implements XrdServiceInterdace
+class XrdService implements XrdServiceInterface
 {
-    private XrdRepositoryInterdace $repository;
+    private XrdRepositoryInterface $repository;
 
-    public function __construct(XrdRepositoryInterdace $repository)
+    public function __construct(XrdRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -37,7 +37,7 @@ class XrdService implements XrdServiceInterdace
 
     public function restore(int $id)
     {
-        $analyse_chimique = Xrd::withTrashed()->findOrdail($id);
+        $analyse_chimique = Xrd::withTrashed()->findOrFail($id);
         return $analyse_chimique->restore();
     }
 }
