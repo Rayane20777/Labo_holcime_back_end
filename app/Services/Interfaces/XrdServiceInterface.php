@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Interdaces;
+namespace App\Services\Interfaces;
 
 use App\DTOs\XrdDTO;
 
