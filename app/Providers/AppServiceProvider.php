@@ -43,6 +43,10 @@ use App\Services\Interfaces\AnalyseChimiqueServiceInterface;
 use App\Repositories\Implementations\AnalyseChimiqueRepository;
 use App\Repositories\Interfaces\AnalyseChimiqueRepositoryInterface;
 use App\Services\Implementations\AnalyseChimiqueService;
+use App\Services\Interfaces\XrfServiceInterface;
+use App\Repositories\Implementations\XrfRepository;
+use App\Repositories\Interfaces\XrfRepositoryInterface;
+use App\Services\Implementations\XrfService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -71,6 +75,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ResultatAnalysePhysiqueRepositoryInterface::class, ResultatAnalysePhysiqueRepository::class);
         $this->app->bind(AnalyseChimiqueServiceInterface::class, AnalyseChimiqueService::class);
         $this->app->bind(AnalyseChimiqueRepositoryInterface::class, AnalyseChimiqueRepository::class);
+        $this->app->bind(XrfServiceInterface::class, XrfService::class);
+        $this->app->bind(XrfRepositoryInterface::class, XrfRepository::class);
    }
 
     /**
