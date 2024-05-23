@@ -32,6 +32,7 @@ class XrfRepository implements XrfRepositoryInterface
 
     public function edit($data, $id)
     {
+        dd($data);
         $xrf = Xrf::where('id',$id)->first();
          $xrf->update([
             'SiO2' => $data->SiO2 ?? 0,
