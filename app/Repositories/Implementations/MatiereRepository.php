@@ -14,7 +14,7 @@ class MatiereRepository implements MatiereRepositoryInterface
         return Matiere::all();
     }
 
-    public function matiereFilter($status,int $id)
+    public function matiereFilter(int $id,$status)
     {
         $matiere = Matiere::where('id',$id)->with(['destination','point_echantillonage','analyse'=> function($query) use ($status)
         {
@@ -31,7 +31,7 @@ class MatiereRepository implements MatiereRepositoryInterface
         }]
             
         )->get();
-    
+    dd($matiere);
         return $matiere;
     }
 
