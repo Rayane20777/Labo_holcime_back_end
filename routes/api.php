@@ -13,6 +13,7 @@ use App\Http\Controllers\PhaseTempsPriseController;
 use App\Http\Controllers\ResultatAnalysePhysiqueController;
 use App\Http\Controllers\AnalyseChimiqueController;
 use App\Http\Controllers\XrfController;
+use App\Http\Controllers\XrdController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,3 +127,12 @@ Route::post('/xrf', [XrfController::class, 'store']);
 Route::post('/xrf/{id}', [XrfController::class, 'edit']);
 Route::delete('/xrf/{id}', [XrfController::class, 'destroy']);
 Route::patch('/xrf/{id}', [XrfController::class, 'restore']);
+
+
+
+
+Route::get('/xrd', [XrdController::class, 'index']);
+Route::post('/xrd', [XrdController::class, 'store']);
+Route::post('/xrd/{id}', [XrdController::class, 'edit']);
+Route::delete('/xrd/{id}', [XrdController::class, 'destroy']);
+Route::patch('/xrd/{id}', [XrdController::class, 'restore']);

@@ -47,7 +47,10 @@ use App\Services\Interfaces\XrfServiceInterface;
 use App\Repositories\Implementations\XrfRepository;
 use App\Repositories\Interfaces\XrfRepositoryInterface;
 use App\Services\Implementations\XrfService;
-
+use App\Services\Interfaces\XrdServiceInterface;
+use App\Repositories\Implementations\XrdRepository;
+use App\Repositories\Interfaces\XrdRepositoryInterface;
+use App\Services\Implementations\XrdService;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -77,7 +80,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AnalyseChimiqueRepositoryInterface::class, AnalyseChimiqueRepository::class);
         $this->app->bind(XrfServiceInterface::class, XrfService::class);
         $this->app->bind(XrfRepositoryInterface::class, XrfRepository::class);
-   }
+        $this->app->bind(XrdServiceInterface::class, XrdService::class);
+        $this->app->bind(XrdRepositoryInterface::class, XrdRepository::class);
+  }
 
     /**
      * Bootstrap any application services.
