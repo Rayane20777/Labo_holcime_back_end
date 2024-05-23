@@ -64,6 +64,10 @@ class Analyse extends Model
         return $this->hasOne(Xrf::class);
     }
 
+    public function xrd() : HasOne {
+        return $this->hasOne(Xrd::class);
+    }
+
     public function lpee() : HasOne {
         return $this->hasOne(Lpee::class);
     }
@@ -78,6 +82,7 @@ class Analyse extends Model
                 $analyse->phase_temps_prise()->withTrashed()->forceDelete();
                 $analyse->resultat_analyse_physique()->withTrashed()->forceDelete();
                 $analyse->xrf()->withTrashed()->forceDelete();
+                $analyse->xrd()->withTrashed()->forceDelete();
                 $analyse->lpee()->withTrashed()->forceDelete();
             } else {
                 $analyse->analyse_chimique()->delete();
@@ -86,6 +91,7 @@ class Analyse extends Model
                 $analyse->phase_temps_prise()->delete();
                 $analyse->resultat_analyse_physique()->delete();
                 $analyse->xrf()->delete();
+                $analyse->xrd()->delete();
                 $analyse->lpee()->delete();
             }
         });
@@ -97,6 +103,7 @@ class Analyse extends Model
             $analyse->phase_temps_prise()->withTrashed()->restore();
             $analyse->resultat_analyse_physique()->withTrashed()->restore();
             $analyse->xrf()->withTrashed()->restore();
+            $analyse->xrd()->withTrashed()->restore();
             $analyse->lpee()->withTrashed()->restore();
         });
 
