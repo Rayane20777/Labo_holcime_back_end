@@ -9,7 +9,7 @@ class XrdDTO {
         public float $R_wp,
         public float $FA_Sum,
         public float $Clinker,
-        public float $fCaO_XRD,
+        public float $fCaO_XRD, 
         public float $Alite_Sum,
         public float $Belite_Sum,
         public float $Alum_Sum,
@@ -53,7 +53,7 @@ class XrdDTO {
     public static function fromAdd(array $data): self
     {
         return new self(
-            id: null,
+        id: null,
         Displacement: $data['Displacement'],
         Alite_CS: $data['Alite_CS'],
         R_wp: $data['R_wp'],
