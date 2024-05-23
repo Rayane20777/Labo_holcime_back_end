@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\XrdRequest;
-use App\Services\Interdaces\XrdServiceInterdace;
+use App\Services\Interfaces\XrdServiceInterface;
 use App\DTOs\XrdDTO;
 use Exception;
 
@@ -13,9 +13,9 @@ class XrdController extends Controller
 {
     use ResponseTrait;
 
-    private XrdServiceInterdace $service;
+    private XrdServiceInterface $service;
 
-    public function __construct(XrdServiceInterdace $service)
+    public function __construct(XrdServiceInterface $service)
     {
         $this->service = $service;
     }
