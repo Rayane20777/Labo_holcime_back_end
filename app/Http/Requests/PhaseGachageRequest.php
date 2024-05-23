@@ -28,6 +28,7 @@ class PhaseGachageRequest extends FormRequest
             'p_prisme' => 'nullable|numeric',
             'temps_gachage' => 'nullable|string',
             'temps_casse' => 'nullable|string',
+            'analyse_id' => 'required|int',
         ];
     }
 }
