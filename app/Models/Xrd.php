@@ -49,7 +49,7 @@ class Xrd extends Model
         'Aphthitalite',
         'Langbeinite',
         'Gypsum',
-        'Hemi-Hydrate',
+        'Hemi_Hydrate',
         'Anhydrite',
         'SO3_XRD',
         'CO2_XRD',
