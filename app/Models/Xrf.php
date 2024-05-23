@@ -13,7 +13,6 @@ class Xrf extends Model
 
     protected $table = 'xrf';
     protected $fillable = [
-        
         'SiO2',
         'Al2O3',
         'Fe2O3',
