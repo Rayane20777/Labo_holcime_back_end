@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('xrf', function (Blueprint $table) {
+        Schema::create('xrfs', function (Blueprint $table) {
             $table->id();
             $table->float('SiO2')->nullable();
             $table->float('Al2O3')->nullable();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('xrf');
+        Schema::dropIfExists('xrfs');
     }
 };
