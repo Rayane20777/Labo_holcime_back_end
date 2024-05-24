@@ -65,7 +65,7 @@ class XrdRequest extends FormRequest
         'Syngenite'=> 'nullable|numeric',
         'Calcite'=> 'nullable|numeric',
         'Dolomite'=> 'nullable|numeric',
-        'analyse_id' => 'nullable|int',
+        'analyse_id' => 'required|int',
     ];
     }
 }
