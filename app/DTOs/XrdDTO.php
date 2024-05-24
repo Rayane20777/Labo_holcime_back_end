@@ -97,7 +97,7 @@ class XrdDTO {
         Syngenite: $data['Syngenite'] ?? 0,
         Calcite: $data['Calcite'] ?? 0,
         Dolomite: $data['Dolomite'] ?? 0,
-        analyse_id: $data['analyse_id'] ?? null,
+        analyse_id: $data['analyse_id'],
         );
     }
 

@@ -56,7 +56,7 @@ return new class extends Migration
             $table->float('Syngenite')->nullable();
             $table->float('Calcite')->nullable();
             $table->float('Dolomite')->nullable();
-            $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade')->nullable();
+            $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
