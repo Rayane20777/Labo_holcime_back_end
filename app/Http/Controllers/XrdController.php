@@ -33,6 +33,7 @@ class XrdController extends Controller
 
     public function store(XrdRequest $request): JsonResponse
     {
+        dd($request);
         $payload = XrdDTO::fromAdd($request->all());
 
         try {

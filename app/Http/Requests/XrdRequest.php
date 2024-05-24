@@ -22,7 +22,7 @@ class XrdRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'Displacement'=> 'nullable|numeric',
+        'Displacement'=> 'nullable|numeric',
         'Alite_CS'=> 'nullable|numeric',
         'R_wp'=> 'nullable|numeric',
         'FA_Sum'=> 'nullable|numeric',
@@ -65,7 +65,7 @@ class XrdRequest extends FormRequest
         'Syngenite'=> 'nullable|numeric',
         'Calcite'=> 'nullable|numeric',
         'Dolomite'=> 'nullable|numeric',
-        'analyse_id' => 'reqCuired|int',
+        'analyse_id' => 'required|int',
     ];
     }
 }
