@@ -17,7 +17,8 @@ class MatiereFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nom' => fake()->unique()->name(),
         ];
+    
     }
 }

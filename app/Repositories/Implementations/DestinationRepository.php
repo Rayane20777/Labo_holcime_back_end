@@ -10,7 +10,7 @@ class DestinationRepository implements DestinationRepositoryInterface
 {
     public function all()
     {
-        return Destination::all();
+        return Destination::all()->with('matiere');
     }
     
     public function store(DestinationDTO $data)

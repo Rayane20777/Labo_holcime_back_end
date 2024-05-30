@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\Matiere;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +17,9 @@ class DestinationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'destination' => fake()->unique()->name(),
+            "matiere_id" => Matiere::query()->inRandomOrder()->first()?->id ?? 
+            Matiere::factory(),
         ];
     }
 }
