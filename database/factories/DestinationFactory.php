@@ -17,7 +17,7 @@ class DestinationFactory extends Factory
     public function definition(): array
     {
         return [
-            'destination' => fake()->unique()->name(),
+            'nom' => fake()->unique()->name(),
             "matiere_id" => Matiere::query()->inRandomOrder()->first()?->id ?? 
             Matiere::factory(),
         ];

@@ -28,7 +28,7 @@ class DestinationController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Destinations retrieved successfully");
+        return response()->json($data);
     }
 
     public function store(DestinationRequest $request): JsonResponse
