@@ -10,7 +10,7 @@ class PointEchantillonageRepository implements PointEchantillonageRepositoryInte
 {
     public function all()
     {
-        return PointEchantillonage::all();
+        return PointEchantillonage::with('matiere')->get();
     }
     
     public function store(PointEchantillonageDTO $data)
