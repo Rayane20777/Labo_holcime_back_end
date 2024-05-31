@@ -10,7 +10,7 @@ class DestinationRepository implements DestinationRepositoryInterface
 {
     public function all()
     {
-        return Destination::all()->with('matiere');
+        return Destination::with('matiere')->get();
     }
     
     public function store(DestinationDTO $data)
@@ -25,9 +25,8 @@ class DestinationRepository implements DestinationRepositoryInterface
     {
         $destination = Destination::where('id',$id)->first();
         $destination->nom = $data['nom'];
-        $destination->nom = $data['matiere_id'];
+        $destination->matiere_id = $data['matiere_id'];
         $destination->update();
-
         return $destination;
     }
 
