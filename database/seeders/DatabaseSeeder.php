@@ -27,10 +27,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'super_admin',
         ]);
 
-        User::factory(10)->create();
-        Matiere::factory(20)->create();
-        Destination::factory(20)->create();
-        PointEchantillonage::factory(20)->create();
+        User::factory(5)->create();
+        Matiere::factory(10)->create();
+        Destination::factory(10)->create();
+        PointEchantillonage::factory(10)->create();
 
         // \App\Models\User::factory(10)->create();
 
