@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Matiere;
 use App\Models\Destination;
+use App\Models\PointEchantillonage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Matiere::factory(20)->create();
         Destination::factory(20)->create();
+        PointEchantillonage::factory(20)->create();
 
         // \App\Models\User::factory(10)->create();
 

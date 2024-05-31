@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\PointEchantillonage;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PointEchantillonage>
  */
@@ -17,7 +17,9 @@ class PointEchantillonageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nom' => fake()->unique()->name(),
+            "matiere_id" => PointEchantillonage::query()->inRandomOrder()->first()?->id ?? 
+            PointEchantillonage::factory(),
         ];
     }
 }
