@@ -113,11 +113,11 @@ Route::patch('/resultat_analyse_physique/{id}', [ResultatAnalysePhysiqueControll
 
 
 
-Route::get('/analyse_chmique', [AnalyseChimiqueController::class, 'index']);
-Route::post('/analyse_chmique', [AnalyseChimiqueController::class, 'store']);
-Route::post('/analyse_chmique/{id}', [AnalyseChimiqueController::class, 'edit']);
-Route::delete('/analyse_chmique/{id}', [AnalyseChimiqueController::class, 'destroy']);
-Route::patch('/analyse_chmique/{id}', [AnalyseChimiqueController::class, 'restore']);
+Route::get('/analyse_chimique', [AnalyseChimiqueController::class, 'index']);
+Route::post('/analyse_chimique', [AnalyseChimiqueController::class, 'store']);
+Route::post('/analyse_chimique/{id}', [AnalyseChimiqueController::class, 'edit']);
+Route::delete('/analyse_chimique/{id}', [AnalyseChimiqueController::class, 'destroy']);
+Route::patch('/analyse_chimique/{id}', [AnalyseChimiqueController::class, 'restore']);
 
 
 

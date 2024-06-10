@@ -11,7 +11,7 @@ class AnalyseChimiqueRepository implements AnalyseChimiqueRepositoryInterface
 
     
     public function all(){
-        return AnalyseChimique::all();
+        return AnalyseChimique::with('analyse.point_echantillonage','analyse.matiere','analyse.destination')->get();
     }
 
     public function store(AnalyseChimiqueDTO $data)
@@ -41,15 +41,6 @@ class AnalyseChimiqueRepository implements AnalyseChimiqueRepositoryInterface
             '>80µm' => $data->finesse_80 ?? 0,
             'SSB' => $data->SSB ?? 0,
             'insoluble' => $data->insoluble ?? 0,
-            'SiO2' => $data->SiO2 ?? 0,
-            'Al2O3' => $data->Al2O3 ?? 0,
-            'Fe2O3' => $data->Fe2O3 ?? 0,
-            'CaO' => $data->CaO ?? 0, 
-            'MgO' => $data->MgO ?? 0, 
-            'SO3' => $data->SO3 ?? 0, 
-            'K2O' => $data->K2O ?? 0, 
-            'Na2O' => $data->Na2O ?? 0, 
-            'P2O5' => $data->P2O5 ?? 0, 
             'CO2' => $data->CO2 ?? 0, 
             'PF' => $data->PF ?? 0, 
             'Cl' => $data->Cl ?? 0, 

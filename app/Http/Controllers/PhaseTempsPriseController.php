@@ -27,8 +27,7 @@ class PhaseTempsPriseController extends Controller
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
-
-        return $this->responseSuccess($data, "Phase Gachage retrieved successfully");
+        return response()->json($data);
     }
 
     public function store(PhaseTempsPriseRequest $request): JsonResponse

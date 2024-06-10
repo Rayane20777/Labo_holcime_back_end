@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('resultat_analyse_physiques', function (Blueprint $table) {
             $table->id();
-            $table->float('1j')->nullable();
-            $table->float('2j')->nullable();
-            $table->float('7j')->nullable();
-            $table->float('28j')->nullable();
-            $table->float('90j')->nullable();
-            $table->float('w1')->nullable();
-            $table->float('w2')->nullable();
-            $table->float('w3')->nullable();
-            $table->float('w4')->nullable();
+            $table->string('1j')->nullable();
+            $table->string('2j')->nullable();
+            $table->string('7j')->nullable();
+            $table->string('28j')->nullable();
+            $table->string('90j')->nullable();
+            $table->string('w1')->nullable();
+            $table->string('w2')->nullable();
+            $table->string('w3')->nullable();
+            $table->string('w4')->nullable();
             $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

@@ -27,8 +27,8 @@ class AnalyseChimiqueController extends Controller
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
+        return response()->json($data);
 
-        return $this->responseSuccess($data, "Analyse chimique retrieved successfully");
     }
 
     public function store(AnalyseChimiqueRequest $request): JsonResponse

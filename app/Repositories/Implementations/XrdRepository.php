@@ -11,7 +11,7 @@ class XrdRepository implements XrdRepositoryInterface
 
     
     public function all(){
-        return Xrd::all();
+        return Xrd::with('analyse.point_echantillonage','analyse.matiere','analyse.destination')->get();
     }
 
     public function store(XrdDTO $data)

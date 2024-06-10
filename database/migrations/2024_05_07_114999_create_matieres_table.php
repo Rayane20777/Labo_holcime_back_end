@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('matieres', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->enum('nom',['CPZA55','PMES','PERFECTO','J55','J45','J35','PMVC','CPJ35']);
             $table->softDeletes();
             $table->timestamps();
         });

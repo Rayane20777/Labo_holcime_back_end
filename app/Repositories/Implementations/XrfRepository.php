@@ -11,7 +11,7 @@ class XrfRepository implements XrfRepositoryInterface
 
     
     public function all(){
-        return Xrf::all();
+        return Xrf::with('analyse.point_echantillonage','analyse.matiere','analyse.destination')->get();
     }
 
     public function store(XrfDTO $data)

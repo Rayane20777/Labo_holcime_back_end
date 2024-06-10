@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('xrfs', function (Blueprint $table) {
             $table->id();
-            $table->float('SiO2')->nullable();
-            $table->float('Al2O3')->nullable();
-            $table->float('Fe2O3')->nullable();
-            $table->float('CaO')->nullable();
-            $table->float('MgO')->nullable();
-            $table->float('SO3')->nullable();
-            $table->float('K2O')->nullable();
-            $table->float('Na2O')->nullable();
-            $table->float('P2O5')->nullable();
+            $table->string('SiO2')->nullable();
+            $table->string('Al2O3')->nullable();
+            $table->string('Fe2O3')->nullable();
+            $table->string('CaO')->nullable();
+            $table->string('MgO')->nullable();
+            $table->string('SO3')->nullable();
+            $table->string('K2O')->nullable();
+            $table->string('Na2O')->nullable();
+            $table->string('P2O5')->nullable();
             $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

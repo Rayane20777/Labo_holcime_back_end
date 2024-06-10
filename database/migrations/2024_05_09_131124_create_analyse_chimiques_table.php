@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('analyse_chimiques', function (Blueprint $table) {
             $table->id();
-            $table->float('2-32µm')->nullable();
-            $table->float('>45µm')->nullable();
-            $table->float('>80µm')->nullable();
-            $table->integer('SSB')->nullable();
-            $table->float('insoluble')->nullable();
-            $table->float('CO2')->nullable();
-            $table->float('PF')->nullable();
-            $table->float('Cl')->nullable();
-            $table->float('H41')->nullable();
-            $table->float('S2-')->nullable();
-            $table->float('CaOl')->nullable();
+            $table->string('2-32µm')->nullable();
+            $table->string('>45µm')->nullable();
+            $table->string('>80µm')->nullable();
+            $table->string('SSB')->nullable();
+            $table->string('insoluble')->nullable();
+            $table->string('CO2')->nullable();
+            $table->string('PF')->nullable();
+            $table->string('Cl')->nullable();
+            $table->string('H41')->nullable();
+            $table->string('S2-')->nullable();
+            $table->string('CaOl')->nullable();
             $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

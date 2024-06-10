@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 class AnalyseRepository implements AnalyseRepositoryInterface
 {
     public function all(){
-        return Analyse::all();
+        return Analyse::with('destination','point_echantillonage','matiere')->get();
     }
 
     public function store(AnalyseDTO $data)
@@ -63,41 +63,41 @@ class AnalyseRepository implements AnalyseRepositoryInterface
         return $analyse->restore();
     }
 
-    public function filter(array $filters)
-    {
-        $query = QueryBuilder::for(Analyse::class)
-            ->allowedFilters([
-                AllowedFilter::exact('destination_id'),
-                AllowedFilter::exact('point_echantillonage_id'),
-                'date_prelevement',
-                'date_gachage',
+    // public function filter(array $filters)
+    // {
+    //     $query = QueryBuilder::for(Analyse::class)
+    //         ->allowedFilters([
+    //             AllowedFilter::exact('destination_id'),
+    //             AllowedFilter::exact('point_echantillonage_id'),
+    //             'date_prelevement',
+    //             'date_gachage',
                 
-            ])->with(['destination', 'point_echantillonage']);
+    //         ])->with(['destination', 'point_echantillonage']);
 
 
 
-            if (isset($filters['destination_id'])) {
-                $query->where('destination_id', $filters['destination_id']);
-            }
+    //         if (isset($filters['destination_id'])) {
+    //             $query->where('destination_id', $filters['destination_id']);
+    //         }
     
-            if (isset($filters['point_echantillonage_id'])) {
-                $query->where('point_echantillonage_id', $filters['point_echantillonage_id']);
-            }
+    //         if (isset($filters['point_echantillonage_id'])) {
+    //             $query->where('point_echantillonage_id', $filters['point_echantillonage_id']);
+    //         }
 
 
-            if (isset($filters['date_prelevement'])) {
-                $query->where('date_prelevement', $filters['date_prelevement']);
-            }
+    //         if (isset($filters['date_prelevement'])) {
+    //             $query->where('date_prelevement', $filters['date_prelevement']);
+    //         }
     
-            if (isset($filters['date_gachage'])) {
-                $query->where('date_gachage', $filters['date_gachage']);
-            }
+    //         if (isset($filters['date_gachage'])) {
+    //             $query->where('date_gachage', $filters['date_gachage']);
+    //         }
     
-            if (empty($filters)) {
-                return collect();
-            }
+    //         if (empty($filters)) {
+    //             return collect();
+    //         }
 
-        return $query->get();
-    }
+    //     return $query->get();
+    // }
     
 }

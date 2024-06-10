@@ -28,7 +28,7 @@ class PhaseGachageController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Phase Gachage retrieved successfully");
+        return response()->json($data);
     }
 
     public function store(PhaseGachageRequest $request): JsonResponse
