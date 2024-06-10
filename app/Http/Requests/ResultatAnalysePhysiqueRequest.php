@@ -22,11 +22,11 @@ class ResultatAnalysePhysiqueRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'j1' => 'nullable|numeric',
-            'j2' => 'nullable|numeric',
-            'j7' => 'nullable|numeric',
-            'j28' => 'nullable|numeric',
-            'j90' => 'nullable|numeric',
+            '1j' => 'nullable|numeric',
+            '2j' => 'nullable|numeric',
+            '7j' => 'nullable|numeric',
+            '28j' => 'nullable|numeric',
+            '90j' => 'nullable|numeric',
             'w1' => 'nullable|numeric',
             'w2' => 'nullable|numeric',
             'w3' => 'nullable|numeric',

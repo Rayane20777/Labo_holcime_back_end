@@ -10,7 +10,7 @@ class ProportionRepository implements ProportionRepositoryInterface
 {
     public function all()
     {
-        return Proportion::all();
+        return Proportion::with('analyse.point_echantillonage','analyse.matiere','analyse.destination')->get();
     }
 
     public function store(ProportionDTO $data, float $gypse_sum, array $pourcentage)

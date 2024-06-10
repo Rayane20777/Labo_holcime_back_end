@@ -11,5 +11,5 @@ interface AnalyseRepositoryInterface
     public function destroy(int $id);
     public function restore(int $id);
     public function lockAnalyse(int $id);
-    public function filter(array $filters);
+    // public function filter(array $filters);
 }

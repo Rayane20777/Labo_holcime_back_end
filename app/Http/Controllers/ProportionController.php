@@ -30,7 +30,7 @@ class ProportionController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Proportions retrieved successfully");
+        return response()->json($data);
     }
 
     public function store(ProportionRequest $request): JsonResponse

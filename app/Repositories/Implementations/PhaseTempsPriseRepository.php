@@ -11,7 +11,7 @@ class PhaseTempsPriseRepository implements PhaseTempsPriseRepositoryInterface
 
     
     public function all(){
-        return PhaseTempsPrise::all();
+        return PhaseTempsPrise::with('analyse.point_echantillonage','analyse.matiere','analyse.destination')->get();
     }
 
     public function store(PhaseTempsPriseDTO $data)

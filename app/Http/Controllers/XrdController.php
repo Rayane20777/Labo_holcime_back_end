@@ -28,7 +28,7 @@ class XrdController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Xrd retrieved successfully");
+        return response()->json($data);
     }
 
     public function store(XrdRequest $request): JsonResponse

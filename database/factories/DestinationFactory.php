@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\Matiere;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Matiere;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Destination>

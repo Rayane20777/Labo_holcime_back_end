@@ -23,8 +23,8 @@ class PhaseTempsPriseRequest extends FormRequest
     {
         return [
             'mass_volumique' => 'nullable|numeric',
-            'debut_de_prise' => 'nullable|int',
-            'fin_de_prise' => 'nullable|int',
+            'debut_de_prise' => 'nullable|numeric',
+            'fin_de_prise' => 'nullable|numeric',
             'expention' => 'nullable|numeric',
             'eau_gach' => 'nullable|numeric',
             'analyse_id' => 'required|int',

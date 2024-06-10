@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('phase_temps_prises', function (Blueprint $table) {
             $table->id();
-            $table->float('mass_volumique')->nullable();
-            $table->integer('debut_de_prise')->nullable();
-            $table->integer('fin_de_prise')->nullable();
-            $table->float('expention')->nullable();
-            $table->float('eau_gach')->nullable();
+            $table->string('mass_volumique')->nullable();
+            $table->string('debut_de_prise')->nullable();
+            $table->string('fin_de_prise')->nullable();
+            $table->string('expention')->nullable();
+            $table->string('eau_gach')->nullable();
             $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

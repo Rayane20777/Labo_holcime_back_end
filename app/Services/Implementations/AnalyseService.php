@@ -47,10 +47,10 @@ class AnalyseService implements AnalyseServiceInterface
         return $this->repository->lockAnalyse($id);
     }
 
-    public function filter(array $filters)
-    {
-        return $this->repository->filter($filters);
-    }
+    // public function filter(array $filters)
+    // {
+    //     return $this->repository->filter($filters);
+    // }
 
 
 }

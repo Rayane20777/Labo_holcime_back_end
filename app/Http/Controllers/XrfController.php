@@ -28,7 +28,7 @@ class XrfController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Xrf retrieved successfully");
+        return response()->json($data);
     }
 
     public function store(XrfRequest $request): JsonResponse

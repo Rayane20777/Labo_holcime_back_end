@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('phase_gachages', function (Blueprint $table) {
             $table->id();
-            $table->float('temperature')->nullable();
-            $table->float('temperature_salle')->nullable();
-            $table->float('humidite')->nullable();
-            $table->float('p_prisme')->nullable();
-            $table->time('temps_gachage')->nullable();
-            $table->time('temps_casse')->nullable();
+            $table->string('temperature')->nullable();
+            $table->string('temperature_salle')->nullable();
+            $table->string('humidite')->nullable();
+            $table->string('p_prisme')->nullable();
+            $table->string('temps_gachage')->nullable();
+            $table->string('temps_casse')->nullable();
             $table->foreignId('analyse_id')->constrained('analyses')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

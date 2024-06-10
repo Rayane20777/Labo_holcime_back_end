@@ -31,7 +31,7 @@ class XrfRequest extends FormRequest
             'K2O' => 'nullable|numeric',
             'Na2O' => 'nullable|numeric',
             'P2O5' => 'nullable|numeric',
-            'analyse_id' => 'reqCuired|int',
+            'analyse_id' => 'required|int',
         ];
     }
 }

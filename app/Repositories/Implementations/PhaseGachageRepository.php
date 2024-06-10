@@ -11,7 +11,7 @@ class PhaseGachageRepository implements PhaseGachageRepositoryInterface
 
     
     public function all(){
-        return PhaseGachage::all();
+        return PhaseGachage::with('analyse.point_echantillonage','analyse.matiere','analyse.destination')->get();
     }
 
     public function store(PhaseGachageDTO $data)

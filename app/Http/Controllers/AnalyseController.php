@@ -21,15 +21,15 @@ class AnalyseController extends Controller
         $this->service = $service;
     }
 
-    public function index(Request $request): JsonResponse
+    public function index(): JsonResponse
     {
         try {
-            $filters = $request->all();
-            $analyses = $this->service->filter($filters);
-            return response()->json($analyses);
+            $data = $this->service->all();
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
+
+        return response()->json($data);
     }
 
     public function store(AnalyseRequest $request): JsonResponse

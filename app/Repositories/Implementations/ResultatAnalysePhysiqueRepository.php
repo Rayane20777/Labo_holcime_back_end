@@ -11,7 +11,7 @@ class ResultatAnalysePhysiqueRepository implements ResultatAnalysePhysiqueReposi
 
     
     public function all(){
-        return ResultatAnalysePhysique::all();
+        return ResultatAnalysePhysique::with('analyse.point_echantillonage','analyse.matiere','analyse.destination')->get();
     }
 
     public function store(ResultatAnalysePhysiqueDTO $data)
@@ -34,11 +34,11 @@ class ResultatAnalysePhysiqueRepository implements ResultatAnalysePhysiqueReposi
     {
         $resultat_analyse_physique = ResultatAnalysePhysique::where('id',$id)->first();
          $resultat_analyse_physique->update([
-            '1j' => $data['j1'] ?? 0,
-            '2j' => $data['j2'] ?? 0,
-            '7j' => $data['j7'] ?? 0,
-            '28j' => $data['j28'] ?? 0,
-            '90j' => $data['j90'] ?? 0,
+            '1j' => $data['1j'] ?? 0,
+            '2j' => $data['2j'] ?? 0,
+            '7j' => $data['7j'] ?? 0,
+            '28j' => $data['28j'] ?? 0,
+            '90j' => $data['90j'] ?? 0,
             'w1' => $data['w1'] ?? 0,
             'w2' => $data['w2'] ?? 0,
             'w3' => $data['w3'] ?? 0,
