@@ -27,6 +27,7 @@ class XrfFactory extends Factory
             'Na2O'=> fake()->randomfloat(2, 10, 1000),
             'P2O5'=> fake()->randomfloat(2, 10, 1000),
             'analyse_id'  => Analyse::query()->inRandomOrder()->first()?->id ?? 
-            Analyse::factory()        ];
+            Analyse::factory()        
+        ];
     }
 }

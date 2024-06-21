@@ -41,7 +41,7 @@ class XrdController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess($data, "Xrd created successfully");
+        return response()->json($data);
     }
 
     public function edit(XrdRequest $request, int $id)
@@ -51,7 +51,7 @@ class XrdController extends Controller
         }catch(Exception $e){
             return $this->responseError($e->getMessage());
         }
-        return $this->responseSuccess($data, "Xrd updated successfully");
+        return response()->json($data);
 
     }
 

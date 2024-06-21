@@ -23,7 +23,7 @@ class AnalyseService implements AnalyseServiceInterface
 
     public function store(AnalyseDTO $data)
     {
-        $data->user_id = Auth::id();
+        // $data->user_id = Auth::id();
         return $this->repository->store($data);
     }
 

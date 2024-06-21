@@ -56,8 +56,9 @@ class ProportionController extends Controller
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
+        
+        return response()->json($data);
 
-        return $this->responseSuccess($data, "Proportion updated successfully");
     }
 
     public function destroy(int $id): JsonResponse

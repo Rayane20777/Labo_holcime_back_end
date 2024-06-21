@@ -23,7 +23,7 @@ class AnalyseChimiqueRequest extends FormRequest
     {
         return [
             'finesse_2_32' => 'nullable|numeric',
-            'finesse_45' => 'nullable|numeric',
+            'finesse_40' => 'nullable|numeric',
             'finesse_80' => 'nullable|numeric',
             'SSB' => 'nullable|numeric',
             'insoluble' => 'nullable|numeric',
@@ -33,7 +33,7 @@ class AnalyseChimiqueRequest extends FormRequest
             'H41' => 'nullable|numeric',
             'S2' => 'nullable|numeric',
             'CaOl' => 'nullable|numeric',
-            'analyse_id' => 'required|int',
+            'analyse_id' => 'required|string',
         ];
     }
 }

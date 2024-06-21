@@ -17,6 +17,7 @@ use App\Models\PointEchantillonage;
 use App\Models\Analyse;
 use App\Models\Proportion;
 use App\Models\Xrf;
+use App\Models\Xrd;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,18 +35,41 @@ class DatabaseSeeder extends Seeder
         Role::factory()->create([
             'name' => 'super_admin',
         ]);
-
+        Matiere::factory()->create([
+            'nom' => 'CPJ35',
+        ]);
+        Matiere::factory()->create([
+            'nom' => 'CPZA55',
+        ]);
+        Matiere::factory()->create([
+            'nom' => 'J35',
+        ]);
+        Matiere::factory()->create([
+            'nom' => 'J45',
+        ]);
+        Matiere::factory()->create([
+            'nom' => 'J55',
+        ]);
+        Matiere::factory()->create([
+            'nom' => 'PERFECTO',
+        ]);
+        Matiere::factory()->create([
+            'nom' => 'PMES',
+        ]);
+        Matiere::factory()->create([
+            'nom' => 'PMVC',
+        ]);
         User::factory(5)->create();
-        Matiere::factory(20)->create();
-        Destination::factory(10)->create();
-        PointEchantillonage::factory(10)->create();
-        Analyse::factory(100)->create();
-        AnalyseChimique::factory(200)->create();
-        PhaseGachage::factory(200)->create();
-        Proportion::factory(200)->create();
-        PhaseTempsPrise::factory(200)->create();
-        Xrf::factory(200)->create();
-        ResultatAnalysePhysique::factory(200)->create();
+        Destination::factory(100)->create();
+        PointEchantillonage::factory(100)->create();
+        Analyse::factory(500)->create();
+        AnalyseChimique::factory(1000)->create();
+        PhaseGachage::factory(1000)->create();
+        Proportion::factory(1000)->create();
+        PhaseTempsPrise::factory(1000)->create();
+        Xrf::factory(1000)->create();
+        Xrd::factory(1000)->create();
+        ResultatAnalysePhysique::factory(1000)->create();
 
         // \App\Models\User::factory(10)->create();
 

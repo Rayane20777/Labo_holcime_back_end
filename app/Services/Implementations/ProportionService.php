@@ -40,7 +40,8 @@ class ProportionService implements ProportionServiceInterface
         
         $pourcentage = $this->calculatePercentagesEdit($data);
         $gypse_sum = $this->calculateGypseSumEdit($data);
-        return $this->repository->edit($data, $id, $gypse_sum, $pourcentage);
+        $this->repository->edit($data, $id, $gypse_sum, $pourcentage);
+        return $this->all();
     }
 
     public function destroy(int $id)

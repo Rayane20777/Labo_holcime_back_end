@@ -17,7 +17,7 @@ class Analyse extends Model
     protected $fillable = [
         'date_prelevement',
         'date_gachage',
-        'status',
+        // 'status',
         'matiere_id',
         'destination_id',
         'point_echantillonage_id',
