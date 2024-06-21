@@ -24,9 +24,10 @@ class AnalyseRequest extends FormRequest
         return [
             'date_prelevement' => "required|date",
             'date_gachage' => "date|nullable",
-            'matiere_id' => 'required|exists:matieres,id',
-            'point_echantillonage_id' => 'required|exists:point_echantillonages,id',
-            'destination_id' => 'required|exists:destinations,id'
+            'matiere_id' => 'required',
+            'point_echantillonage_id' => 'required',
+            'destination_id' => 'required',
+            'user_id' => 'required'
 
         ];
     }

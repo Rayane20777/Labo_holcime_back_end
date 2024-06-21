@@ -22,7 +22,7 @@ class AnalyseFactory extends Factory
         return [
             'date_gachage' => fake()->date(),
             'date_prelevement' => fake()->date(),
-            'status' => fake()->randomElement(['pending','locked']),
+            // 'status' => fake()->randomElement(['pending','locked']),
             "matiere_id" => Matiere::query()->inRandomOrder()->first()?->id ?? 
             Matiere::factory(),
             "point_echantillonage_id" => PointEchantillonage::query()->inRandomOrder()->first()?->id ?? 

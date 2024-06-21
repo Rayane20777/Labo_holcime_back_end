@@ -6,11 +6,10 @@ class AnalyseDTO {
         public ?int $id,
         public string $date_prelevement,
         public ?string $date_gachage,
-        public string $status = 'pending',
         public string $matiere_id,
-        public int $destination_id,
-        public int $point_echantillonage_id,
-        public int $user_id,
+        public string $destination_id,
+        public string $point_echantillonage_id,
+        public string $user_id,
     ) {}
 
     public static function fromAdd(array $data): self

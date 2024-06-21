@@ -13,16 +13,16 @@ class AnalyseChimique extends Model
 
     protected $table = 'analyse_chimiques';
     protected $fillable = [
-        '2-32µm',
-        '>45µm',
-        '>80µm',
+        'finesse_2_32',
+        'finesse_40',
+        'finesse_80',
         'SSB',
         'insoluble',
         'CO2',
         'PF',
         'Cl',
         'H41',
-        'S2-',
+        'S2',
         'CaOl',
         'analyse_id'
     ];

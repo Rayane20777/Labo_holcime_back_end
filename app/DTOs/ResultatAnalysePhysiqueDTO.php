@@ -23,11 +23,11 @@ class ResultatAnalysePhysiqueDTO {
     {
         return new self(
             id: null,
-            j1: $data['j1'] ?? null,
-            j2: $data['j2']?? null,
-            j7: $data['j7']?? null,
-            j28: $data['j28']?? null,
-            j90: $data['j90']?? null,
+            j1: $data['1j'] ?? null,
+            j2: $data['2j']?? null,
+            j7: $data['7j']?? null,
+            j28: $data['28j']?? null,
+            j90: $data['90j']?? null,
             w1: $data['w1']?? null,
             w2: $data['w2']?? null,
             w3: $data['w3']?? null,

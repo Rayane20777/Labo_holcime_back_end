@@ -34,7 +34,7 @@ class ProportionRepository implements ProportionRepositoryInterface
     {
         $proportion = Proportion::where('id',$id)->first();
          
-         $proportion->KK_G = $data['KK_G'] ?? 0;
+        $proportion->KK_G = $data['KK_G'] ?? 0;
         $proportion->CAL_G = $data['CAL_G']?? 0;
         $proportion->CV_G = $data['CV_G'] ?? 0;
         $proportion->LAIT_G = $data['LAIT_G'] ?? 0;
