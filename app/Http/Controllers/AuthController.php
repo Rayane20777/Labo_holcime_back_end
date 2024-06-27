@@ -26,12 +26,12 @@ class AuthController extends Controller
         $credentials = UserDTO::fromRegister($request->all());
 
         try {
-            $data = $this->service->store($credentials);
+            $data = $this->service->register($credentials);
         } catch (Exception $e){
             return $this->responseError($e->getMessage());
         }
+        return response()->json($data);
 
-        return $this->responseSuccess($data, "User created successfully", 201);
     }
 
     public function login(LoginRequest $request): JsonResponse
@@ -45,8 +45,8 @@ class AuthController extends Controller
         }
 
         if($data['user']) {
-
             return $this->responseSuccess($data, "User logged in successfully", 201);
+
         } else {
             return $this->responseError("Login failed");
 
