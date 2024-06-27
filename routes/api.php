@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\PointEchantillonageController;
@@ -29,6 +31,7 @@ use App\Http\Controllers\XrdController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/role', [RoleController::class, 'index']);
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
@@ -37,102 +40,146 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
+Route::controller(UserController::class)->group(function () {
+    Route::get('/user', 'index');
+    Route::post('/user', 'store');
+    Route::post('/user/{id}', 'edit');
+    Route::delete('/user/{id}', 'destroy');
+});
 
+Route::controller(MatiereController::class)->group(function () {
 
-Route::get('/matiere', [MatiereController::class, 'index']);
-Route::get('/matiere/{id}', [MatiereController::class, 'matiereFilter']);
-Route::get('/matiere/user/{id}', [MatiereController::class, 'userMatiereFilter']);
-Route::post('/matiere', [MatiereController::class, 'store']);
-Route::post('/matiere/{id}', [MatiereController::class, 'edit']);
-Route::delete('/matiere/{id}', [MatiereController::class, 'destroy']);
-Route::patch('/matiere/{id}', [MatiereController::class, 'restore']);
+    Route::get('/matiere',  'index');
+    Route::get('/matiere/{id}', 'matiereFilter');
+    Route::get('/matiere/user/{id}','userMatiereFilter');
+    Route::post('/matiere', 'store');
+    Route::post('/matiere/{id}','edit');
+    Route::delete('/matiere/{id}','destroy');
+    Route::patch('/matiere/{id}','restore');
 
+});
 
-
-
-Route::get('/destination', [DestinationController::class, 'index']);
-Route::post('/destination', [DestinationController::class, 'store']);
-Route::post('/destination/{id}', [DestinationController::class, 'edit']);
-Route::delete('/destination/{id}', [DestinationController::class, 'destroy']);
-Route::patch('/destination/{id}', [DestinationController::class, 'restore']);
-
-
-
-
-Route::get('/point_echantillonage', [PointEchantillonageController::class, 'index']);
-Route::post('/point_echantillonage', [PointEchantillonageController::class, 'store']);
-Route::post('/point_echantillonage/{id}', [PointEchantillonageController::class, 'edit']);
-Route::delete('/point_echantillonage/{id}', [PointEchantillonageController::class, 'destroy']);
-Route::patch('/point_echantillonage/{id}', [PointEchantillonageController::class, 'restore']);
-
+// Route::get('/matiere/{id}', [MatiereController::class, 'matiereFilter']);
+// Route::get('/matiere/user/{id}', [MatiereController::class, 'userMatiereFilter']);
+// Route::post('/matiere', [MatiereController::class, 'store']);
+// Route::post('/matiere/{id}', [MatiereController::class, 'edit']);
+// Route::delete('/matiere/{id}', [MatiereController::class, 'destroy']);
+// Route::patch('/matiere/{id}', [MatiereController::class, 'restore']);
 
 
 
-Route::get('/analyse', [AnalyseController::class, 'index']);
-Route::post('/analyse', [AnalyseController::class, 'store']);
-Route::post('/analyse/{id}', [AnalyseController::class, 'edit']);
-Route::delete('/analyse/{id}', [AnalyseController::class, 'destroy']);
-Route::patch('/analyse/{id}', [AnalyseController::class, 'restore']);
+Route::controller(DestinationController::class)->group(function () {
+
+Route::get('/destination','index');
+Route::post('/destination', 'store');
+Route::post('/destination/{id}','edit');
+Route::delete('/destination/{id}','destroy');
+Route::patch('/destination/{id}','restore');
+
+});
+
+
+
+Route::controller(PointEchantillonageController::class)->group(function () {
+
+Route::get('/point_echantillonage','index');
+Route::post('/point_echantillonage','store');
+Route::post('/point_echantillonage/{id}','edit');
+Route::delete('/point_echantillonage/{id}','destroy');
+Route::patch('/point_echantillonage/{id}','restore');
+
+});
+
+
+
+Route::controller(AnalyseController::class)->group(function () {
+
+Route::get('/analyse','index');
+Route::post('/analyse','store');
+Route::post('/analyse/{id}','edit');
+Route::delete('/analyse/{id}','destroy');
+Route::patch('/analyse/{id}','restore');
+
+});
+
+
+Route::controller(ProportionController::class)->group(function () {
+
+Route::get('/proportion','index');
+Route::post('/proportion','store');
+Route::post('/proportion/{id}','edit');
+Route::delete('/proportion/{id}','destroy');
+Route::patch('/proportion/{id}','restore');
+
+});
+
+
+Route::controller(PhaseGachageController::class)->group(function () {
+
+Route::get('/phase_gachage','index');
+Route::post('/phase_gachage','store');
+Route::post('/phase_gachage/{id}','edit');
+Route::delete('/phase_gachage/{id}','destroy');
+Route::patch('/phase_gachage/{id}','restore');
+
+});
+
+
+Route::controller(PhaseTempsPriseController::class)->group(function () {
+
+Route::get('/phase_temps_prise','index');
+Route::post('/phase_temps_prise','store');
+Route::post('/phase_temps_prise/{id}','edit');
+Route::delete('/phase_temps_prise/{id}','destroy');
+Route::patch('/phase_temps_prise/{id}','restore');
+
+});
+
+
+Route::controller(ResultatAnalysePhysiqueController::class)->group(function () {
+
+Route::get('/resultat_analyse_physique','index');
+Route::post('/resultat_analyse_physique','store');
+Route::post('/resultat_analyse_physique/{id}','edit');
+Route::delete('/resultat_analyse_physique/{id}','destroy');
+Route::patch('/resultat_analyse_physique/{id}','restore');
+
+});
+
+
+Route::controller(AnalyseChimiqueController::class)->group(function () {
+
+Route::get('/analyse_chimique','index');
+Route::post('/analyse_chimique','store');
+Route::post('/analyse_chimique/{id}','edit');
+Route::delete('/analyse_chimique/{id}','destroy');
+Route::patch('/analyse_chimique/{id}','restore');
+
+});
+
+
+Route::controller(XrfController::class)->group(function () {
+
+Route::get('/xrf','index');
+Route::post('/xrf','store');
+Route::post('/xrf/{id}','edit');
+Route::delete('/xrf/{id}','destroy');
+Route::patch('/xrf/{id}','restore');
+
+});
+
+
+Route::controller(XrdController::class)->group(function () {
+
+Route::get('/xrd','index');
+Route::post('/xrd','store');
+Route::post('/xrd/{id}','edit');
+Route::delete('/xrd/{id}','destroy');
+Route::patch('/xrd/{id}','restore');
+
+});
 
 
 
 
-Route::get('/proportion', [ProportionController::class, 'index']);
-Route::post('/proportion', [ProportionController::class, 'store']);
-Route::post('/proportion/{id}', [ProportionController::class, 'edit']);
-Route::delete('/proportion/{id}', [ProportionController::class, 'destroy']);
-Route::patch('/proportion/{id}', [ProportionController::class, 'restore']);
-
-
-
-
-Route::get('/phase_gachage', [PhaseGachageController::class, 'index']);
-Route::post('/phase_gachage', [PhaseGachageController::class, 'store']);
-Route::post('/phase_gachage/{id}', [PhaseGachageController::class, 'edit']);
-Route::delete('/phase_gachage/{id}', [PhaseGachageController::class, 'destroy']);
-Route::patch('/phase_gachage/{id}', [PhaseGachageController::class, 'restore']);
-
-
-
-
-Route::get('/phase_temps_prise', [PhaseTempsPriseController::class, 'index']);
-Route::post('/phase_temps_prise', [PhaseTempsPriseController::class, 'store']);
-Route::post('/phase_temps_prise/{id}', [PhaseTempsPriseController::class, 'edit']);
-Route::delete('/phase_temps_prise/{id}', [PhaseTempsPriseController::class, 'destroy']);
-Route::patch('/phase_temps_prise/{id}', [PhaseTempsPriseController::class, 'restore']);
-
-
-
-
-Route::get('/resultat_analyse_physique', [ResultatAnalysePhysiqueController::class, 'index']);
-Route::post('/resultat_analyse_physique', [ResultatAnalysePhysiqueController::class, 'store']);
-Route::post('/resultat_analyse_physique/{id}', [ResultatAnalysePhysiqueController::class, 'edit']);
-Route::delete('/resultat_analyse_physique/{id}', [ResultatAnalysePhysiqueController::class, 'destroy']);
-Route::patch('/resultat_analyse_physique/{id}', [ResultatAnalysePhysiqueController::class, 'restore']);
-
-
-
-
-Route::get('/analyse_chimique', [AnalyseChimiqueController::class, 'index']);
-Route::post('/analyse_chimique', [AnalyseChimiqueController::class, 'store']);
-Route::post('/analyse_chimique/{id}', [AnalyseChimiqueController::class, 'edit']);
-Route::delete('/analyse_chimique/{id}', [AnalyseChimiqueController::class, 'destroy']);
-Route::patch('/analyse_chimique/{id}', [AnalyseChimiqueController::class, 'restore']);
-
-
-
-
-Route::get('/xrf', [XrfController::class, 'index']);
-Route::post('/xrf', [XrfController::class, 'store']);
-Route::post('/xrf/{id}', [XrfController::class, 'edit']);
-Route::delete('/xrf/{id}', [XrfController::class, 'destroy']);
-Route::patch('/xrf/{id}', [XrfController::class, 'restore']);
-
-
-
-
-Route::get('/xrd', [XrdController::class, 'index']);
-Route::post('/xrd', [XrdController::class, 'store']);
-Route::post('/xrd/{id}', [XrdController::class, 'edit']);
-Route::delete('/xrd/{id}', [XrdController::class, 'destroy']);
-Route::patch('/xrd/{id}', [XrdController::class, 'restore']);
+// ->middleware('can:user')

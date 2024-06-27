@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Traits\ResponseTrait;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use App\Services\Interfaces\DestinationServiceInterface;
-use App\DTOs\DestinationDTO;
+use App\DTOs\UserDTO;
 use Exception;
-use App\Http\Requests\DestinationRequest;
-
-class DestinationController extends Controller
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserEditRequest;
+use App\Services\Interfaces\UserServiceInterface;
+class UserController extends Controller
 {
     use ResponseTrait;
 
-    private DestinationServiceInterface $service;
+    private UserServiceInterface $service;
 
-    public function __construct(DestinationServiceInterface $service)
+    public function __construct(UserServiceInterface $service)
     {
         $this->service = $service;
     }
@@ -31,9 +31,9 @@ class DestinationController extends Controller
         return response()->json($data);
     }
 
-    public function store(DestinationRequest $request): JsonResponse
+    public function store(UserRequest $request): JsonResponse
     {
-        $payload = DestinationDTO::fromAdd($request->all());
+        $payload = UserDTO::fromAdd($request->all());
 
         try {
             $data = $this->service->store($payload);
@@ -44,7 +44,7 @@ class DestinationController extends Controller
 
     }
 
-    public function edit(DestinationRequest $request, int $id): JsonResponse
+    public function edit(UserEditRequest $request, int $id): JsonResponse
     {
 
         try {
@@ -64,18 +64,7 @@ class DestinationController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess(null, "Destination deleted successfully");
-    }
-
-    public function restore(int $id): JsonResponse
-    {
-        try {
-            $this->service->restore($id);
-        } catch (Exception $e) {
-            return $this->responseError($e->getMessage());
-        }
-
-        return $this->responseSuccess(null, "Destination restored successfully");
+        return $this->responseSuccess(null, "User deleted successfully");
     }
 
 }

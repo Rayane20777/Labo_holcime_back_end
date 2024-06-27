@@ -17,10 +17,21 @@ class UserService implements UserServiceInterface
         $this->repository = $repository;
     }
 
-    public function store($data)
+    public function all()
+    {
+        return $this->repository->all();
+    }
+
+    public function store(UserDTO $data)
+    {
+        return $this->repository->store($data);
+    }
+    
+
+    public function register($data)
     {
         $data = $this->getData($data);
-        $user = $this->repository->create($data);
+        $user = $this->repository->register($data);
         $token = auth()->login($user);
         $authorization = $this->createToken($token);
         
@@ -64,6 +75,16 @@ class UserService implements UserServiceInterface
           'type' => 'bearer',
           'expires_in' => auth()->factory()->getTTL() * 60 * 24 * 7,
         ];
+    }
+
+    public function edit($data, int $id)
+    {
+        return $this->repository->edit($data, $id);
+    }
+
+    public function destroy(int $id)
+    {
+        return $this->repository->destroy($id);
     }
     
 }       

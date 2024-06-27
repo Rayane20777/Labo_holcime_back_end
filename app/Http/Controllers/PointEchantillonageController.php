@@ -39,8 +39,8 @@ class PointEchantillonageController extends Controller
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
+        return response()->json($data);
 
-        return $this->responseSuccess($data, "Point Echantillonage created successfully");
     }
 
     public function edit(PointEchantillonageRequest $request, int $id): JsonResponse
