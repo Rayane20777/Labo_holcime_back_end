@@ -8,6 +8,7 @@ use App\Http\Requests\PhaseGachageRequest;
 use App\Services\Interfaces\PhaseGachageServiceInterface;
 use App\DTOs\PhaseGachageDTO;
 use Exception;
+use Illuminate\Support\Facades\Gate;
 
 class PhaseGachageController extends Controller
 {
@@ -18,6 +19,13 @@ class PhaseGachageController extends Controller
     public function __construct(PhaseGachageServiceInterface $service)
     {
         $this->service = $service;
+        $this->middleware(function ($request, $next) {
+            if (Gate::allows('isSuperAdmin')) {
+                return $next($request);
+            }
+
+            return $this->responseError('Unauthorized', 403);
+        })->except('index');
     }
 
     public function index(): JsonResponse
@@ -36,7 +44,12 @@ class PhaseGachageController extends Controller
         $payload = PhaseGachageDTO::fromAdd($request->all());
 
         try {
-            $data = $this->service->store($payload);
+            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin') || Gate::allows('User')) {
+
+                $data = $this->service->store($payload);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -46,9 +59,13 @@ class PhaseGachageController extends Controller
 
     public function edit(PhaseGachageRequest $request, int $id)
     {
-        try{
-           $data = $this->service->edit($request->all(),$id);
-        }catch(Exception $e){
+        try {
+            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin')) {
+                $data = $this->service->edit($request->all(), $id);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
+        } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
         return $this->responseSuccess($data, "Phase Gachage updated successfully");
@@ -75,5 +92,5 @@ class PhaseGachageController extends Controller
         }
 
         return $this->responseSuccess(null, "Phase Gachage restored successfully");
-    } 
+    }
 }

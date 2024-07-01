@@ -9,6 +9,7 @@ use App\Services\Interfaces\AnalyseServiceInterface;
 use App\DTOs\AnalyseDTO;
 use Exception;
 use App\Http\Requests\AnalyseRequest;
+use Illuminate\Support\Facades\Gate;
 
 class AnalyseController extends Controller
 {
@@ -16,9 +17,17 @@ class AnalyseController extends Controller
 
     private AnalyseServiceInterface $service;
 
+
     public function __construct(AnalyseServiceInterface $service)
     {
         $this->service = $service;
+        $this->middleware(function ($request, $next) {
+            if (Gate::allows('isSuperAdmin')) {
+                return $next($request);
+            }
+
+            return $this->responseError('Unauthorized', 403);
+        })->except('index');
     }
 
     public function index(): JsonResponse
@@ -34,10 +43,15 @@ class AnalyseController extends Controller
 
     public function store(AnalyseRequest $request): JsonResponse
     {
+        $payload = AnalyseDTO::fromAdd($request->all());
         try {
-            $payload = AnalyseDTO::fromAdd($request->all());
+        if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin') || Gate::allows('isUser')) {
+
             $analyse = $this->service->store($payload);
             return response()->json($analyse, 201);
+        } else {
+            return $this->responseError('Unauthorized', 403);
+        }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -46,12 +60,17 @@ class AnalyseController extends Controller
     public function edit(AnalyseRequest $request, int $id)
     {
         try {
-            $analyse = $this->service->edit($request->all(),$id);
+        if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin')) {
+
+            $analyse = $this->service->edit($request->all(), $id);
             return response()->json($analyse);
+        } else {
+            return $this->responseError('Unauthorized', 403);
+        }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
-        
+
     }
 
     public function destroy(int $id): JsonResponse
@@ -76,10 +95,10 @@ class AnalyseController extends Controller
 
     public function lockAnalyse(int $id): JsonResponse
     {
-        try{
+        try {
             $analyse = $this->service->lockAnalyse($id);
             return response()->json($analyse, 'locked succesfully');
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
     }

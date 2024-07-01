@@ -8,6 +8,7 @@ use App\Http\Requests\XrfRequest;
 use App\Services\Interfaces\XrfServiceInterface;
 use App\DTOs\XrfDTO;
 use Exception;
+use Illuminate\Support\Facades\Gate;
 
 class XrfController extends Controller
 {
@@ -18,6 +19,13 @@ class XrfController extends Controller
     public function __construct(XrfServiceInterface $service)
     {
         $this->service = $service;
+        $this->middleware(function ($request, $next) {
+            if (Gate::allows('isSuperAdmin')) {
+                return $next($request);
+            }
+
+            return $this->responseError('Unauthorized', 403);
+        })->except('index');
     }
 
     public function index(): JsonResponse
@@ -36,7 +44,11 @@ class XrfController extends Controller
         $payload = XrfDTO::fromAdd($request->all());
 
         try {
-            $data = $this->service->store($payload);
+            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin') || Gate::allows('User')) {
+                $data = $this->service->store($payload);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -46,9 +58,13 @@ class XrfController extends Controller
 
     public function edit(XrfRequest $request, int $id)
     {
-        try{
-           $data = $this->service->edit($request->all(),$id);
-        }catch(Exception $e){
+        try {
+            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin')) {
+                $data = $this->service->edit($request->all(), $id);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
+        } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
         return $this->responseSuccess($data, "Xrf updated successfully");
@@ -75,5 +91,6 @@ class XrfController extends Controller
         }
 
         return $this->responseSuccess(null, "Xrf restored successfully");
-    } 
+    }
 }
+

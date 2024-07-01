@@ -7,8 +7,10 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\PointEchantillonageServiceInterface;
 use App\DTOs\PointEchantillonageDTO;
+use Illuminate\Support\Facades\Gate;
 use Exception;
 use App\Http\Requests\PointEchantillonageRequest;
+
 class PointEchantillonageController extends Controller
 {
     use ResponseTrait;
@@ -18,15 +20,24 @@ class PointEchantillonageController extends Controller
     public function __construct(PointEchantillonageServiceInterface $service)
     {
         $this->service = $service;
+
+        $this->middleware(function ($request, $next) {
+            if (Gate::allows('isSuperAdmin')) {
+                return $next($request);
+            }
+
+            return $this->responseError('Unauthorized', 403);
+        })->except('index');
     }
     public function index(): JsonResponse
     {
         try {
-            $data = $this->service->all();
+                $data = $this->service->all();
+                return response()->json($data);
+            
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
-        return response()->json($data);
 
     }
 
@@ -46,7 +57,7 @@ class PointEchantillonageController extends Controller
     public function edit(PointEchantillonageRequest $request, int $id): JsonResponse
     {
         try {
-            $data = $this->service->edit($request->all(),$id);
+            $data = $this->service->edit($request->all(), $id);
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }

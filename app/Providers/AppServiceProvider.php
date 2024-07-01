@@ -2,9 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
-use App\Models\User;
-
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Implementations\UserRepository;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -99,13 +96,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Gate::define("admin", fn(User $user) => $user->hasRole('admin'));
-        // Gate::define("doctor", fn(User $user) => $user->hasRole('doctor'));
-        // Gate::define("member", fn(User $user) => $user->hasRole('admin'));
-        // Gate::define("secretary", fn(User $user) => $user->hasRole('admin'));
-
-        Gate::define('super_admin', fn(User $user) => $user->role == 'super_admin');
-        Gate::define('admin', fn(User $user) => $user->role == 'admin');
-        Gate::define('user', fn(User $user) => $user->role == 'user');
+        //
     }
 }

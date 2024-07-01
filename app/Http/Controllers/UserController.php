@@ -6,10 +6,12 @@ use App\Traits\ResponseTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use App\DTOs\UserDTO;
+use Illuminate\Support\Facades\Gate;
 use Exception;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Services\Interfaces\UserServiceInterface;
+
 class UserController extends Controller
 {
     use ResponseTrait;
@@ -19,6 +21,14 @@ class UserController extends Controller
     public function __construct(UserServiceInterface $service)
     {
         $this->service = $service;
+
+        $this->middleware(function ($request, $next) {
+            if (Gate::allows('isSuperAdmin')) {
+                return $next($request);
+            }
+
+            return $this->responseError('Unauthorized', 403);
+        });
     }
     public function index(): JsonResponse
     {
@@ -36,7 +46,11 @@ class UserController extends Controller
         $payload = UserDTO::fromAdd($request->all());
 
         try {
-            $data = $this->service->store($payload);
+            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin') || Gate::allows('User')) {
+                $data = $this->service->store($payload);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -48,12 +62,16 @@ class UserController extends Controller
     {
 
         try {
-          $data = $this->service->edit($request->all(),$id);
+            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin')) {
+                $data = $this->service->edit($request->all(), $id);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
         return response()->json($data);
-        
+
     }
 
     public function destroy(int $id): JsonResponse
