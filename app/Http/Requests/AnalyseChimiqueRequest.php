@@ -33,7 +33,7 @@ class AnalyseChimiqueRequest extends FormRequest
             'H41' => 'nullable|numeric',
             'S2' => 'nullable|numeric',
             'CaOl' => 'nullable|numeric',
-            'analyse_id' => 'required|string',
+            'analyse_id' => 'required|int',
         ];
     }
 }

@@ -11,6 +11,8 @@ use Exception;
 use App\Exceptions\ProportionNotFoundException;
 use App\Http\Requests\ProportionRequest;
 use App\Http\Requests\ProportionEditRequest;
+use Illuminate\Support\Facades\Gate;
+
 class ProportionController extends Controller
 {
     use ResponseTrait;
@@ -20,6 +22,13 @@ class ProportionController extends Controller
     public function __construct(ProportionServiceInterface $service)
     {
         $this->service = $service;
+        $this->middleware(function ($request, $next) {
+            if (Gate::allows('isSuperAdmin')) {
+                return $next($request);
+            }
+
+            return $this->responseError('Unauthorized', 403);
+        })->except('index');
     }
 
     public function index(): JsonResponse
@@ -38,7 +47,11 @@ class ProportionController extends Controller
         $payload = ProportionDTO::fromAdd($request->all());
 
         try {
-            $data = $this->service->store($payload);
+            if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin') || Gate::allows('isUser')) {
+                $data = $this->service->store($payload);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -50,14 +63,17 @@ class ProportionController extends Controller
     {
 
         try {
-            $data = $this->service->edit($request->all(),$id);
-        } catch (ProportionNotFoundException $e) {
-            return $this->responseError($e->getMessage(), 404);
+            if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin')) {
+
+                $data = $this->service->edit($request->all(), $id);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
-        
-        return response()->json($data);
+        return $this->responseSuccess($data, "Analyse chimique updated successfully");
+
 
     }
 

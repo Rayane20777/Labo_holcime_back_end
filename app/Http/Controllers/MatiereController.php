@@ -8,6 +8,7 @@ use App\Http\Requests\MatiereRequest;
 use App\Services\Interfaces\MatiereServiceInterface;
 use App\DTOs\MatiereDTO;
 use Exception;
+use Illuminate\Support\Facades\Gate;
 
 class MatiereController extends Controller
 {
@@ -18,6 +19,13 @@ class MatiereController extends Controller
     public function __construct(MatiereServiceInterface $service)
     {
         $this->service = $service;
+        $this->middleware(function ($request, $next) {
+            if (Gate::allows('isSuperAdmin')) {
+                return $next($request);
+            }
+
+            return $this->responseError('Unauthorized', 403);
+        })->except('index');
     }
 
     public function index(): JsonResponse
@@ -31,11 +39,11 @@ class MatiereController extends Controller
         return response()->json($data);
     }
 
-    public function matiereFilter(int $id):JsonResponse 
+    public function matiereFilter(int $id): JsonResponse
     {
         try {
             $matiere = $this->service->matiereFilter($id);
-            
+
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -43,11 +51,11 @@ class MatiereController extends Controller
         return response()->json($matiere);
     }
 
-    public function userMatiereFilter(int $id):JsonResponse 
+    public function userMatiereFilter(int $id): JsonResponse
     {
         try {
             $matiere = $this->service->userMatiereFilter($id);
-            
+
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -70,9 +78,9 @@ class MatiereController extends Controller
 
     public function edit(MatiereRequest $request, int $id)
     {
-        try{
-           $data = $this->service->edit($request->all(),$id);
-        }catch(Exception $e){
+        try {
+            $data = $this->service->edit($request->all(), $id);
+        } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
         return $this->responseSuccess($data, "Matiere updated successfully");

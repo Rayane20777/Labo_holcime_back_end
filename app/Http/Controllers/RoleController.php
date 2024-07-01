@@ -8,6 +8,7 @@ use App\Http\Requests\RoleRequest;
 use App\Services\Interfaces\RoleServiceInterface;
 use App\DTOs\RoleDTO;
 use Exception;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
@@ -18,6 +19,13 @@ class RoleController extends Controller
     public function __construct(RoleServiceInterface $service)
     {
         $this->service = $service;
+        $this->middleware(function ($request, $next) {
+            if (Gate::allows('isSuperAdmin')) {
+                return $next($request);
+            }
+
+            return $this->responseError('Unauthorized', 403);
+        })->except('index');
     }
 
     public function index(): JsonResponse
@@ -31,5 +39,5 @@ class RoleController extends Controller
 
     }
 
-    
+
 }

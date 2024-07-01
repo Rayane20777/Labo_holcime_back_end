@@ -8,6 +8,7 @@ use App\Http\Requests\PhaseTempsPriseRequest;
 use App\Services\Interfaces\PhaseTempsPriseServiceInterface;
 use App\DTOs\PhaseTempsPriseDTO;
 use Exception;
+use Illuminate\Support\Facades\Gate;
 
 class PhaseTempsPriseController extends Controller
 {
@@ -18,6 +19,13 @@ class PhaseTempsPriseController extends Controller
     public function __construct(PhaseTempsPriseServiceInterface $service)
     {
         $this->service = $service;
+        $this->middleware(function ($request, $next) {
+            if (Gate::allows('isSuperAdmin')) {
+                return $next($request);
+            }
+
+            return $this->responseError('Unauthorized', 403);
+        })->except('index');
     }
 
     public function index(): JsonResponse
@@ -35,7 +43,11 @@ class PhaseTempsPriseController extends Controller
         $payload = PhaseTempsPriseDTO::fromAdd($request->all());
 
         try {
-            $data = $this->service->store($payload);
+            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin')) {
+                $data = $this->service->store($payload);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -45,9 +57,13 @@ class PhaseTempsPriseController extends Controller
 
     public function edit(PhaseTempsPriseRequest $request, int $id)
     {
-        try{
-           $data = $this->service->edit($request->all(),$id);
-        }catch(Exception $e){
+        try {
+            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin')) {
+                $data = $this->service->edit($request->all(), $id);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
+        } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
         return $this->responseSuccess($data, "Phase Gachage updated successfully");
@@ -74,5 +90,5 @@ class PhaseTempsPriseController extends Controller
         }
 
         return $this->responseSuccess(null, "Phase Gachage restored successfully");
-    } 
+    }
 }
