@@ -22,19 +22,24 @@ class ProportionController extends Controller
     public function __construct(ProportionServiceInterface $service)
     {
         $this->service = $service;
-        $this->middleware(function ($request, $next) {
-            if (Gate::allows('isSuperAdmin')) {
-                return $next($request);
-            }
+        // $this->middleware(function ($request, $next) {
+        //     if (Gate::allows('isSuperAdmin')) {
+        //         return $next($request);
+        //     }
 
-            return $this->responseError('Unauthorized', 403);
-        })->except('index');
+        //     return $this->responseError('Unauthorized', 403);
+        // });
     }
 
     public function index(): JsonResponse
     {
         try {
-            $data = $this->service->all();
+            if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin') || Gate::allows('isUser')) {
+
+                $data = $this->service->all();
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -80,9 +85,11 @@ class ProportionController extends Controller
     public function destroy(int $id): JsonResponse
     {
         try {
-            $this->service->destroy($id);
-        } catch (ProportionNotFoundException $e) {
-            return $this->responseError($e->getMessage(), 404);
+            if (Gate::allows('isSuperAdmin')) {
+                $this->service->destroy($id);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }

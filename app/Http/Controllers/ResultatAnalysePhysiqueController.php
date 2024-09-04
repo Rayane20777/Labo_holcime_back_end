@@ -20,19 +20,24 @@ class ResultatAnalysePhysiqueController extends Controller
     public function __construct(ResultatAnalysePhysiqueServiceInterface $service)
     {
         $this->service = $service;
-        $this->middleware(function ($request, $next) {
-            if (Gate::allows('isSuperAdmin')) {
-                return $next($request);
-            }
+        // $this->middleware(function ($request, $next) {
+        //     if (Gate::allows('isSuperAdmin')) {
+        //         return $next($request);
+        //     }
 
-            return $this->responseError('Unauthorized', 403);
-        })->except('index');
+        //     return $this->responseError('Unauthorized', 403);
+        // });
     }
 
     public function index(): JsonResponse
     {
         try {
-            $data = $this->service->all();
+            if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin') || Gate::allows('isUser')) {
+
+                $data = $this->service->all();
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -45,7 +50,7 @@ class ResultatAnalysePhysiqueController extends Controller
         $payload = ResultatAnalysePhysiqueDTO::fromAdd($request->all());
 
         try {
-            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin') || Gate::allows('User')) {
+            if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin') || Gate::allows('isUser')) {
                 $data = $this->service->store($payload);
             } else {
                 return $this->responseError('Unauthorized', 403);
@@ -60,7 +65,7 @@ class ResultatAnalysePhysiqueController extends Controller
     public function edit(ResultatAnalysePhysiqueRequest $request, int $id)
     {
         try {
-            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin')) {
+            if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin')) {
                 $data = $this->service->edit($request->all(), $id);
             } else {
                 return $this->responseError('Unauthorized', 403);
@@ -75,7 +80,11 @@ class ResultatAnalysePhysiqueController extends Controller
     public function destroy(int $id): JsonResponse
     {
         try {
-            $this->service->destroy($id);
+            if (Gate::allows('isSuperAdmin')) {
+                $this->service->destroy($id);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }

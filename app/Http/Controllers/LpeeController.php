@@ -4,23 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use App\Services\Interfaces\PointEchantillonageServiceInterface;
-use App\DTOs\PointEchantillonageDTO;
-use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\LpeeRequest;
+use App\Services\Interfaces\LpeeServiceInterface;
+use App\DTOs\LpeeDTO;
 use Exception;
-use App\Http\Requests\PointEchantillonageRequest;
+use Illuminate\Support\Facades\Gate;
 
-class PointEchantillonageController extends Controller
+
+class LpeeController extends Controller
 {
     use ResponseTrait;
 
-    private PointEchantillonageServiceInterface $service;
+    private LpeeServiceInterface $service;
 
-    public function __construct(PointEchantillonageServiceInterface $service)
+    public function __construct(LpeeServiceInterface $service)
     {
         $this->service = $service;
-
         // $this->middleware(function ($request, $next) {
         //     if (Gate::allows('isSuperAdmin')) {
         //         return $next($request);
@@ -29,14 +28,13 @@ class PointEchantillonageController extends Controller
         //     return $this->responseError('Unauthorized', 403);
         // });
     }
+
     public function index(): JsonResponse
     {
         try {
             if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin') || Gate::allows('isUser')) {
 
                 $data = $this->service->all();
-                return response()->json($data);
-
             } else {
                 return $this->responseError('Unauthorized', 403);
             }
@@ -44,11 +42,12 @@ class PointEchantillonageController extends Controller
             return $this->responseError($e->getMessage());
         }
 
+        return response()->json($data);
     }
 
-    public function store(PointEchantillonageRequest $request): JsonResponse
+    public function store(LpeeRequest $request): JsonResponse
     {
-        $payload = PointEchantillonageDTO::fromAdd($request->all());
+        $payload = LpeeDTO::fromAdd($request->all());
 
         try {
             if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin') || Gate::allows('isUser')) {
@@ -59,11 +58,11 @@ class PointEchantillonageController extends Controller
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
-        return response()->json($data);
 
+        return $this->responseSuccess($data, "Phase Gachage created successfully");
     }
 
-    public function edit(PointEchantillonageRequest $request, int $id): JsonResponse
+    public function edit(LpeeRequest $request, int $id)
     {
         try {
             if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin')) {
@@ -74,7 +73,7 @@ class PointEchantillonageController extends Controller
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
-        return $this->responseSuccess($data, "Point Echantillonage updated successfully");
+        return $this->responseSuccess($data, "Phase Gachage updated successfully");
 
     }
 
@@ -90,7 +89,7 @@ class PointEchantillonageController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess(null, "Point Echantillonage deleted successfully");
+        return $this->responseSuccess(null, "Phase Gachage deleted successfully");
     }
 
     public function restore(int $id): JsonResponse
@@ -101,7 +100,6 @@ class PointEchantillonageController extends Controller
             return $this->responseError($e->getMessage());
         }
 
-        return $this->responseSuccess(null, "Point Echantillonage restored successfully");
+        return $this->responseSuccess(null, "Phase Gachage restored successfully");
     }
-
 }

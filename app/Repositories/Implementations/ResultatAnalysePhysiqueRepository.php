@@ -22,10 +22,10 @@ class ResultatAnalysePhysiqueRepository implements ResultatAnalysePhysiqueReposi
             '7j' => $data->j7,
             '28j' => $data->j28,
             '90j' => $data->j90,
-            'w1' => $data->w1,
-            'w2' => $data->w2,
-            'w3' => $data->w3,
-            'w4' => $data->w4,
+            // 'w1' => $data->w1,
+            // 'w2' => $data->w2,
+            // 'w3' => $data->w3,
+            // 'w4' => $data->w4,
             'analyse_id' => $data->analyse_id,
         ]);
     }

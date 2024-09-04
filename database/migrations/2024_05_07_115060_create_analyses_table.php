@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('analyses', function (Blueprint $table) {
             $table->id();
+            $table->string('operateur');
             $table->date('date_prelevement');
             $table->date('date_gachage')->nullable();
             // $table->enum('status',['pending','locked']);

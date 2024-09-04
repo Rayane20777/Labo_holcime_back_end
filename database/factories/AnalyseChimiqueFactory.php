@@ -18,7 +18,7 @@ class AnalyseChimiqueFactory extends Factory
     {
         return [
             'finesse_2_32'=> fake()->randomfloat(2, 10, 1000),
-            'finesse_40'=> fake()->randomfloat(2, 10, 1000),
+            'finesse_45'=> fake()->randomfloat(2, 10, 1000),
             'finesse_80'=> fake()->randomfloat(2, 10, 1000),
             'SSB'=> fake()->randomfloat(2, 10, 1000),
             'insoluble'=> fake()->randomfloat(2, 10, 1000),

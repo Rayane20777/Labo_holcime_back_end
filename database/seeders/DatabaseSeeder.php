@@ -7,7 +7,8 @@ use App\Models\AnalyseChimique;
 use App\Models\PhaseGachage;
 use App\Models\PhaseTempsPrise;
 use App\Models\ResultatAnalysePhysique;
-use App\Services\Interfaces\XrfServiceInterface;
+use App\Models\ResulatPhysiqueLpee;
+use App\Models\Lpee;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Role;
@@ -36,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'super_admin',
         ]);
         Matiere::factory()->create([
-            'nom' => 'CPJ35',
+            'nom' => 'CPJ65',
         ]);
         Matiere::factory()->create([
             'nom' => 'CPZA55',
@@ -70,6 +71,8 @@ class DatabaseSeeder extends Seeder
         Xrf::factory(1000)->create();
         Xrd::factory(1000)->create();
         ResultatAnalysePhysique::factory(1000)->create();
+        ResulatPhysiqueLpee::factory(1000)->create();
+        Lpee::factory(1000)->create();
 
         // \App\Models\User::factory(10)->create();
 

@@ -19,19 +19,18 @@ class PhaseGachageController extends Controller
     public function __construct(PhaseGachageServiceInterface $service)
     {
         $this->service = $service;
-        $this->middleware(function ($request, $next) {
-            if (Gate::allows('isSuperAdmin')) {
-                return $next($request);
-            }
 
-            return $this->responseError('Unauthorized', 403);
-        })->except('index');
     }
 
     public function index(): JsonResponse
     {
         try {
-            $data = $this->service->all();
+            if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin') || Gate::allows('isUser')) {
+
+                $data = $this->service->all();
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -44,7 +43,7 @@ class PhaseGachageController extends Controller
         $payload = PhaseGachageDTO::fromAdd($request->all());
 
         try {
-            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin') || Gate::allows('User')) {
+            if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin') || Gate::allows('isUser')) {
 
                 $data = $this->service->store($payload);
             } else {
@@ -60,7 +59,7 @@ class PhaseGachageController extends Controller
     public function edit(PhaseGachageRequest $request, int $id)
     {
         try {
-            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin')) {
+            if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin')) {
                 $data = $this->service->edit($request->all(), $id);
             } else {
                 return $this->responseError('Unauthorized', 403);
@@ -75,7 +74,11 @@ class PhaseGachageController extends Controller
     public function destroy(int $id): JsonResponse
     {
         try {
-            $this->service->destroy($id);
+            if (Gate::allows('isSuperAdmin')) {
+                $this->service->destroy($id);
+            } else {
+                return $this->responseError('Unauthorized', 403);
+            }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }

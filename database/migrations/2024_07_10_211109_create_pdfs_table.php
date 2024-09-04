@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('matieres', function (Blueprint $table) {
+        Schema::create('pdfs', function (Blueprint $table) {
             $table->id();
-            $table->enum('nom',['CPZA55','PMES','PERFECTO','J55','J45','J35','PMVC','CPJ65']);
-            $table->softDeletes();
+            $table->string('nom');
+            $table->string('path');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('matieres');
+        Schema::dropIfExists('pdfs');
     }
 };

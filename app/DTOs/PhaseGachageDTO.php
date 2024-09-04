@@ -4,9 +4,9 @@ namespace App\DTOs;
 class PhaseGachageDTO {
     public function __construct(
         public readonly ?int $id,
-        public readonly float $temperature,
-        public readonly float $temperature_salle,
-        public readonly float $humidite,
+        public readonly string $temperature,
+        public readonly string $temperature_salle,
+        public readonly string $humidite,
         public readonly string $p_prisme,
         public readonly string $temps_gachage,
         public readonly string $temps_casse,

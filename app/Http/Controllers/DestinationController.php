@@ -21,20 +21,18 @@ class DestinationController extends Controller
     {
         $this->service = $service;
 
-        $this->middleware(function ($request, $next) {
-            if (Gate::allows('isSuperAdmin')) {
-                return $next($request);
-            }
-
-            return $this->responseError('Unauthorized', 403);
-        })->except('index');
+       
     }
 
     public function index(): JsonResponse
     {
         try {
+            if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin') || Gate::allows('isUser')) {
+
             $data = $this->service->all();
-            return response()->json($data);
+        } else {
+            return $this->responseError('Unauthorized', 403);
+        } return response()->json($data);
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -45,10 +43,13 @@ class DestinationController extends Controller
 
         try {
 
-            $payload = DestinationDTO::fromAdd($request->all());
+            if (Gate::allows('isSuperAdmin')) {
+                $payload = DestinationDTO::fromAdd($request->all());
             $data = $this->service->store($payload);
             return response()->json($data);
-        } catch (Exception $e) {
+        } else {
+            return $this->responseError('Unauthorized', 403);
+        }} catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
     }
@@ -57,9 +58,12 @@ class DestinationController extends Controller
     {
 
         try {
-            $data = $this->service->edit($request->all(), $id);
+            if (Gate::allows('isSuperAdmin')) {
+                $data = $this->service->edit($request->all(), $id);
             return response()->json($data);
-        } catch (Exception $e) {
+        } else {
+            return $this->responseError('Unauthorized', 403);
+        }} catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
     }
@@ -67,9 +71,12 @@ class DestinationController extends Controller
     public function destroy(int $id): JsonResponse
     {
         try {
+        if (Gate::allows('isSuperAdmin') ) {
             $this->service->destroy($id);
             return $this->responseSuccess(null, "Destination deleted successfully");
-        } catch (Exception $e) {
+        } else {
+            return $this->responseError('Unauthorized', 403);
+        }} catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
     }

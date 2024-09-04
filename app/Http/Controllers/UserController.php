@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Gate;
 use Exception;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserEditRequest;
+use App\Http\Requests\ResetPassword;
 use App\Services\Interfaces\UserServiceInterface;
 
 class UserController extends Controller
@@ -46,11 +47,8 @@ class UserController extends Controller
         $payload = UserDTO::fromAdd($request->all());
 
         try {
-            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin') || Gate::allows('User')) {
-                $data = $this->service->store($payload);
-            } else {
-                return $this->responseError('Unauthorized', 403);
-            }
+            $data = $this->service->store($payload);
+
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -62,11 +60,21 @@ class UserController extends Controller
     {
 
         try {
-            if (Gate::allows('isSuperAdmin') || Gate::allows('Admin')) {
-                $data = $this->service->edit($request->all(), $id);
-            } else {
-                return $this->responseError('Unauthorized', 403);
-            }
+            $data = $this->service->edit($request->all(), $id);
+
+        } catch (Exception $e) {
+            return $this->responseError($e->getMessage());
+        }
+        return response()->json($data);
+
+    }
+
+    public function reset(ResetPassword $request, int $id): JsonResponse
+    {
+
+        try {
+            $data = $this->service->resetPassword($request->all(), $id);
+
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }

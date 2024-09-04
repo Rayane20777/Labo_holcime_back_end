@@ -39,6 +39,15 @@ class UserRepository implements UserRepositoryInterface
         return $user;
     }
 
+    public function resetPassword($data, $id)
+    {
+        $user = User::where('id',$id)->first();
+        $user->password = $data['password'];
+        $user->update();
+
+        return $user;
+    }
+
     public function destroy(int $id)
     {
         $user = User::findOrFail($id);

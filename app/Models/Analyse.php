@@ -60,6 +60,10 @@ class Analyse extends Model
         return $this->hasOne(ResultatAnalysePhysique::class);
     }
 
+    public function resultat_physique_lpee() : HasOne {
+        return $this->hasOne(ResulatPhysiqueLpee::class);
+    }
+
     public function xrf() : HasOne {
         return $this->hasOne(Xrf::class);
     }

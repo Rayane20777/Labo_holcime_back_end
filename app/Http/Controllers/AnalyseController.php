@@ -21,19 +21,18 @@ class AnalyseController extends Controller
     public function __construct(AnalyseServiceInterface $service)
     {
         $this->service = $service;
-        $this->middleware(function ($request, $next) {
-            if (Gate::allows('isSuperAdmin')) {
-                return $next($request);
-            }
-
-            return $this->responseError('Unauthorized', 403);
-        })->except('index');
+        
     }
 
     public function index(): JsonResponse
     {
         try {
+            if (Gate::allows('isSuperAdmin') || Gate::allows('isAdmin') || Gate::allows('isUser')) {
+
             $data = $this->service->all();
+        } else {
+            return $this->responseError('Unauthorized', 403);
+        }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }
@@ -76,8 +75,12 @@ class AnalyseController extends Controller
     public function destroy(int $id): JsonResponse
     {
         try {
+        if (Gate::allows('isSuperAdmin') ) {
             $this->service->destroy($id);
             return response()->json(null, 204);
+        } else {
+            return $this->responseError('Unauthorized', 403);
+        }
         } catch (Exception $e) {
             return $this->responseError($e->getMessage());
         }

@@ -6,25 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\OneToOneTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-class AnalyseChimique extends Model
+class ResulatPhysiqueLpee extends Model
 {
     use HasFactory,OneToOneTrait,SoftDeletes;
 
-    protected $table = 'analyse_chimiques';
+    protected $table = 'resultat_physique_lpees';
+
+
     protected $fillable = [
-        'finesse_2_32',
-        'finesse_45',
-        'finesse_80',
-        'SSB',
-        'insoluble',
-        'CO2',
-        'PF',
-        'Cl',
-        'H41',
-        'S2',
-        'CaOl',
+        '1j',
+        '2j',
+        '7j',
+        '28j',
+        '90j',
+        'w1',
+        'w2',
+        'w3',
+        'w4',
         'analyse_id'
     ];
-
 }

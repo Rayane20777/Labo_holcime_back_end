@@ -82,6 +82,11 @@ class UserService implements UserServiceInterface
         return $this->repository->edit($data, $id);
     }
 
+    public function resetPassword($data, int $id)
+    {
+        return $this->repository->resetPassword($data, $id);
+    }
+
     public function destroy(int $id)
     {
         return $this->repository->destroy($id);

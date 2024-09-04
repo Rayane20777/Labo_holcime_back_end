@@ -10,5 +10,6 @@ interface UserRepositoryInterface
     public function register(array $data);
     public function store($data);
     public function edit($data, int $id);
+    public function resetPassword($data, int $id);
     public function destroy(int $id);
 }

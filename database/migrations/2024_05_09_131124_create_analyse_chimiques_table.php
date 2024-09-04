@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('analyse_chimiques', function (Blueprint $table) {
             $table->id();
             $table->string('finesse_2_32')->nullable();
-            $table->string('finesse_40')->nullable();
+            $table->string('finesse_45')->nullable();
             $table->string('finesse_80')->nullable();
             $table->string('SSB')->nullable();
             $table->string('insoluble')->nullable();
